@@ -7,7 +7,7 @@
     "item": "firmaciv:cannonball",
     "count": 1
   },
-  "tier": 2,
+  "tier": 3,
   "rules": [
     "bend_last",
     "bend_second_last",
