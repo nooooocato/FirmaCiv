@@ -140,6 +140,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    mavenLocal()
     maven {
         // tfc
         url = 'https://www.cursemaven.com'
@@ -189,6 +190,11 @@ dependencies {
 
     // Easy handheld models TODO (maybe we JIJ this?)
     runtimeOnly fg.deobf("curse.maven:alekis-easy-held-models-953157:4977248")
+
+    // AlekiShips
+    implementation(jarJar(fg.deobf("com.alekiponi:AlekiShips-$minecraftVersion:$alekiShipsVersion"))) {
+        jarJar.ranged(it as Dependency, "[$alekiShipsVersion,)")
+    }
 }
 
 mixin {
