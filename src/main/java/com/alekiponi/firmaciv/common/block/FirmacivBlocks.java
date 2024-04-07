@@ -61,14 +61,6 @@ public final class FirmacivBlocks {
             wood -> registerBlock("wood/watercraft_frame_flat/" + wood.getSerializedName(),
                     () -> new FlatWoodenBoatFrameBlock(wood, BlockBehaviour.Properties.copy(BOAT_FRAME_FLAT.get()))));
 
-    public static final RegistryObject<Block> OARLOCK = registerBlockWithItem("oarlock", () -> new OarlockBlock(
-            BlockBehaviour.Properties.copy(
-                    TFCBlocks.METALS.get(Metal.Default.WROUGHT_IRON).get(Metal.BlockType.BLOCK).get()).noOcclusion()));
-
-    public static final RegistryObject<Block> CLEAT = registerBlockWithItem("cleat", () -> new CleatBlock(
-            BlockBehaviour.Properties.copy(
-                    TFCBlocks.METALS.get(Metal.Default.WROUGHT_IRON).get(Metal.BlockType.BLOCK).get()).noOcclusion()));
-
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }

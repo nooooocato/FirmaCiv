@@ -37,15 +37,9 @@ public class FirmacivTabs {
 
                         pOutput.accept(FirmacivItems.CANOE_PADDLE.get());
 
-                        pOutput.accept(FirmacivItems.OAR.get());
-                        pOutput.accept(FirmacivBlocks.OARLOCK.get());
                         pOutput.accept(FirmacivItems.COPPER_BOLT.get());
-                        pOutput.accept(FirmacivBlocks.CLEAT.get());
-                        pOutput.accept(FirmacivItems.ANCHOR.get());
 
-                        pOutput.accept(FirmacivItems.CANNON.get());
                         pOutput.accept(FirmacivItems.CANNON_BARREL.get());
-                        pOutput.accept(FirmacivItems.CANNONBALL.get());
 
                         pOutput.accept(TFCItems.UNREFINED_PAPER.get());
                         pOutput.accept(Items.GUNPOWDER);
