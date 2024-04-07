@@ -1,17 +1,15 @@
 package com.alekiponi.firmaciv.common.entity;
 
+import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.*;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.*;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.vanilla.*;
-import com.alekiponi.firmaciv.util.FirmacivHelper;
-import com.alekiponi.firmaciv.util.FirmacivTags;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.util.FirmacivWoodHelper;
 import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -56,80 +54,10 @@ public final class FirmacivEntities {
                     EntityType.Builder.<SloopUnderConstructionEntity>of((type, level) -> new SloopUnderConstructionEntity(type,level, wood), MobCategory.MISC).sized(4F, 0.75F)
                             .setTrackingRange(LARGE_VEHICLE_TRACKING).fireImmune().noSummon()));
 
-    public static final RegistryObject<EntityType<EmptyCompartmentEntity>> EMPTY_COMPARTMENT_ENTITY = register(
-            "compartment_empty",
-            EntityType.Builder.of(EmptyCompartmentEntity::new, MobCategory.MISC).sized(0.6F, 0.7F).fireImmune()
-                    .noSummon());
-
     public static final RegistryObject<CompartmentType<TFCChestCompartmentEntity>> TFC_CHEST_COMPARTMENT_ENTITY = registerCompartment(
             "compartment_tfcchest",
             CompartmentType.Builder.of(TFCChestCompartmentEntity::new, TFCChestCompartmentEntity::new,
-                    itemStack -> itemStack.is(FirmacivTags.Items.CHESTS), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<BarrelCompartmentEntity>> BARREL_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_barrel", CompartmentType.Builder.of(BarrelCompartmentEntity::new, BarrelCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.BARREL.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<ChestCompartmentEntity>> CHEST_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_chest", CompartmentType.Builder.of(ChestCompartmentEntity::new, ChestCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.CHEST.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<EnderChestCompartmentEntity>> ENDER_CHEST_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_ender_chest",
-            CompartmentType.Builder.of(EnderChestCompartmentEntity::new, EnderChestCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.ENDER_CHEST.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<ShulkerBoxCompartmentEntity>> SHULKER_BOX_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_shulker_box",
-            CompartmentType.Builder.of(ShulkerBoxCompartmentEntity::new, ShulkerBoxCompartmentEntity::new,
-                    itemStack -> itemStack.is(FirmacivTags.Items.SHULKER_BOX), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<FurnaceCompartmentEntity>> FURNACE_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_furnace",
-            CompartmentType.Builder.of(FurnaceCompartmentEntity::new, FurnaceCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.FURNACE.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<BlastFurnaceCompartmentEntity>> BLAST_FURNACE_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_blast_furnace",
-            CompartmentType.Builder.of(BlastFurnaceCompartmentEntity::new, BlastFurnaceCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.BLAST_FURNACE.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<SmokerCompartmentEntity>> SMOKER_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_smoker", CompartmentType.Builder.of(SmokerCompartmentEntity::new, SmokerCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.SMOKER.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<WorkbenchCompartmentEntity>> WORKBENCH_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_workbench",
-            CompartmentType.Builder.of(WorkbenchCompartmentEntity::new, WorkbenchCompartmentEntity::new,
-                    itemStack -> itemStack.is(FirmacivTags.Items.WORKBENCHES), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<StonecutterCompartmentEntity>> STONECUTTER_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_stonecutter",
-            CompartmentType.Builder.of(StonecutterCompartmentEntity::new, StonecutterCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.STONECUTTER.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<CartographyTableCompartmentEntity>> CARTOGRAPHY_TABLE_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_cartography_table",
-            CompartmentType.Builder.of(CartographyTableCompartmentEntity::new, CartographyTableCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.CARTOGRAPHY_TABLE.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<SmithingTableCompartmentEntity>> SMITHING_TABLE_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_smithing_table",
-            CompartmentType.Builder.of(SmithingTableCompartmentEntity::new, SmithingTableCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.SMITHING_TABLE.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<GrindstoneCompartmentEntity>> GRINDSTONE_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_grindstone",
-            CompartmentType.Builder.of(GrindstoneCompartmentEntity::new, GrindstoneCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.GRINDSTONE.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<LoomCompartmentEntity>> LOOM_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_loom", CompartmentType.Builder.of(LoomCompartmentEntity::new, LoomCompartmentEntity::new,
-                    itemStack -> itemStack.is(Blocks.LOOM.asItem()), MobCategory.MISC));
-
-    public static final RegistryObject<CompartmentType<AnvilCompartmentEntity>> ANVIL_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_anvil", CompartmentType.Builder.of(AnvilCompartmentEntity::new, AnvilCompartmentEntity::new,
-                    itemStack -> itemStack.is(FirmacivTags.Items.ANVILS), MobCategory.MISC));
+                    MobCategory.MISC));
 
     public static final RegistryObject<EntityType<BoatVehiclePart>> BOAT_VEHICLE_PART = register("vehicle_part_boat",
             EntityType.Builder.of(BoatVehiclePart::new, MobCategory.MISC).sized(0, 0)
@@ -175,18 +103,25 @@ public final class FirmacivEntities {
             EntityType.Builder.of(MastEntity::new, MobCategory.MISC).sized(0.3F, 8)
                     .setTrackingRange(VEHICLE_HELPER_TRACKING).noSummon());
 
-    private static <E extends AbstractCompartmentEntity> RegistryObject<CompartmentType<E>> registerCompartment(
-            final String name, final CompartmentType.Builder<E> builder) {
-        return registerCompartment(name, builder.sized(0.6F, 0.7F).fireImmune().noSummon(), true);
-    }
-
+    /**
+     * Registers a compartment entity
+     */
     @SuppressWarnings("SameParameterValue")
     private static <E extends AbstractCompartmentEntity> RegistryObject<CompartmentType<E>> registerCompartment(
-            final String name, final CompartmentType.Builder<E> builder, final boolean serialize) {
+            final String name, final CompartmentType.Builder<E> builder) {
+        return register(name, builder.sized(0.6F, 0.7F).fireImmune().noSummon(), true);
+    }
+
+    /**
+     * Base method for registering a compartment entity
+     */
+    @SuppressWarnings("SameParameterValue")
+    private static <E extends AbstractCompartmentEntity> RegistryObject<CompartmentType<E>> register(final String name,
+            final CompartmentType.Builder<E> builder, final boolean serialize) {
         final String id = name.toLowerCase(Locale.ROOT);
         return ENTITY_TYPES.register(id, () -> {
             if (!serialize) builder.noSave();
-            return CompartmentType.register(builder.build(MOD_ID + ":" + id));
+            return builder.build(MOD_ID + ":" + id);
         });
     }
 

@@ -1,9 +1,9 @@
 package com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment;
 
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.CompartmentType;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.vanilla.ChestCompartmentEntity;
 import net.dries007.tfc.common.container.RestrictedChestContainer;
 import net.dries007.tfc.common.container.TFCContainerTypes;
-import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -12,26 +12,21 @@ import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class TFCChestCompartmentEntity extends ContainerCompartmentEntity {
+public class TFCChestCompartmentEntity extends ChestCompartmentEntity {
+
+    public static final int SLOT_AMOUNT = 18;
 
     public TFCChestCompartmentEntity(final EntityType<? extends TFCChestCompartmentEntity> entityType,
             final Level level) {
-        super(entityType, level, 18);
+        super(entityType, level, SLOT_AMOUNT);
     }
 
     public TFCChestCompartmentEntity(final CompartmentType<? extends TFCChestCompartmentEntity> entityType,
             final Level level, final ItemStack itemStack) {
-        this(entityType, level);
-        if (itemStack.getItem() instanceof BlockItem blockItem) {
-            this.setDisplayBlockState(blockItem.getBlock().defaultBlockState());
-        }
+        super(entityType, level, SLOT_AMOUNT, itemStack);
     }
 
     @Override
@@ -50,14 +45,6 @@ public class TFCChestCompartmentEntity extends ContainerCompartmentEntity {
         }
 
         return interactionResult;
-    }
-
-    @Override
-    public void openCustomInventoryScreen(final Player player) {
-        super.openCustomInventoryScreen(player);
-        if (!player.level().isClientSide) {
-            PiglinAi.angerNearbyPiglins(player, true);
-        }
     }
 
     @Override

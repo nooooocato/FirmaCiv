@@ -7,10 +7,10 @@ import com.alekiponi.firmaciv.client.model.entity.RowboatEntityModel;
 import com.alekiponi.firmaciv.client.render.entity.CannonRenderer;
 import com.alekiponi.firmaciv.client.render.entity.CannonballRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.*;
-import com.alekiponi.firmaciv.client.render.entity.vehicle.vehiclehelper.*;
+import com.alekiponi.firmaciv.client.render.entity.vehicle.vehiclehelper.AnchorRenderer;
+import com.alekiponi.firmaciv.client.render.entity.vehicle.vehiclehelper.ConstructionRenderer;
+import com.alekiponi.firmaciv.client.render.entity.vehicle.vehiclehelper.VehicleCleatRenderer;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
-import com.alekiponi.firmaciv.util.BoatVariant;
-import com.alekiponi.firmaciv.util.FirmacivHelper;
 import com.alekiponi.firmaciv.util.FirmacivWoodHelper;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,36 +43,8 @@ public final class RenderEventHandler {
 
         event.registerEntityRenderer(FirmacivEntities.KAYAK_ENTITY.get(), KayakRenderer::new);
 
-        event.registerEntityRenderer(FirmacivEntities.EMPTY_COMPARTMENT_ENTITY.get(), NoopRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.TFC_CHEST_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.BARREL_COMPARTMENT_ENTITY.get(), BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.CHEST_COMPARTMENT_ENTITY.get(), ChestCompartmentRenderer::new);
-
-        event.registerEntityRenderer(FirmacivEntities.ENDER_CHEST_COMPARTMENT_ENTITY.get(),
-                EnderChestCompartmentRenderer::new);
-
-        event.registerEntityRenderer(FirmacivEntities.SHULKER_BOX_COMPARTMENT_ENTITY.get(),
-                ShulkerBoxCompartmentRenderer::new);
-
-        event.registerEntityRenderer(FirmacivEntities.FURNACE_COMPARTMENT_ENTITY.get(), BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.BLAST_FURNACE_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.SMOKER_COMPARTMENT_ENTITY.get(), BlockCompartmentRenderer::new);
-
-        event.registerEntityRenderer(FirmacivEntities.WORKBENCH_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.STONECUTTER_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.CARTOGRAPHY_TABLE_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.SMITHING_TABLE_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.GRINDSTONE_COMPARTMENT_ENTITY.get(),
-                BlockCompartmentRenderer::new);
-        event.registerEntityRenderer(FirmacivEntities.LOOM_COMPARTMENT_ENTITY.get(), BlockCompartmentRenderer::new);
-
-        event.registerEntityRenderer(FirmacivEntities.ANVIL_COMPARTMENT_ENTITY.get(), BlockCompartmentRenderer::new);
+        // TODO make a renderer for this
+        event.registerEntityRenderer(FirmacivEntities.TFC_CHEST_COMPARTMENT_ENTITY.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(FirmacivEntities.BOAT_VEHICLE_PART.get(), NoopRenderer::new);
         event.registerEntityRenderer(FirmacivEntities.CONSTRUCTION_VEHICLE_PART.get(), NoopRenderer::new);

@@ -1,11 +1,12 @@
 package com.alekiponi.firmaciv.common.entity.vehiclehelper;
 
+import com.alekiponi.alekiships.common.entity.AlekiShipsEntities;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.common.entity.vehicle.AbstractVehicle;
 import com.alekiponi.firmaciv.common.entity.vehicle.SloopEntity;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -120,7 +121,7 @@ public abstract class AbstractVehiclePart extends AbstractInvisibleHelper {
     }
 
     protected boolean tickAddCompartment(AbstractVehicle vehicle) {
-        final EmptyCompartmentEntity newCompartment = FirmacivEntities.EMPTY_COMPARTMENT_ENTITY.get()
+        final EmptyCompartmentEntity newCompartment = AlekiShipsEntities.EMPTY_COMPARTMENT_ENTITY.get()
                 .create(this.level());
 
         if (newCompartment != null) {
