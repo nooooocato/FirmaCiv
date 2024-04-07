@@ -1,7 +1,10 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.*;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.AbstractVehiclePart;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.SailSwitchEntity;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.VehicleCleatEntity;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.WindlassSwitchEntity;
 import com.alekiponi.firmaciv.network.PacketHandler;
 import com.alekiponi.firmaciv.network.ServerBoundSloopPacket;
 import com.alekiponi.firmaciv.util.BoatVariant;

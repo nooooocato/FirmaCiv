@@ -2,7 +2,7 @@ package com.alekiponi.firmaciv.common.entity;
 
 import com.alekiponi.firmaciv.common.entity.vehicle.AbstractFirmacivBoatEntity;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.AbstractInvisibleHelper;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.fluids.TFCFluids;
 import net.minecraft.core.BlockPos;

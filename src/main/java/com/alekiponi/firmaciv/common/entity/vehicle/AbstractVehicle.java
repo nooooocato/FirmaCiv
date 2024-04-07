@@ -1,10 +1,10 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
+import com.alekiponi.firmaciv.common.entity.vehiclehelper.AbstractVehiclePart;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.VehicleCleatEntity;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.VehicleCollisionEntity;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.AbstractVehiclePart;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import com.alekiponi.firmaciv.util.FirmacivHelper;
 import com.google.common.collect.Lists;
 import net.dries007.tfc.common.TFCTags;
@@ -38,7 +38,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class AbstractVehicle extends Entity {

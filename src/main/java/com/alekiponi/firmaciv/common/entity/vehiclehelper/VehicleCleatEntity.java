@@ -1,6 +1,5 @@
 package com.alekiponi.firmaciv.common.entity.vehiclehelper;
 
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;

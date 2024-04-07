@@ -2,7 +2,7 @@ package com.alekiponi.firmaciv.common.entity.vehicle;
 
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.*;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
+import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
 import com.alekiponi.firmaciv.util.BoatVariant;
 import com.alekiponi.firmaciv.util.FirmacivHelper;
 import net.dries007.tfc.util.climate.Climate;

@@ -21,12 +21,6 @@ public class PacketHandler {
 
     public static void init(){
         int id = 0;
-        INSTANCE.messageBuilder(ServerboundCompartmentInputPacket.class, id)
-                .encoder(ServerboundCompartmentInputPacket::encoder)
-                .decoder(ServerboundCompartmentInputPacket::decoder)
-                .consumerMainThread(ServerboundCompartmentInputPacket::handle)
-                .add();
-        id++;
         INSTANCE.messageBuilder(ServerboundSwitchEntityPacket.class, id)
                 .encoder(ServerboundSwitchEntityPacket::encoder)
                 .decoder(ServerboundSwitchEntityPacket::decoder)
