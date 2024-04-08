@@ -5,12 +5,10 @@ import com.alekiponi.alekiships.common.block.FlatBoatFrameBlock;
 import com.alekiponi.alekiships.util.AlekiShipsHelper;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
-import com.alekiponi.firmaciv.util.FirmacivWoodHelper;
 import com.alekiponi.firmaciv.util.TFCWood;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.Wood;
-import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,18 +20,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.EnumMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public final class FirmacivBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             Firmaciv.MOD_ID);
 
-    public static final Map<RegistryWood, RegistryObject<CanoeComponentBlock>> CANOE_COMPONENT_BLOCKS = FirmacivWoodHelper.TFCWoodMap(
-            wood -> registerBlock("wood/canoe_component_block/" + wood.getSerializedName(),
+    public static final EnumMap<TFCWood, RegistryObject<CanoeComponentBlock>> CANOE_COMPONENT_BLOCKS = AlekiShipsHelper.mapOfKeys(
+            TFCWood.class, tfcWood -> registerBlock("wood/canoe_component_block/" + tfcWood.getSerializedName(),
                     () -> new CanoeComponentBlock(
-                            BlockBehaviour.Properties.copy(wood.getBlock(Wood.BlockType.STRIPPED_LOG).get())
-                                    .mapColor(wood.woodColor()).noOcclusion(), wood)));
+                            BlockBehaviour.Properties.copy(tfcWood.wood.getBlock(Wood.BlockType.STRIPPED_LOG).get())
+                                    .mapColor(tfcWood.wood.woodColor()).noOcclusion(), tfcWood)));
 
     public static final RegistryObject<Block> THATCH_ROOFING = registerBlockWithItem("thatch_roofing",
             () -> new AngledThatchRoofingBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),

@@ -8,9 +8,7 @@ import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.Abstract
 import com.alekiponi.alekiships.util.AlekiShipsHelper;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.TFCChestCompartmentEntity;
-import com.alekiponi.firmaciv.util.FirmacivWoodHelper;
 import com.alekiponi.firmaciv.util.TFCWood;
-import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -20,7 +18,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.EnumMap;
 import java.util.Locale;
-import java.util.Map;
 
 import static com.alekiponi.firmaciv.Firmaciv.MOD_ID;
 
@@ -46,8 +43,8 @@ public final class FirmacivEntities {
                     (entityType, level) -> new FirmacivSloopUnderConstructionEntity(entityType, level, tfcWood),
                     MobCategory.MISC)));
 
-    public static final Map<RegistryWood, RegistryObject<EntityType<CanoeEntity>>> CANOES = FirmacivWoodHelper.TFCWoodMap(
-            wood -> register("dugout_canoe/" + wood.getSerializedName(),
+    public static final EnumMap<TFCWood, RegistryObject<EntityType<CanoeEntity>>> TFC_CANOES = AlekiShipsHelper.mapOfKeys(
+            TFCWood.class, tfcWood -> register("dugout_canoe/" + tfcWood.getSerializedName(),
                     EntityType.Builder.of(CanoeEntity::new, MobCategory.MISC).sized(1.125F, 0.625F)));
 
     public static final RegistryObject<EntityType<KayakEntity>> KAYAK_ENTITY = register("kayak",

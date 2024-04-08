@@ -1,18 +1,20 @@
 package com.alekiponi.firmaciv.util;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractVehicle;
-import com.alekiponi.alekiships.util.BoatMaterial;
+import com.alekiponi.firmaciv.common.block.CanoeComponentBlock;
 import com.alekiponi.firmaciv.common.block.FirmacivBlocks;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
+import com.alekiponi.firmaciv.common.entity.vehicle.CanoeEntity;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.TFCItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
-public enum TFCWood implements BoatMaterial {
+public enum TFCWood implements CanoeBoatMaterial {
     ACACIA(Wood.ACACIA),
     ASH(Wood.ASH),
     ASPEN(Wood.ASPEN),
@@ -34,7 +36,7 @@ public enum TFCWood implements BoatMaterial {
     WHITE_CEDAR(Wood.WHITE_CEDAR),
     WILLOW(Wood.WILLOW);
 
-    private final Wood wood;
+    public final Wood wood;
 
     TFCWood(final Wood wood) {
         this.wood = wood;
@@ -48,6 +50,9 @@ public enum TFCWood implements BoatMaterial {
             FirmacivBlocks.BOAT_FRAME_FLAT.get()
                     .registerFrame(tfcWood.wood.getBlock(Wood.BlockType.PLANKS).get().asItem(),
                             FirmacivBlocks.WOODEN_BOAT_FRAME_FLAT.get(tfcWood).get());
+            CanoeComponentBlock.registerCanoeComponent(
+                    (RotatedPillarBlock) tfcWood.wood.getBlock(Wood.BlockType.STRIPPED_LOG).get(),
+                    FirmacivBlocks.CANOE_COMPONENT_BLOCKS.get(tfcWood).get());
         }
     }
 
@@ -69,6 +74,11 @@ public enum TFCWood implements BoatMaterial {
     @Override
     public BlockState getDeckBlock() {
         return this.wood.getBlock(Wood.BlockType.PLANKS).get().defaultBlockState();
+    }
+
+    @Override
+    public Optional<EntityType<? extends CanoeEntity>> getCanoeType() {
+        return Optional.of(FirmacivEntities.TFC_CANOES.get(this).get());
     }
 
     @Override

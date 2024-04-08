@@ -2,11 +2,8 @@ package com.alekiponi.firmaciv.common.block;
 
 import com.alekiponi.firmaciv.common.blockentity.CanoeComponentBlockEntity;
 import com.alekiponi.firmaciv.common.blockentity.FirmacivBlockEntities;
-import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.common.entity.vehicle.CanoeEntity;
-import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.blocks.wood.Wood;
-import net.dries007.tfc.util.registry.RegistryWood;
+import com.alekiponi.firmaciv.util.CanoeBoatMaterial;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,12 +29,10 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.IdentityHashMap;
 import java.util.stream.Stream;
-
-import static com.alekiponi.firmaciv.common.block.FirmacivBlocks.CANOE_COMPONENT_BLOCKS;
 
 
 public class CanoeComponentBlock extends BaseEntityBlock {
@@ -46,44 +41,46 @@ public class CanoeComponentBlock extends BaseEntityBlock {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     public static final IntegerProperty CANOE_CARVED = FirmacivBlockStateProperties.CANOE_CARVED_13;
     public static final BooleanProperty END = FirmacivBlockStateProperties.END;
+    private static final IdentityHashMap<RotatedPillarBlock, CanoeComponentBlock> CANOE_COMPONENTS = new IdentityHashMap<>();
     private static final VoxelShape SHAPE_FINAL = Stream.of(
                     Block.box(0, 0, 0, 16, 9, 16))
             .reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_1 = Stream.of(
                     Block.box(0, 0, 0, 16, 16, 16))
             .reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    private final RegistryWood wood;
+    private final CanoeBoatMaterial canoeBoatMaterial;
 
-    public CanoeComponentBlock(final Properties properties, final RegistryWood wood) {
+    public CanoeComponentBlock(final Properties properties, final CanoeBoatMaterial canoeBoatMaterial) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
                 .setValue(AXIS, Direction.Axis.Z).setValue(CANOE_CARVED, 1).setValue(END, false));
-        this.wood = wood;
+        this.canoeBoatMaterial = canoeBoatMaterial;
     }
 
-    public static Block getByStripped(Block strippedLogBlock) {
-        // TODO if you want you can make this back into a stream - alekiponi
-        for(RegistryObject<CanoeComponentBlock> ccb : CANOE_COMPONENT_BLOCKS.values()){
-            if(ccb.get().wood.getBlock(Wood.BlockType.STRIPPED_LOG).get() == strippedLogBlock){
-                return ccb.get();
-            }
-            //return ccb.get().wood.getBlock(Wood.BlockType.STRIPPED_LOG).get();
-        }
-        return null;
-        /*
-        return CANOE_COMPONENT_BLOCKS.values().stream()
-                .filter(registryObject -> registryObject.get().wood.getBlock(
-                        Wood.BlockType.STRIPPED_LOG) == strippedLogBlock)
-                .map(registryObject -> registryObject.get()).findFirst().get();
-
-         */
+    /**
+     * Registers a mapping of the passed in {@link RotatedPillarBlock} instance and the passed in {@link CanoeComponentBlock}
+     * A given {@link RotatedPillarBlock} instance may only map to one {@link CanoeComponentBlock} instance but multiple
+     * {@link RotatedPillarBlock}s can map to the same {@link CanoeComponentBlock}.
+     */
+    public static void registerCanoeComponent(final RotatedPillarBlock strippedWoodenLog,
+            final CanoeComponentBlock canoeComponentBlock) {
+        CANOE_COMPONENTS.put(strippedWoodenLog, canoeComponentBlock);
     }
 
-    public static boolean isValidCanoeShape(LevelAccessor world, Block strippedLogBlock, BlockPos pPos) {
+    @Nullable
+    public static CanoeComponentBlock getCanoeComponent(final RotatedPillarBlock strippedWoodenLog) {
+        return CANOE_COMPONENTS.get(strippedWoodenLog);
+    }
+
+    public static boolean isValidCanoeShape(LevelAccessor world, RotatedPillarBlock strippedLogBlock, BlockPos pPos) {
 
         Direction.Axis axis = world.getBlockState(pPos).getValue(AXIS);
 
-        Block canoeComponentBlock = getByStripped(strippedLogBlock);
+
+        CanoeComponentBlock canoeComponentBlock = getCanoeComponent(strippedLogBlock);
+
+        // No canoe component for the log block
+        if (canoeComponentBlock == null) return false;
 
         BlockPos blockPos0 = pPos;
 
@@ -138,11 +135,12 @@ public class CanoeComponentBlock extends BaseEntityBlock {
         return pPos;
     }
 
-    public static BlockState getStateForPlacement(Level pLevel, Block strippedLogBlock, BlockPos pPos) {
+    public static BlockState getStateForPlacement(Level pLevel, RotatedPillarBlock strippedLogBlock, BlockPos pPos) {
 
         Direction.Axis axis = pLevel.getBlockState(pPos).getValue(AXIS);
 
-        Block canoeComponentBlock = getByStripped(strippedLogBlock);
+        CanoeComponentBlock canoeComponentBlock = getCanoeComponent(strippedLogBlock);
+        assert canoeComponentBlock != null;
 
         BlockState finalBlockState = canoeComponentBlock.defaultBlockState()
                 .setValue(CANOE_CARVED, 1)
@@ -233,7 +231,7 @@ public class CanoeComponentBlock extends BaseEntityBlock {
         return false;
     }
 
-    public static void trySpawnCanoe(Level pLevel, BlockPos pPos, Block canoeComponentBlock) {
+    public static void trySpawnCanoe(Level pLevel, BlockPos pPos, CanoeComponentBlock canoeComponentBlock) {
 
         if (!areValidBlockStates(pLevel, pPos, canoeComponentBlock)) {
             return;
@@ -241,42 +239,43 @@ public class CanoeComponentBlock extends BaseEntityBlock {
 
         BlockPattern.BlockPatternMatch blockpattern$blockpatternmatch = createCanoeFull(canoeComponentBlock).find(
                 pLevel, pPos);
-        if (blockpattern$blockpatternmatch != null) {
+        if (blockpattern$blockpatternmatch == null) return;
 
-            Direction.Axis axis = pLevel.getBlockState(pPos).getValue(AXIS);
-            BlockPos middleblockpos = getMiddleBlockPos(pLevel, pPos, canoeComponentBlock);
 
-            for (int i = 0; i < createCanoeFull(canoeComponentBlock).getHeight(); ++i) {
-                BlockInWorld blockinworld = blockpattern$blockpatternmatch.getBlock(0, i, 0);
-                pLevel.setBlock(blockinworld.getPos(), Blocks.AIR.defaultBlockState(), 2);
-                pLevel.levelEvent(2001, blockinworld.getPos(), Block.getId(blockinworld.getState()));
-            }
+        Direction.Axis axis = pLevel.getBlockState(pPos).getValue(AXIS);
+        BlockPos middleblockpos = getMiddleBlockPos(pLevel, pPos, canoeComponentBlock);
 
-            CanoeComponentBlock ccb = (CanoeComponentBlock) canoeComponentBlock;
+        for (int i = 0; i < createCanoeFull(canoeComponentBlock).getHeight(); ++i) {
+            BlockInWorld blockinworld = blockpattern$blockpatternmatch.getBlock(0, i, 0);
+            pLevel.setBlock(blockinworld.getPos(), Blocks.AIR.defaultBlockState(), 2);
+            pLevel.levelEvent(2001, blockinworld.getPos(), Block.getId(blockinworld.getState()));
+        }
 
-            CanoeEntity canoe = FirmacivEntities.CANOES.get(ccb.wood).get().create(pLevel);
+        canoeComponentBlock.canoeBoatMaterial.getCanoeType().ifPresent(entityType -> {
+            final CanoeEntity canoeEntity = entityType.create(pLevel);
+
+            if (canoeEntity == null) return;
 
             if (axis == Direction.Axis.X) {
-                canoe.moveTo((double) middleblockpos.getX() + 0.5D, (double) middleblockpos.getY() + 0.05D,
-                        (double) middleblockpos.getZ() + 0.5D, 90.0F, 0.0F);
+                canoeEntity.moveTo(middleblockpos.getX() + 0.5, middleblockpos.getY() + 0.05,
+                        middleblockpos.getZ() + 0.5, 90, 0);
             } else {
-                canoe.moveTo((double) middleblockpos.getX() + 0.5D, (double) middleblockpos.getY() + 0.05D,
-                        (double) middleblockpos.getZ() + 0.5D, 0.0F, 0.0F);
+                canoeEntity.moveTo(middleblockpos.getX() + 0.5, middleblockpos.getY() + 0.05,
+                        middleblockpos.getZ() + 0.5, 0, 0);
             }
 
-            pLevel.addFreshEntity(canoe);
+            pLevel.addFreshEntity(canoeEntity);
 
             for (ServerPlayer serverplayer : pLevel.getEntitiesOfClass(ServerPlayer.class,
-                    canoe.getBoundingBox().inflate(5.0D))) {
-                CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayer, canoe);
+                    canoeEntity.getBoundingBox().inflate(5.0D))) {
+                CriteriaTriggers.SUMMONED_ENTITY.trigger(serverplayer, canoeEntity);
             }
 
             for (int l = 0; l < createCanoeFull(canoeComponentBlock).getHeight(); ++l) {
                 BlockInWorld blockinworld3 = blockpattern$blockpatternmatch.getBlock(0, l, 0);
                 pLevel.blockUpdated(blockinworld3.getPos(), Blocks.AIR);
             }
-        }
-
+        });
     }
 
     // static methods and fields below

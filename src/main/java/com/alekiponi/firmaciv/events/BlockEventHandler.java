@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -66,6 +67,7 @@ public final class BlockEventHandler {
 
     }
 
+    // TODO this can be much cleaner
     private static void processCanoeComponent(BlockEvent.BlockToolModificationEvent event) {
 
         Block canoeComponentBlock = event.getState().getBlock();
@@ -122,9 +124,10 @@ public final class BlockEventHandler {
 
     }
 
+    // TODO this can be much cleaner
     private static void convertLogToCanoeComponent(BlockEvent.BlockToolModificationEvent event) {
+        if (!(event.getState().getBlock() instanceof RotatedPillarBlock strippedLogBlock)) return;
 
-        Block strippedLogBlock = event.getState().getBlock();
         BlockPos thisBlockPos = event.getPos();
         LevelAccessor world = event.getLevel();
         Level level = event.getPlayer().level();
@@ -134,7 +137,13 @@ public final class BlockEventHandler {
             event.getPlayer().swing(event.getPlayer().getUsedItemHand());
             event.getPlayer().level().addDestroyBlockEffect(thisBlockPos, event.getState());
 
-            Block canoeComponentBlock = getByStripped(strippedLogBlock);
+            final CanoeComponentBlock canoeComponentBlock = getCanoeComponent(strippedLogBlock);
+
+            if (canoeComponentBlock == null) {
+                Firmaciv.LOGGER.warn("{} does not map to a canoe component block!",strippedLogBlock);
+                return;
+            }
+
             canoeComponentBlock.defaultBlockState().setValue(AXIS, Direction.Axis.Z);
             Direction.Axis axis = event.getState().getValue(AXIS);
 

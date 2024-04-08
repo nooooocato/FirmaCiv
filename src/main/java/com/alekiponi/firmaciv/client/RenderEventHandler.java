@@ -6,6 +6,7 @@ import com.alekiponi.alekiships.client.render.entity.vehicle.SloopRenderer;
 import com.alekiponi.alekiships.util.AlekiShipsHelper;
 import com.alekiponi.firmaciv.client.model.entity.CanoeEntityModel;
 import com.alekiponi.firmaciv.client.model.entity.KayakEntityModel;
+import com.alekiponi.firmaciv.client.render.entity.vehicle.CanoeRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.KayakRenderer;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.util.TFCWood;
@@ -47,9 +48,9 @@ public final class RenderEventHandler {
             event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS_UNDER_CONSTRUCTION.get(tfcWood).get(),
                     context -> new SloopConstructionRenderer(context, new ResourceLocation(MOD_ID,
                             "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png")));
-            // Canoe TODO canoes need to migrate to AlekiShips BoatMaterial. This will crash without a renderer!
-//            event.registerEntityRenderer(FirmacivEntities.CANOES.get(tfcWood).get(),
-//                    context -> new CanoeRenderer(context, tfcWood.getSerializedName()));
+            // Canoes
+            event.registerEntityRenderer(FirmacivEntities.TFC_CANOES.get(tfcWood).get(),
+                    context -> new CanoeRenderer(context, tfcWood.getSerializedName()));
         }
 
         event.registerEntityRenderer(FirmacivEntities.KAYAK_ENTITY.get(), KayakRenderer::new);
