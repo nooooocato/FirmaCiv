@@ -8,12 +8,12 @@ import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.common.item.FirmacivTabs;
 import com.alekiponi.firmaciv.events.config.FirmacivConfig;
 import com.alekiponi.firmaciv.util.FirmacivInteractionManager;
+import com.alekiponi.firmaciv.util.TFCWood;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -51,6 +51,7 @@ public class Firmaciv {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             FirmacivInteractionManager.init();
+            TFCWood.registerFrames();
         });
     }
 

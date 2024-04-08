@@ -44,9 +44,6 @@ public class FirmacivTabs {
                         pOutput.accept(TFCItems.UNREFINED_PAPER.get());
                         pOutput.accept(Items.GUNPOWDER);
 
-                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_ANGLED.get());
-                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_FLAT.get());
-
                         pOutput.accept(FirmacivItems.ROPE_COIL.get());
                         pOutput.accept(FirmacivItems.SMALL_TRIANGULAR_SAIL.get());
                         pOutput.accept(FirmacivItems.MEDIUM_TRIANGULAR_SAIL.get());

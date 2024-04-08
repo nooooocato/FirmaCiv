@@ -1,17 +1,25 @@
 package com.alekiponi.firmaciv.client;
 
-import com.alekiponi.firmaciv.Firmaciv;
+import com.alekiponi.alekiships.client.render.entity.vehicle.RowboatRenderer;
+import com.alekiponi.alekiships.client.render.entity.vehicle.SloopConstructionRenderer;
+import com.alekiponi.alekiships.client.render.entity.vehicle.SloopRenderer;
+import com.alekiponi.alekiships.util.AlekiShipsHelper;
 import com.alekiponi.firmaciv.client.model.entity.CanoeEntityModel;
 import com.alekiponi.firmaciv.client.model.entity.KayakEntityModel;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.KayakRenderer;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
+import com.alekiponi.firmaciv.util.TFCWood;
 import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Firmaciv.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+import static com.alekiponi.firmaciv.Firmaciv.MOD_ID;
+
+@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class RenderEventHandler {
 
     @SubscribeEvent
@@ -21,18 +29,28 @@ public final class RenderEventHandler {
     }
 
     @SubscribeEvent
-    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        // TODO migrate to the new renderers. This will cause a crash!
-//        FirmacivWoodHelper.forAllTFCWoods(wood -> {
-//            event.registerEntityRenderer(FirmacivEntities.CANOES.get(wood).get(),
-//                    context -> new CanoeRenderer(context, wood.getSerializedName()));
-//            event.registerEntityRenderer(FirmacivEntities.ROWBOATS.get(wood).get(),
-//                    context -> new RowboatRenderer(context, wood.getSerializedName()));
-//            event.registerEntityRenderer(FirmacivEntities.SLOOPS.get(wood).get(),
-//                    context -> new SloopRenderer(context, wood.getSerializedName()));
-//            event.registerEntityRenderer(FirmacivEntities.SLOOPS_UNDER_CONSTRUCTION.get(wood).get(),
-//                    context -> new SloopConstructionRenderer(context, wood.getSerializedName()));
-//        });
+    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        for (final TFCWood tfcWood : TFCWood.values()) {
+            // Rowboat
+            event.registerEntityRenderer(FirmacivEntities.TFC_ROWBOATS.get(tfcWood).get(),
+                    context -> new RowboatRenderer(context, new ResourceLocation(MOD_ID,
+                            "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/normal.png"),
+                            AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
+                                    "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName() + ".png"))));
+            // Sloops
+            event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS.get(tfcWood).get(),
+                    context -> new SloopRenderer(context, new ResourceLocation(MOD_ID,
+                            "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png"),
+                            AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
+                                    "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName() + ".png"))));
+            // Construction sloops
+            event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS_UNDER_CONSTRUCTION.get(tfcWood).get(),
+                    context -> new SloopConstructionRenderer(context, new ResourceLocation(MOD_ID,
+                            "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png")));
+            // Canoe TODO canoes need to migrate to AlekiShips BoatMaterial. This will crash without a renderer!
+//            event.registerEntityRenderer(FirmacivEntities.CANOES.get(tfcWood).get(),
+//                    context -> new CanoeRenderer(context, tfcWood.getSerializedName()));
+        }
 
         event.registerEntityRenderer(FirmacivEntities.KAYAK_ENTITY.get(), KayakRenderer::new);
 
