@@ -50,7 +50,8 @@ public final class RenderEventHandler {
                             "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png")));
             // Canoes
             event.registerEntityRenderer(FirmacivEntities.TFC_CANOES.get(tfcWood).get(),
-                    context -> new CanoeRenderer(context, tfcWood.getSerializedName()));
+                    context -> new CanoeRenderer(context, new ResourceLocation(MOD_ID,
+                            "textures/entity/watercraft/dugout_canoe/" + tfcWood.getSerializedName() + ".png")));
         }
 
         event.registerEntityRenderer(FirmacivEntities.KAYAK_ENTITY.get(), KayakRenderer::new);

@@ -25,19 +25,6 @@ public class CanoeRenderer extends EntityRenderer<CanoeEntity> {
     protected final ResourceLocation canoeTexture;
 
     /**
-     * This is primarily for us as it hardcodes the Firmaciv namespace.
-     * Use the constructor taking a {@link ResourceLocation} to provide a fully custom path
-     *
-     * @param woodName The name of the wood
-     */
-    public CanoeRenderer(final EntityRendererProvider.Context context, final String woodName) {
-        this(context,
-                new ResourceLocation(Firmaciv.MOD_ID, "textures/entity/watercraft/dugout_canoe/" + woodName + ".png"));
-    }
-
-    /**
-     * Alternative constructor taking a resource location instead of a wood name
-     *
      * @param canoeTexture The texture location. Must include file extension!
      */
     @SuppressWarnings("unused")
@@ -106,7 +93,7 @@ public class CanoeRenderer extends EntityRenderer<CanoeEntity> {
         super.render(canoeEntity, entityYaw, partialTicks, poseStack, bufferSource, packedLight);
     }
 
-    @Deprecated
+    @Override
     public ResourceLocation getTextureLocation(final CanoeEntity canoeEntity) {
         return this.canoeTexture;
     }
