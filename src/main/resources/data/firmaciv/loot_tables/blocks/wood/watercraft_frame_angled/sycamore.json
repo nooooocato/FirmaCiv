@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "firmaciv:watercraft_frame_angled"
+          "name": "alekiships:watercraft_frame_angled"
         }
       ],
       "conditions": [

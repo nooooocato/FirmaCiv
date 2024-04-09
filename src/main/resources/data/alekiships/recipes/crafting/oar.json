@@ -2,16 +2,19 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "LL ",
-    "LLL",
-    " LL"
+    "  S",
+    " S ",
+    "L  "
   ],
   "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
     "L": {
       "tag": "tfc:lumber"
     }
   },
   "result": {
-    "item": "firmaciv:watercraft_frame_angled"
+    "item": "alekiships:oar"
   }
 }

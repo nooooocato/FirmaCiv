@@ -2,9 +2,6 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "firmaciv:watercraft_frame_angled",
-    "firmaciv:watercraft_frame_flat",
-    "#firmaciv:canoe_component_blocks",
-    "#firmaciv:wooden_watercraft_frames"
+    "#firmaciv:canoe_component_blocks"
   ]
 }

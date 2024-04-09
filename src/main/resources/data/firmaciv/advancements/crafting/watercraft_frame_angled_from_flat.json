@@ -7,7 +7,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "tfc:lumber"
+            "items": [
+              "firmaciv:watercraft_frame_flat"
+            ]
           }
         ]
       }
@@ -15,7 +17,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "firmaciv:crafting/watercraft_frame_angled_3"
+        "recipe": "firmaciv:crafting/watercraft_frame_angled_from_flat"
       }
     }
   },
@@ -27,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "firmaciv:crafting/watercraft_frame_angled_3"
+      "firmaciv:crafting/watercraft_frame_angled_from_flat"
     ]
   }
 }

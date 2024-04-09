@@ -7,9 +7,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "firmaciv:cannon_barrel"
-            ]
+            "tag": "tfc:lumber"
           }
         ]
       }
@@ -17,7 +15,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "firmaciv:crafting/cannon"
+        "recipe": "alekiships:crafting/oar"
       }
     }
   },
@@ -29,7 +27,7 @@
   ],
   "rewards": {
     "recipes": [
-      "firmaciv:crafting/cannon"
+      "alekiships:crafting/oar"
     ]
   }
 }

@@ -1,4 +1,8 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmaciv:block/watercraft_frame/angled/straight"
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ]
 }

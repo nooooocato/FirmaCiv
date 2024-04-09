@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "alekiships:block/watercraft_frame/flat/frame",
+  "parent": "alekiships:block/watercraft_frame/angled/straight",
   "textures": {
     "1": "tfc:block/wood/planks/maple",
     "particle": "tfc:block/wood/planks/maple"

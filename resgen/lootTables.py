@@ -3,7 +3,7 @@ from mcresources.type_definitions import Json
 
 
 def boat_frame_flat(wood: str) -> list[Json]:
-    return [{"name": "firmaciv:watercraft_frame_flat"},
+    return [{"name": "alekiships:watercraft_frame_flat"},
             [
                 # Planks
                 {"name": f"tfc:wood/planks/{wood}",
@@ -44,7 +44,7 @@ def boat_frame_flat(wood: str) -> list[Json]:
 
 
 def boat_frame(wood: str) -> list[Json]:
-    return [{"name": "firmaciv:watercraft_frame_angled"},
+    return [{"name": "alekiships:watercraft_frame_angled"},
             [
                 # Planks
                 {"name": f"tfc:wood/planks/{wood}",
