@@ -28,6 +28,7 @@ def generate(rm: ResourceManager):
     brass = METALS["brass"]
     cast_iron = METALS["cast_iron"]
     steel = METALS["steel"]
+    # Firmaciv item heats
     item_heat(rm, "unfinished_sextant", "firmaciv:unfinished_sextant", brass.ingot_heat_capacity(),
               brass.melt_temperature, 200)
     item_heat(rm, "unfinished_barometer", "firmaciv:unfinished_barometer", brass.ingot_heat_capacity(),
@@ -41,12 +42,21 @@ def generate(rm: ResourceManager):
     item_heat(rm, "cannon_barrel", "firmaciv:cannon_barrel", cast_iron.ingot_heat_capacity(),
               cast_iron.melt_temperature, 400)
 
+    # AlekiShips item heats
     item_heat(rm, "oarlock", "alekiships:oarlock", cast_iron.ingot_heat_capacity(), cast_iron.melt_temperature, 200)
     item_heat(rm, "cannon", "alekiships:cannon", cast_iron.ingot_heat_capacity(), cast_iron.melt_temperature, 1300)
     item_heat(rm, "cannonball", "alekiships:cannonball", cast_iron.ingot_heat_capacity(), cast_iron.melt_temperature,
               200)
     item_heat(rm, "cleat", "alekiships:cleat", steel.ingot_heat_capacity(), steel.melt_temperature, 200)
     item_heat(rm, "anchor", "alekiships:anchor", steel.ingot_heat_capacity(), steel.melt_temperature, 400)
+
+    # FirmaCiv item sizes
+    item_size(rm, "canoe_paddle", "firmaciv:canoe_paddle", Size.normal, Weight.light)
+    item_size(rm, "kayak", "firmaciv:kayak", Size.large, Weight.medium)
+    item_size(rm, "kayak_paddle", "firmaciv:kayak_paddle", Size.large, Weight.light)
+
+    # AlekiShips item sizes
+    item_size(rm, "oar", "alekiships:oar", Size.large, Weight.medium)
 
 
 def item_size(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: utils.Json, size: Size,
