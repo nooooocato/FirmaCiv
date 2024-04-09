@@ -1,9 +1,43 @@
+from enum import Enum
 from typing import Optional, Union
 
 from mcresources import ResourceManager, utils, RecipeContext
 from mcresources.type_definitions import ResourceIdentifier, Json
 
 import constants
+
+
+class Rules(Enum):
+    hit_any = 'hit_any'
+    hit_not_last = 'hit_not_last'
+    hit_last = 'hit_last'
+    hit_second_last = 'hit_second_last'
+    hit_third_last = 'hit_third_last'
+    draw_any = 'draw_any'
+    draw_last = 'draw_last'
+    draw_not_last = 'draw_not_last'
+    draw_second_last = 'draw_second_last'
+    draw_third_last = 'draw_third_last'
+    punch_any = 'punch_any'
+    punch_last = 'punch_last'
+    punch_not_last = 'punch_not_last'
+    punch_second_last = 'punch_second_last'
+    punch_third_last = 'punch_third_last'
+    bend_any = 'bend_any'
+    bend_last = 'bend_last'
+    bend_not_last = 'bend_not_last'
+    bend_second_last = 'bend_second_last'
+    bend_third_last = 'bend_third_last'
+    upset_any = 'upset_any'
+    upset_last = 'upset_last'
+    upset_not_last = 'upset_not_last'
+    upset_second_last = 'upset_second_last'
+    upset_third_last = 'upset_third_last'
+    shrink_any = 'shrink_any'
+    shrink_last = 'shrink_last'
+    shrink_not_last = 'shrink_not_last'
+    shrink_second_last = 'shrink_second_last'
+    shrink_third_last = 'shrink_third_last'
 
 
 def generate(rm: ResourceManager):
@@ -127,6 +161,28 @@ def generate(rm: ResourceManager):
     heat_recipe(rm, "unfinished_nav_clock", "firmaciv:unfinished_nav_clock", 930, None, "400 tfc:metal/brass")
     heat_recipe(rm, "unfinished_sextant", "firmaciv:unfinished_sextant", 930, None, "200 tfc:metal/brass")
 
+    # FirmaCiv anvil recipes
+    anvil_recipe(rm, "cannon_barrel", "#forge:double_sheets/wrought_iron", "firmaciv:cannon_barrel",
+                 2, Rules.bend_last, Rules.bend_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "copper_bolt", "#forge:ingots/copper", "firmaciv:copper_bolt", 2,
+                 Rules.hit_last, Rules.hit_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "unfinished_barometer", "#forge:sheets/brass", "firmaciv:unfinished_barometer", 2,
+                 Rules.hit_last, Rules.draw_second_last, Rules.upset_third_last)
+    anvil_recipe(rm, "unfinished_nav_clock", "#forge:double_sheets/brass", "firmaciv:unfinished_nav_clock", 2,
+                 Rules.upset_last, Rules.hit_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "unfinished_sextant", "#forge:double_ingots/brass", "firmaciv:unfinished_sextant", 2,
+                 Rules.hit_last, Rules.bend_second_last, Rules.bend_third_last)
+
+    # AlekiShips anvil recipes
+    anvil_recipe(rm, "cannonball", "#forge:double_ingots/wrought_iron", "alekiships:cannonball", 3,
+                 Rules.bend_last, Rules.bend_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "anchor", "#forge:double_sheets/steel", "alekiships:anchor", 4,
+                 Rules.hit_last, Rules.punch_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "cleat", "#forge:double_ingots/steel", "alekiships:cleat", 4,
+                 Rules.bend_last, Rules.bend_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "oarlock", "#forge:double_ingots/wrought_iron", "alekiships:oarlock", 3,
+                 Rules.bend_last, Rules.hit_second_last, Rules.hit_third_last)
+
     quern_recipe(rm, "amethyst", "tfc:gem/amethyst", "tfc:powder/amethyst", count=4)
     quern_recipe(rm, "diamond", "tfc:gem/diamond", "tfc:powder/diamond", count=4)
     quern_recipe(rm, "emerald", "tfc:gem/emerald", "tfc:powder/emerald", count=4)
@@ -234,3 +290,18 @@ def item_stack_provider(
             'modifiers': modifiers
         }
     return stack
+
+
+def anvil_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: Json, result: Json, tier: int,
+                 *rules: Rules, bonus: bool = None):
+    """
+    Anvil recipes.
+    Copied from TFC data gen
+    """
+    rm.recipe(('anvil', name_parts), 'tfc:anvil', {
+        'input': utils.ingredient(ingredient),
+        'result': item_stack_provider(result),
+        'tier': tier,
+        'rules': [r.name for r in rules],
+        'apply_forging_bonus': bonus
+    })
