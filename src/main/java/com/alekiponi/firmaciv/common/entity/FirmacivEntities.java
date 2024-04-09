@@ -8,6 +8,7 @@ import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.Abstract
 import com.alekiponi.alekiships.util.AlekiShipsHelper;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.TFCChestCompartmentEntity;
+import com.alekiponi.firmaciv.util.FirmacivTags;
 import com.alekiponi.firmaciv.util.TFCWood;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -50,10 +51,10 @@ public final class FirmacivEntities {
     public static final RegistryObject<EntityType<KayakEntity>> KAYAK_ENTITY = register("kayak",
             EntityType.Builder.of(KayakEntity::new, MobCategory.MISC).sized(0.79F, 0.625F));
 
-    public static final RegistryObject<CompartmentType<TFCChestCompartmentEntity>> TFC_CHEST_COMPARTMENT_ENTITY = registerCompartment(
-            "compartment_tfcchest",
-            CompartmentType.Builder.of(TFCChestCompartmentEntity::new, TFCChestCompartmentEntity::new,
-                    MobCategory.MISC));
+    public static final RegistryObject<CompartmentType<TFCChestCompartmentEntity>> TFC_CHEST_COMPARTMENT_ENTITY = CompartmentType.register(
+            registerCompartment("compartment_tfcchest",
+                    CompartmentType.Builder.of(TFCChestCompartmentEntity::new, TFCChestCompartmentEntity::new,
+                            MobCategory.MISC)), itemStack -> itemStack.is(FirmacivTags.Items.CHESTS));
 
     private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood vanillaWood,
             final EntityType.Builder<E> builder) {
