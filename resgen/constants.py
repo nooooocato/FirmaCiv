@@ -1,3 +1,5 @@
+from typing import NamedTuple
+
 TFC_WOODS = ["acacia",
              "ash",
              "aspen",
@@ -18,6 +20,58 @@ TFC_WOODS = ["acacia",
              "sycamore",
              "white_cedar",
              "willow"]
+
+
+class Metal(NamedTuple):
+    """
+    A type representing a TFC Metal.
+    Copied from TFC data gen
+    """
+    tier: int
+    types: set[str]  # One of 'part', 'tool', 'armor', 'utility'
+    heat_capacity_base: float  # Do not access directly, use one of specific or ingot heat capacity.
+    melt_temperature: float
+    melt_metal: str | None
+
+    def specific_heat_capacity(self) -> float: return round(300 / self.heat_capacity_base) / 100_000
+
+    def ingot_heat_capacity(self) -> float: return 1 / self.heat_capacity_base
+
+
+METALS: dict[str, Metal] = {
+    'bismuth': Metal(1, {'part'}, 0.14, 270, None),
+    'bismuth_bronze': Metal(2, {'part', 'tool', 'armor', 'utility'}, 0.35, 985, None),
+    'black_bronze': Metal(2, {'part', 'tool', 'armor', 'utility'}, 0.35, 1070, None),
+    'bronze': Metal(2, {'part', 'tool', 'armor', 'utility'}, 0.35, 950, None),
+    'brass': Metal(2, {'part'}, 0.35, 930, None),
+    'copper': Metal(1, {'part', 'tool', 'armor', 'utility'}, 0.35, 1080, None),
+    'gold': Metal(1, {'part'}, 0.6, 1060, None),
+    'nickel': Metal(1, {'part'}, 0.48, 1453, None),
+    'rose_gold': Metal(1, {'part'}, 0.35, 960, None),
+    'silver': Metal(1, {'part'}, 0.48, 961, None),
+    'tin': Metal(1, {'part'}, 0.14, 230, None),
+    'zinc': Metal(1, {'part'}, 0.21, 420, None),
+    'sterling_silver': Metal(1, {'part'}, 0.35, 950, None),
+    'wrought_iron': Metal(3, {'part', 'tool', 'armor', 'utility'}, 0.35, 1535, 'cast_iron'),
+    'cast_iron': Metal(1, {'part'}, 0.35, 1535, None),
+    'pig_iron': Metal(3, set(), 0.35, 1535, None),
+    'steel': Metal(4, {'part', 'tool', 'armor', 'utility'}, 0.35, 1540, None),
+    'black_steel': Metal(5, {'part', 'tool', 'armor', 'utility'}, 0.35, 1485, None),
+    'blue_steel': Metal(6, {'part', 'tool', 'armor', 'utility'}, 0.35, 1540, None),
+    'red_steel': Metal(6, {'part', 'tool', 'armor', 'utility'}, 0.35, 1540, None),
+    'weak_steel': Metal(4, set(), 0.35, 1540, None),
+    'weak_blue_steel': Metal(5, set(), 0.35, 1540, None),
+    'weak_red_steel': Metal(5, set(), 0.35, 1540, None),
+    'high_carbon_steel': Metal(3, set(), 0.35, 1540, 'pig_iron'),
+    'high_carbon_black_steel': Metal(4, set(), 0.35, 1540, 'weak_steel'),
+    'high_carbon_blue_steel': Metal(5, set(), 0.35, 1540, 'weak_blue_steel'),
+    'high_carbon_red_steel': Metal(5, set(), 0.35, 1540, 'weak_red_steel'),
+    'unknown': Metal(0, set(), 0.5, 400, None)
+}
+"""
+List of TFC metals.
+Copied from TFC data gen
+"""
 
 FLORAE_WOODS: dict[str, str] = {"african_padauk": "African Padauk",
                                 "alder": "Alder",

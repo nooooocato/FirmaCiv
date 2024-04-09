@@ -2,8 +2,9 @@ import mcresources
 
 import assets
 import constants
-import tags
+import data
 import recipes
+import tags
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     assets.generate(resourceManager)
     tags.generate(resourceManager)
     recipes.generate(resourceManager)
+    data.generate(resourceManager)
     resourceManager.flush()
 
     print(f"Finished generating files!")

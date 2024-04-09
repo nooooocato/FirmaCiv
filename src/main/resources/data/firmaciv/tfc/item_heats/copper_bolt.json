@@ -1,8 +1,9 @@
 {
+  "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
     "item": "firmaciv:copper_bolt"
   },
-  "heat_capacity": 0.71425,
-  "forging_temperature": 558,
-  "welding_temperature": 744
+  "heat_capacity": 0.714,
+  "forging_temperature": 648,
+  "welding_temperature": 864
 }
