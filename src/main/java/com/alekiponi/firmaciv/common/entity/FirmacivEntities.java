@@ -6,8 +6,8 @@ import com.alekiponi.alekiships.common.entity.vehicle.SloopUnderConstructionEnti
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
 import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
-import com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.util.FirmacivTags;
 import com.alekiponi.firmaciv.util.TFCWood;
 import net.minecraft.world.entity.Entity;

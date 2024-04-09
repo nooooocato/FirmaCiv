@@ -6,7 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-public class FirmacivTags {
+public final class FirmacivTags {
 
     public static class Blocks {
 
@@ -21,10 +21,8 @@ public class FirmacivTags {
     }
 
     public static class Items {
-
         public static final TagKey<Item> SAWS = getFromTFC("saws");
         public static final TagKey<Item> AXES = getFromTFC("axes");
-        public static final TagKey<Item> LUMBER = getFromTFC("lumber");
 
         public static final TagKey<Item> CHESTS = create("chests");
 

@@ -1,4 +1,4 @@
-package com.alekiponi.firmaciv.common.entity.vehiclehelper.compartment;
+package com.alekiponi.firmaciv.common.entity.compartment;
 
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.vanilla.ChestCompartmentEntity;
