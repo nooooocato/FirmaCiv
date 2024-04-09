@@ -1,6 +1,6 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "parent": "firmaciv:block/watercraft_frame_angled/template/straight/second",
+  "parent": "alekiships:block/watercraft_frame_angled/template/straight/second",
   "textures": {
     "plank": "tfc:block/wood/planks/blackwood"
   }

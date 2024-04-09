@@ -12,12 +12,12 @@ def generate(rm: ResourceManager):
             # Slab frame models
             rm.block_model(f"wood/watercraft_frame/flat/{wood}/{progress}",
                            {"plank": f"tfc:block/wood/planks/{wood}"},
-                           f"firmaciv:block/watercraft_frame/flat/template/{progress}")
+                           f"alekiships:block/watercraft_frame/flat/template/{progress}")
 
             for shape in ["straight", "inner", "outer"]:
                 rm.block_model(f"wood/watercraft_frame_angled/{wood}/{shape}/{progress}",
                                {"plank": f"tfc:block/wood/planks/{wood}"},
-                               f"firmaciv:block/watercraft_frame_angled/template/{shape}/{progress}")
+                               f"alekiships:block/watercraft_frame_angled/template/{shape}/{progress}")
 
         rm.blockstate_multipart(f"wood/watercraft_frame_flat/{wood}",
                                 *blockStates.getWoodFrameFlatMultipart(wood)).with_lang(
