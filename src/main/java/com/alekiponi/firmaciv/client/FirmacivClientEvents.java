@@ -21,7 +21,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nullable;
 
-public class FirmacivClientEvents {
+public final class FirmacivClientEvents {
 
     public static void init() {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
