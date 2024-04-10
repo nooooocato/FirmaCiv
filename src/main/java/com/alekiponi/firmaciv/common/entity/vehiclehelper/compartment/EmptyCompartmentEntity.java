@@ -369,9 +369,9 @@ public class EmptyCompartmentEntity extends AbstractCompartmentEntity {
                 CannonEntity cannon = FirmacivEntities.CANNON_ENTITY.get().create(this.level());
                 cannon.moveTo(this.getPosition(0));
                 cannon.setYRot(-this.getYRot() - 180);
-                cannon.startRiding(this);
                 if (!this.level().isClientSide()) {
                     this.level().addFreshEntity(cannon);
+                    cannon.startRiding(this);
                 }
                 player.awardStat(Stats.ITEM_USED.get(FirmacivItems.CANNON.get()));
                 if (!player.getAbilities().instabuild) {
@@ -379,6 +379,7 @@ public class EmptyCompartmentEntity extends AbstractCompartmentEntity {
                 }
                 return InteractionResult.SUCCESS;
             }
+            return InteractionResult.PASS;
         }
 
         if (player.isSecondaryUseActive()) {

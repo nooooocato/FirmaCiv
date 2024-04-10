@@ -42,10 +42,10 @@ def generate(rm: ResourceManager):
                        (2, "firmaciv:watercraft_frame_flat")).with_advancement("firmaciv:watercraft_frame_flat")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled_1", ["F ", " F"], {"F": "firmaciv:watercraft_frame_flat"},
-                       (2, "firmaciv:watercraft_frame_angled"))
+                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled_2", [" F", "F "], {"F": "firmaciv:watercraft_frame_flat"},
-                       (2, "firmaciv:watercraft_frame_angled"))
+                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
 
     # Boating items
     rm.crafting_shapeless("crafting/barometer",
@@ -99,6 +99,26 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped("crafting/medium_triangular_sail", ["S  ", "WS ", "WWS"],
                        {"W": "firmaciv:small_triangular_sail", "S": "#forge:string"},
                        "firmaciv:medium_triangular_sail").with_advancement("firmaciv:medium_triangular_sail")
+
+    rm.crafting_shaped("crafting/thatch_roofing", ["T  ", " T "],
+                       {"T": "tfc:straw"},
+                       "firmaciv:thatch_roofing").with_advancement("firmaciv:thatch_roofing")
+
+    rm.crafting_shaped("crafting/thatch_roofing_1", [" T ", "T  "],
+                       {"T": "tfc:straw"},
+                       "firmaciv:thatch_roofing").with_advancement("firmaciv:thatch_roofing")
+
+    rm.crafting_shaped("crafting/thatch_roofing_slab", ["TT "],
+                       {"T": "tfc:straw"},
+                       "firmaciv:thatch_roofing_slab").with_advancement("firmaciv:thatch_roofing_slab")
+
+    rm.crafting_shapeless("crafting/thatch_roofing_slab_to_straw",
+                          [*["firmaciv:thatch_roofing_slab" for _ in range(1)]],
+                          (2, "tfc:straw")).with_advancement("tfc:straw")
+
+    rm.crafting_shapeless("crafting/thatch_roofing_to_straw",
+                          [*["firmaciv:thatch_roofing" for _ in range(1)]],
+                          (2, "tfc:straw")).with_advancement("tfc:straw")
 
 
     heat_recipe(rm, "barometer", "firmaciv:barometer", 930, None, "200 tfc:metal/brass")

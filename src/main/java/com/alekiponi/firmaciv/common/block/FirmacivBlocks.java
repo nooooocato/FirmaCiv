@@ -2,8 +2,8 @@ package com.alekiponi.firmaciv.common.block;
 
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
-import com.alekiponi.firmaciv.util.FirmacivHelper;
 import com.alekiponi.firmaciv.util.FirmacivWoodHelper;
+import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.util.Metal;
@@ -12,6 +12,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -31,23 +33,18 @@ public final class FirmacivBlocks {
                             BlockBehaviour.Properties.copy(wood.getBlock(Wood.BlockType.STRIPPED_LOG).get())
                                     .mapColor(wood.woodColor()).noOcclusion(), wood)));
 
-    //TODO: swap between roofing types automatically on place
-    /*
     public static final RegistryObject<Block> THATCH_ROOFING = registerBlockWithItem("thatch_roofing",
-            () -> new AngledRoofingBlock(BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
-                            .sound(TFCSounds.THATCH).noCollission()));
-
-    public static final RegistryObject<Block> THATCH_ROOFING_STAIRS = registerBlockWithItem("thatch_roofing_stairs",
-            () -> new StairBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),
+            () -> new AngledThatchRoofingBlock(BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
+                            .sound(TFCSounds.THATCH)));
+    public static final RegistryObject<Block> THATCH_ROOFING_STAIRS = registerBlock("thatch_roofing_stairs",
+            () -> new StairThatchRoofingBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
-                            .sound(TFCSounds.THATCH).noCollission()));
-
+                            .sound(TFCSounds.THATCH)));
     public static final RegistryObject<Block> THATCH_ROOFING_SLAB = registerBlockWithItem("thatch_roofing_slab",
-            () -> new SlabBlock(
+            () -> new FlatThatchRoofingBlock(
                     BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
-                            .sound(TFCSounds.THATCH).noCollission()));
+                            .sound(TFCSounds.THATCH)));
 
-     */
     public static final RegistryObject<Block> BOAT_FRAME_ANGLED = registerBlockWithItem("watercraft_frame_angled",
             () -> new AngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 

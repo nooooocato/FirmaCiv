@@ -58,6 +58,9 @@ public class FirmacivTabs {
                         pOutput.accept(FirmacivItems.MEDIUM_TRIANGULAR_SAIL.get());
                         pOutput.accept(FirmacivItems.LARGE_TRIANGULAR_SAIL.get());
 
+                        pOutput.accept(FirmacivBlocks.THATCH_ROOFING.get());
+                        pOutput.accept(FirmacivBlocks.THATCH_ROOFING_SLAB.get());
+
                     }).build());
 
 

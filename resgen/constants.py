@@ -189,6 +189,10 @@ DEFAULT_LANG = {
     "entity.firmaciv.sloop_construction.white_cedar": "White Cedar Sloop",
     "entity.firmaciv.sloop_construction.willow": "Willow Sloop",
 
+    "block.firmaciv.thatch_roofing_stairs": "Angled Thatch",
+    "block.firmaciv.thatch_roofing_slab": "Thatch Slab",
+    "block.firmaciv.thatch_roofing": "Angled Thatch",
+
     "entity.firmaciv.kayak": "Kayak",
 
     "entity.firmaciv.vehicle_part": "Vehicle Part",
@@ -212,10 +216,7 @@ DEFAULT_LANG = {
     "entity.firmaciv.compartment_empty": "Empty Compartment",
 
 
-
     "block.firmaciv.boat_frame": "Shipwright's Scaffolding",
-
-    "block.firmaciv.thatch_roofing": "Thatch Roofing",
 
     "itemGroup.firmaciv": "Firma: Civilization",
     "creativetab.firmaciv_tab": "Firma: Civilization",
