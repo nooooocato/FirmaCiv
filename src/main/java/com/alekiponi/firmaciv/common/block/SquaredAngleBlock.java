@@ -6,6 +6,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -19,10 +20,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.IntStream;
 
-public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+import static net.minecraft.world.level.block.StairBlock.isStairs;
+
+public class SquaredAngleBlock extends StairBlock {
+
     protected static final VoxelShape TOP_AABB = Block.box(0, 8, 0, 16, 16, 16);
     protected static final VoxelShape BOTTOM_AABB = Block.box(0, 0, 0, 16, 8, 16);
     protected static final VoxelShape OCTET_NPN = Block.box(0, 8, 0, 8, 16, 8);
@@ -33,11 +34,8 @@ public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
             OCTET_PPP);
     private static final int[] SHAPE_BY_STATE = new int[]{12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8};
 
-    public SquaredAngleBlock(final Properties properties) {
-        super(properties);
-        this.registerDefaultState(
-                this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, StairsShape.STRAIGHT)
-                        .setValue(WATERLOGGED, false));
+    public SquaredAngleBlock(BlockState pBaseState, BlockBehaviour.Properties pProperties) {
+        super(pBaseState, pProperties);
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -100,7 +98,7 @@ public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
         final Direction direction = blockState.getValue(FACING);
         {
             final BlockState neighborBlockState = blockGetter.getBlockState(blockPos.relative(direction));
-            if (isSquaredAngleBlock(neighborBlockState)) {
+            if (isStairs(neighborBlockState)) {
                 final Direction neighborFacing = neighborBlockState.getValue(FACING);
                 if (neighborFacing.getAxis() != blockState.getValue(FACING).getAxis() && canTakeShape(blockState,
                         blockGetter, blockPos, neighborFacing.getOpposite())) {
@@ -114,7 +112,7 @@ public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
         }
 
         final BlockState neighborBlockState = blockGetter.getBlockState(blockPos.relative(direction.getOpposite()));
-        if (isSquaredAngleBlock(neighborBlockState)) {
+        if (isStairs(neighborBlockState)) {
             final Direction neighborFacing = neighborBlockState.getValue(FACING);
             if (neighborFacing.getAxis() != blockState.getValue(FACING).getAxis() && canTakeShape(blockState,
                     blockGetter, blockPos, neighborFacing)) {
@@ -132,11 +130,7 @@ public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
     private static boolean canTakeShape(final BlockState blockState, final BlockGetter blockGetter,
             final BlockPos blockPos, final Direction direction) {
         final BlockState blockstate = blockGetter.getBlockState(blockPos.relative(direction));
-        return !isSquaredAngleBlock(blockstate) || blockstate.getValue(FACING) != blockState.getValue(FACING);
-    }
-
-    public static boolean isSquaredAngleBlock(final BlockState blockState) {
-        return blockState.getBlock() instanceof SquaredAngleBlock;
+        return !isStairs(blockstate) || blockstate.getValue(FACING) != blockState.getValue(FACING);
     }
 
     @Override
@@ -230,7 +224,7 @@ public class SquaredAngleBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SHAPE, WATERLOGGED);
+        builder.add(FACING, SHAPE, WATERLOGGED, HALF);
     }
 
     @Override

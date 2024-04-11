@@ -17,6 +17,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -33,9 +34,9 @@ public class AngledThatchRoofingBlock extends SquaredAngleBlock implements IForg
     public static final FluidProperty FLUID;
     private final ExtendedProperties properties;
 
-    public AngledThatchRoofingBlock(Properties properties) {
-        super(properties);
-        this.properties = ExtendedProperties.of(properties);
+    public AngledThatchRoofingBlock(BlockState pBaseState, BlockBehaviour.Properties pProperties) {
+        super(pBaseState, pProperties);
+        this.properties = ExtendedProperties.of(pProperties);
     }
 
     //TODO implement swapping between stair and angled variants

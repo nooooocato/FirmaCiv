@@ -11,14 +11,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
 
 public class AngledBoatFrameBlock extends SquaredAngleBlock {
 
-    public AngledBoatFrameBlock(final Properties properties) {
-        super(properties);
+    public AngledBoatFrameBlock(BlockState pBaseState, BlockBehaviour.Properties pProperties) {
+        super(pBaseState, pProperties);
     }
 
     @Override

@@ -34,7 +34,8 @@ public final class FirmacivBlocks {
                                     .mapColor(wood.woodColor()).noOcclusion(), wood)));
 
     public static final RegistryObject<Block> THATCH_ROOFING = registerBlockWithItem("thatch_roofing",
-            () -> new AngledThatchRoofingBlock(BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
+            () -> new AngledThatchRoofingBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(0.6F, 0.4F).noOcclusion().isViewBlocking(TFCBlocks::never)
                             .sound(TFCSounds.THATCH)));
     public static final RegistryObject<Block> THATCH_ROOFING_STAIRS = registerBlock("thatch_roofing_stairs",
             () -> new StairThatchRoofingBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),
@@ -46,11 +47,11 @@ public final class FirmacivBlocks {
                             .sound(TFCSounds.THATCH)));
 
     public static final RegistryObject<Block> BOAT_FRAME_ANGLED = registerBlockWithItem("watercraft_frame_angled",
-            () -> new AngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+            () -> new AngledBoatFrameBlock(Blocks.ACACIA_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 
     public static final Map<RegistryWood, RegistryObject<Block>> WOODEN_BOAT_FRAME_ANGLED = FirmacivWoodHelper.TFCWoodMap(
             wood -> registerBlock("wood/watercraft_frame_angled/" + wood.getSerializedName(),
-                    () -> new AngledWoodenBoatFrameBlock(wood, BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get()))));
+                    () -> new AngledWoodenBoatFrameBlock(wood, Blocks.ACACIA_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get()))));
 
     public static final RegistryObject<FlatBoatFrameBlock> BOAT_FRAME_FLAT = registerBlockWithItem(
             "watercraft_frame_flat",

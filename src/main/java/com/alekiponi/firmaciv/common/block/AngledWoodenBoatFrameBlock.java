@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -31,8 +32,8 @@ public class AngledWoodenBoatFrameBlock extends SquaredAngleBlock {
 
     public final RegistryWood wood;
 
-    public AngledWoodenBoatFrameBlock(final RegistryWood wood, final Properties properties) {
-        super(properties);
+    public AngledWoodenBoatFrameBlock(final RegistryWood wood, BlockState pBaseState, BlockBehaviour.Properties pProperties) {
+        super(pBaseState, pProperties);
         this.registerDefaultState(
                 this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, StairsShape.STRAIGHT)
                         .setValue(WATERLOGGED, false).setValue(FRAME_PROCESSED, 0));
