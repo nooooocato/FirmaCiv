@@ -35,6 +35,7 @@ def generate(manager: ResourceManager):
 
     # TFC tags
     manager.block_tag("tfc:mineable_with_blunt_tool", "#firmaciv:canoe_component_blocks")
+    manager.block_tag("tfc:mineable_with_sharp_tool", "firmaciv:thatch_roofing", "firmaciv:thatch_roofing_slab", "firmaciv:thatch_roofing_stairs")
     manager.item_tag("tfc:usable_on_tool_rack", "canoe_paddle", "kayak_paddle", "oar", "kayak", "nav_clock", "sextant",
                      "barometer")
 

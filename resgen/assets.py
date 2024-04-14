@@ -101,6 +101,11 @@ def generate(rm: ResourceManager):
     }).with_lang("Cleat").with_block_loot("firmaciv:cleat")
     rm.item_model("cleat")
 
+
+    rm.block("thatch_roofing_slab").with_lang("Thatch Slab")
+    rm.block("thatch_roofing_stairs").with_lang("Angled Thatch")
+    rm.block("thatch_roofing").with_lang("Angled Thatch")
+
     # Items with generated models
     rm.item("unfinished_barometer").with_item_model().with_lang("Unfinished Barometer")
     rm.item("unfinished_nav_clock").with_item_model().with_lang("Unfinished Navigator's Timepiece")
