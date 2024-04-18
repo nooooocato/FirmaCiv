@@ -10,14 +10,14 @@ def generate(manager: ResourceManager):
     manager.block_tag("can_make_canoe_unrestricted",
                       *[f"tfc:wood/stripped_log/{wood}" for wood in constants.TFC_WOODS])
     manager.block_tag("alekiships:wooden_watercraft_frames",
-                      *[f"wood/watercraft_frame_angled/{wood}" for wood in constants.TFC_WOODS],
-                      *[f"wood/watercraft_frame_flat/{wood}" for wood in constants.TFC_WOODS])
+                      *[f"wood/watercraft_frame/angled/{wood}" for wood in constants.TFC_WOODS],
+                      *[f"wood/watercraft_frame/flat/{wood}" for wood in constants.TFC_WOODS])
     manager.entity_tag("dugout_canoes", *[f"dugout_canoe/{wood}" for wood in constants.TFC_WOODS])
     manager.entity_tag("alekiships:rowboats", *[f"rowboat/{wood}" for wood in constants.TFC_WOODS])
     manager.entity_tag("alekiships:sloops", *[f"sloop/{wood}" for wood in constants.TFC_WOODS])
 
     # Compartment Entities
-    manager.entity_tag("alekiships:compartments", "compartment_tfcchest")
+    manager.entity_tag("alekiships:compartments", "compartment_tfc_chest")
 
     # Compartment placing tags
     manager.item_tag("alekiships:can_place_in_compartments", "#tfc:anvils")

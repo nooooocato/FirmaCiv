@@ -15,16 +15,16 @@ def generate(rm: ResourceManager):
                            f"alekiships:block/watercraft_frame/flat/template/{progress}")
 
             for shape in ["straight", "inner", "outer"]:
-                rm.block_model(f"wood/watercraft_frame_angled/{wood}/{shape}/{progress}",
+                rm.block_model(f"wood/watercraft_frame/angled/{wood}/{shape}/{progress}",
                                {"plank": f"tfc:block/wood/planks/{wood}"},
-                               f"alekiships:block/watercraft_frame_angled/template/{shape}/{progress}")
+                               f"alekiships:block/watercraft_frame/angled/template/{shape}/{progress}")
 
-        rm.blockstate_multipart(f"wood/watercraft_frame_flat/{wood}",
+        rm.blockstate_multipart(f"wood/watercraft_frame/flat/{wood}",
                                 *blockStates.getWoodFrameFlatMultipart(wood)).with_lang(
             f"{constants.normalize(wood)} Flat Shipwright's Scaffolding").with_block_loot(
             *lootTables.boat_frame_flat(wood))
 
-        rm.blockstate_multipart(f"wood/watercraft_frame_angled/{wood}",
+        rm.blockstate_multipart(f"wood/watercraft_frame/angled/{wood}",
                                 *blockStates.getWoodFrameMultipart(wood)).with_lang(
             f"{constants.normalize(wood)} Sloped Shipwright's Scaffolding").with_block_loot(
             *lootTables.boat_frame(wood))
@@ -57,8 +57,8 @@ def generate(rm: ResourceManager):
     for shape in ["inner", "straight", "outer"]:
         rm.block_model(f"watercraft_frame/angled/{shape}", parent=f"alekiships:block/watercraft_frame/angled/{shape}",
                        textures={
-                           "1": "tfc:block/wood/planks/maple",
-                           "particle": "tfc:block/wood/planks/maple"
+                           "particle": "tfc:block/wood/planks/maple",
+                           "frame": "tfc:block/wood/planks/maple"
                        })
     rm.item_model("watercraft_frame_angled", parent="firmaciv:block/watercraft_frame/angled/straight",
                   no_textures=True)
@@ -70,8 +70,8 @@ def generate(rm: ResourceManager):
     # Need to manually make the models
     rm.block_model("watercraft_frame/flat/frame", parent="alekiships:block/watercraft_frame/flat/frame",
                    textures={
-                       "1": "tfc:block/wood/planks/maple",
-                       "particle": "tfc:block/wood/planks/maple"
+                       "particle": "tfc:block/wood/planks/maple",
+                       "frame": "tfc:block/wood/planks/maple"
                    })
     rm.item_model("watercraft_frame_flat", parent="firmaciv:block/watercraft_frame/flat/frame",
                   no_textures=True)
