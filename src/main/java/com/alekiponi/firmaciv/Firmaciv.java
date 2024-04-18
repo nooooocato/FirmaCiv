@@ -7,6 +7,7 @@ import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.common.item.FirmacivTabs;
 import com.alekiponi.firmaciv.events.config.FirmacivConfig;
+import com.alekiponi.firmaciv.network.PacketHandler;
 import com.alekiponi.firmaciv.util.FirmacivInteractionManager;
 import com.alekiponi.firmaciv.util.TFCWood;
 import com.mojang.logging.LogUtils;
@@ -38,6 +39,7 @@ public final class Firmaciv {
         eventBus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
         FirmacivConfig.init();
+        PacketHandler.init();
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             FirmacivClientEvents.init();
