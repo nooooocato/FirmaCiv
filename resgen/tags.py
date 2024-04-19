@@ -16,6 +16,12 @@ def generate(manager: ResourceManager):
     manager.entity_tag("alekiships:rowboats", *[f"rowboat/{wood}" for wood in constants.TFC_WOODS])
     manager.entity_tag("alekiships:sloops", *[f"sloop/{wood}" for wood in constants.TFC_WOODS])
 
+    # Default hard woods for TFC
+    manager.item_tag("hard_wood", "tfc:wood/planks/acacia", "tfc:wood/planks/ash", "tfc:wood/planks/aspen",
+                     "tfc:wood/planks/birch", "tfc:wood/planks/blackwood", "tfc:wood/planks/chestnut",
+                     "tfc:wood/planks/hickory", "tfc:wood/planks/maple", "tfc:wood/planks/oak",
+                     "tfc:wood/planks/rosewood", "tfc:wood/planks/sycamore")
+
     # Compartment Entities
     manager.entity_tag("alekiships:compartments", "compartment_tfc_chest")
 

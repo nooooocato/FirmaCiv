@@ -48,7 +48,7 @@ public final class FirmacivBlocks {
 
     public static final RegistryObject<AngledBoatFrameBlock> BOAT_FRAME_ANGLED = registerBlockWithItem(
             "watercraft_frame_angled",
-            () -> new AngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+            () -> new FirmacivAngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 
     public static final EnumMap<TFCWood, RegistryObject<AngledWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_ANGLED = AlekiShipsHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/angled/" + tfcWood.getSerializedName(),
@@ -57,7 +57,7 @@ public final class FirmacivBlocks {
 
     public static final RegistryObject<FlatBoatFrameBlock> BOAT_FRAME_FLAT = registerBlockWithItem(
             "watercraft_frame_flat",
-            () -> new FlatBoatFrameBlock(BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get())));
+            () -> new FirmacivFlatBoatFrameBlock(BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get())));
 
     public static final EnumMap<TFCWood, RegistryObject<FlatWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_FLAT = AlekiShipsHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/flat/" + tfcWood.getSerializedName(),

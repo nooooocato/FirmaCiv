@@ -1,5 +1,6 @@
 package com.alekiponi.firmaciv.util;
 
+import com.alekiponi.firmaciv.events.config.ServerConfig;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -25,6 +26,11 @@ public final class FirmacivTags {
         public static final TagKey<Item> AXES = getFromTFC("axes");
 
         public static final TagKey<Item> CHESTS = create("chests");
+
+        /**
+         * All the items considered hard woods that {@link ServerConfig#shipWoodRestriction} cares about
+         */
+        public static final TagKey<Item> HARD_WOOD = create("hard_wood");
 
         public static TagKey<Item> getFromTFC(String id) {
             return TagKey.create(Registries.ITEM, new ResourceLocation("tfc", id));
