@@ -31,7 +31,7 @@ def generate(manager: ResourceManager):
     # Vanilla mining tags
     manager.block_tag("minecraft:mineable/axe", "watercraft_frame_angled", "watercraft_frame_flat",
                       "#firmaciv:canoe_component_blocks", "#firmaciv:wooden_watercraft_frames")
-    manager.block_tag("minecraft:mineable/pickaxe", "oarlock")
+    manager.block_tag("minecraft:mineable/pickaxe", "oarlock", "cleat")
 
     # TFC tags
     manager.block_tag("tfc:mineable_with_blunt_tool", "#firmaciv:canoe_component_blocks")

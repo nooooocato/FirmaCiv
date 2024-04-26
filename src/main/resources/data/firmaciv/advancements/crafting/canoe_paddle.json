@@ -7,9 +7,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "firmaciv:canoe_paddle"
-            ]
+            "tag": "tfc:lumber"
           }
         ]
       }

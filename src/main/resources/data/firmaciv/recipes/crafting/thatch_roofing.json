@@ -7,10 +7,11 @@
   ],
   "key": {
     "T": {
-      "item": "tfc:straw"
+      "item": "tfc:thatch"
     }
   },
   "result": {
-    "item": "firmaciv:thatch_roofing"
+    "item": "firmaciv:thatch_roofing",
+    "count": 4
   }
 }

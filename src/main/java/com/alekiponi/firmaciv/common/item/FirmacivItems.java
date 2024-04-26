@@ -25,7 +25,7 @@ public class FirmacivItems {
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> UNFINISHED_NAV_CLOCK = ITEMS.register("unfinished_nav_clock",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> UNFINISHED_BAROMETER = ITEMS.register("unfinished_barometer",
             () -> new Item(new Item.Properties().stacksTo(1)));

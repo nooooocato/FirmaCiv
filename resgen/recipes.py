@@ -33,19 +33,19 @@ def generate(rm: ResourceManager):
         }}, "firmaciv:firmaciv_compass")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled", [" LL", "LLL", "LL "], {"L": "#tfc:lumber"},
-                       ("firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
+                       ("firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled_3", ["LL ", "LLL", " LL"], {"L": "#tfc:lumber"},
-                       ("firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
+                       ("firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
 
     rm.crafting_shaped("crafting/watercraft_frame_flat", ["AA"], {"A": "firmaciv:watercraft_frame_angled"},
-                       (2, "firmaciv:watercraft_frame_flat")).with_advancement("firmaciv:watercraft_frame_flat")
+                       (2, "firmaciv:watercraft_frame_flat")).with_advancement("firmaciv:watercraft_frame_angled")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled_1", ["F ", " F"], {"F": "firmaciv:watercraft_frame_flat"},
-                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
+                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_flat")
 
-    rm.crafting_shaped("crafting/watercraft_frame_angled_2", [" F", "F "], {"F": "firmaciv:watercraft_frame_flat"},
-                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_angled")
+    rm.crafting_shaped("crafting/watercraft_frame_angled_2", [" F", "F "], {"F": "tfc:lumber"},
+                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
 
     # Boating items
     rm.crafting_shapeless("crafting/barometer",
@@ -55,70 +55,70 @@ def generate(rm: ResourceManager):
                                 "ingredient": "minecraft:water",
                                 "amount": 100
                             }}],
-                          "firmaciv:barometer").with_advancement("firmaciv:barometer")
+                          "firmaciv:barometer").with_advancement("firmaciv:unfinished_barometer")
 
     rm.crafting_shapeless("crafting/nav_clock",
                           ["firmaciv:unfinished_nav_clock", *["tfc:lens" for _ in range(2)],
                            *["tfc:brass_mechanisms" for _ in range(3)]],
-                          "firmaciv:nav_clock").with_advancement("firmaciv:nav_clock")
+                          "firmaciv:nav_clock").with_advancement("firmaciv:unfinished_nav_clock")
 
     rm.crafting_shapeless("crafting/sextant", ["firmaciv:unfinished_sextant", "tfc:lens", "tfc:brass_mechanisms"],
-                          "firmaciv:sextant").with_advancement("firmaciv:sextant")
+                          "firmaciv:sextant").with_advancement("firmaciv:unfinished_sextant")
 
     rm.crafting_shaped("crafting/kayak", ["SSS", "HSH", "LLL"],
                        {"S": "#forge:string", "H": "firmaciv:large_waterproof_hide", "L": "#tfc:lumber"},
-                       "firmaciv:kayak").with_advancement("firmaciv:kayak")
+                       "firmaciv:kayak").with_advancement("firmaciv:large_waterproof_hide")
 
     rm.crafting_shapeless("crafting/large_waterproof_hide",
                           ["tfc:large_prepared_hide", *["firmalife:beeswax" for _ in range(8)]],
                           "firmaciv:large_waterproof_hide",
                           conditions={"type": "forge:mod_loaded", "modid": "firmalife"}).with_advancement(
-        "firmaciv:large_waterproof_hide")
+        "firmalife:beeswax")
 
     rm.crafting_shapeless("crafting/rope_coil",
                           [*["tfc:jute_fiber" for _ in range(9)]],
                           "firmaciv:rope_coil").with_advancement(
-        "firmaciv:rope_coil")
+        "tfc:jute_fiber")
 
     # Oar/paddles
     rm.crafting_shaped("crafting/oar", ["  S", " S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
-                       "firmaciv:oar").with_advancement("firmaciv:oar")
+                       "firmaciv:oar").with_advancement("#tfc:lumber")
     rm.crafting_shaped("crafting/kayak_paddle", ["  L", " S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
-                       "firmaciv:kayak_paddle").with_advancement("firmaciv:kayak_paddle")
+                       "firmaciv:kayak_paddle").with_advancement("#tfc:lumber")
     rm.crafting_shaped("crafting/canoe_paddle", [" S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
-                       "firmaciv:canoe_paddle").with_advancement("firmaciv:canoe_paddle")
+                       "firmaciv:canoe_paddle").with_advancement("#tfc:lumber")
 
     rm.crafting_shaped("crafting/cannon", ["BBB", "LL ", "R R"], {"B": "firmaciv:cannon_barrel", "L": "#tfc:lumber",
                                                                   "R": "#forge:rods/wrought_iron"},
-                       "firmaciv:cannon").with_advancement("firmaciv:cannon")
+                       "firmaciv:cannon").with_advancement("firmaciv:cannon_barrel")
 
     rm.crafting_shaped("crafting/small_triangular_sail", ["WSS", "WWS", "WWW"],
                        {"W": "tfc:wool_cloth", "S": "#forge:string"},
-                       "firmaciv:small_triangular_sail").with_advancement("firmaciv:small_triangular_sail")
+                       "firmaciv:small_triangular_sail").with_advancement("tfc:wool_cloth")
 
     rm.crafting_shaped("crafting/medium_triangular_sail", ["S  ", "WS ", "WWS"],
                        {"W": "firmaciv:small_triangular_sail", "S": "#forge:string"},
-                       "firmaciv:medium_triangular_sail").with_advancement("firmaciv:medium_triangular_sail")
+                       "firmaciv:medium_triangular_sail").with_advancement("firmaciv:small_triangular_sail")
 
     rm.crafting_shaped("crafting/thatch_roofing", ["T  ", " T "],
-                       {"T": "tfc:straw"},
-                       "firmaciv:thatch_roofing").with_advancement("firmaciv:thatch_roofing")
+                       {"T": "tfc:thatch"},
+                       (4,"firmaciv:thatch_roofing")).with_advancement("tfc:thatch")
 
     rm.crafting_shaped("crafting/thatch_roofing_1", [" T ", "T  "],
-                       {"T": "tfc:straw"},
-                       "firmaciv:thatch_roofing").with_advancement("firmaciv:thatch_roofing")
+                       {"T": "tfc:thatch"},
+                       (4,"firmaciv:thatch_roofing")).with_advancement("tfc:thatch")
 
     rm.crafting_shaped("crafting/thatch_roofing_slab", ["TT "],
-                       {"T": "tfc:straw"},
-                       "firmaciv:thatch_roofing_slab").with_advancement("firmaciv:thatch_roofing_slab")
+                       {"T": "tfc:thatch"},
+                       (4,"firmaciv:thatch_roofing_slab")).with_advancement("tfc:thatch")
 
     rm.crafting_shapeless("crafting/thatch_roofing_slab_to_straw",
                           [*["firmaciv:thatch_roofing_slab" for _ in range(1)]],
-                          (2, "tfc:straw")).with_advancement("tfc:straw")
+                          (2, "tfc:straw")).with_advancement("firmaciv:thatch_roofing_slab")
 
     rm.crafting_shapeless("crafting/thatch_roofing_to_straw",
                           [*["firmaciv:thatch_roofing" for _ in range(1)]],
-                          (2, "tfc:straw")).with_advancement("tfc:straw")
+                          (2, "tfc:straw")).with_advancement("firmaciv:thatch_roofing")
 
 
     heat_recipe(rm, "barometer", "firmaciv:barometer", 930, None, "200 tfc:metal/brass")
