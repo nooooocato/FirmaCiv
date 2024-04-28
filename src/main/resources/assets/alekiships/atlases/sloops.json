@@ -1,0 +1,105 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "sources": [
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/acacia",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/ash",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/aspen",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/birch",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/blackwood",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/chestnut",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/douglas_fir",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/hickory",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/kapok",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/mangrove",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/maple",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/oak",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/palm",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/pine",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/rosewood",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/sequoia",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/spruce",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/sycamore",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/white_cedar",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/sloop/willow",
+      "paintPrefix": "alekiships:entity/watercraft/sloop/paint"
+    }
+  ]
+}

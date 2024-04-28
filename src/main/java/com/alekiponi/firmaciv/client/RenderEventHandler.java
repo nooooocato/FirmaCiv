@@ -35,19 +35,19 @@ public final class RenderEventHandler {
             // Rowboat
             event.registerEntityRenderer(FirmacivEntities.TFC_ROWBOATS.get(tfcWood).get(),
                     context -> new RowboatRenderer(context, new ResourceLocation(MOD_ID,
-                            "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/normal.png"),
+                            "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName()),
                             AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
-                                    "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName() + ".png"))));
+                                    "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName()))));
             // Sloops
             event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS.get(tfcWood).get(),
                     context -> new SloopRenderer(context, new ResourceLocation(MOD_ID,
-                            "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png"),
+                            "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName()),
                             AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
-                                    "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName() + ".png"))));
+                                    "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName()))));
             // Construction sloops
             event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS_UNDER_CONSTRUCTION.get(tfcWood).get(),
                     context -> new SloopConstructionRenderer(context, new ResourceLocation(MOD_ID,
-                            "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/normal.png")));
+                            "textures/entity/watercraft/sloop_construction/" + tfcWood.getSerializedName() + ".png")));
             // Canoes
             event.registerEntityRenderer(FirmacivEntities.TFC_CANOES.get(tfcWood).get(),
                     context -> new CanoeRenderer(context, new ResourceLocation(MOD_ID,

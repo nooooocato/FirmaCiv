@@ -6,6 +6,16 @@ import lootTables
 
 
 def generate(rm: ResourceManager):
+    # Generate atlases for rowboats and our sloops
+    rm.atlas("alekiships:rowboats", *[{"type": "alekiships:boat_texture_generator",
+                                       "woodTexture": f"firmaciv:entity/watercraft/rowboat/{wood}",
+                                       "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"} for wood in
+                                      constants.TFC_WOODS])
+    rm.atlas("alekiships:sloops", *[{"type": "alekiships:boat_texture_generator",
+                                     "woodTexture": f"firmaciv:entity/watercraft/sloop/{wood}",
+                                     "paintPrefix": "alekiships:entity/watercraft/sloop/paint"} for wood in
+                                    constants.TFC_WOODS])
+
     for wood in constants.TFC_WOODS:
         # Generate models from templates
         for progress in ["first", "second", "third", "fourth"]:
