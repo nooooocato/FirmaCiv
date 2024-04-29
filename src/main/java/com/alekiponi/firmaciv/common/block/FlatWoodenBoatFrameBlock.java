@@ -1,9 +1,11 @@
 package com.alekiponi.firmaciv.common.block;
 
+import com.alekiponi.alekiships.common.block.FlatBoatFrameBlock;
+import com.alekiponi.alekiships.common.block.ProcessedBoatFrame;
+import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.alekiships.util.BoatMaterial;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blocks.wood.Wood;
-import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,34 +20,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-import static com.alekiponi.firmaciv.common.block.FirmacivBlockStateProperties.FRAME_PROCESSED_7;
-
-public class FlatWoodenBoatFrameBlock extends FlatBoatFrameBlock {
+public class FlatWoodenBoatFrameBlock extends FlatBoatFrameBlock implements ProcessedBoatFrame {
 
     public static final IntegerProperty FRAME_PROCESSED = FirmacivBlockStateProperties.FRAME_PROCESSED_7;
-    public final RegistryWood wood;
+    public static final int FULLY_PLANKED = 3;
+    private static final int FULLY_PROCESSED = 7;
+    public final BoatMaterial boatMaterial;
 
-    public FlatWoodenBoatFrameBlock(final RegistryWood wood, final Properties properties) {
+    public FlatWoodenBoatFrameBlock(final BoatMaterial boatMaterial, final Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(FRAME_PROCESSED, 0));
-        this.wood = wood;
+        this.boatMaterial = boatMaterial;
     }
 
     @Override
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder.add(FRAME_PROCESSED));
-    }
-
-    public static boolean validateProcessed(BlockState framestate, ItemStack plankitem) {
-        // check if the plank item matches
-        if (framestate.getBlock() instanceof FlatWoodenBoatFrameBlock wbfb && wbfb.getPlankAsItemStack()
-                .is(plankitem.getItem())) {
-            // check if the state matches
-            return framestate.getValue(FRAME_PROCESSED_7) == 7;
-        }
-        return false;
     }
 
     @Override
@@ -61,33 +52,31 @@ public class FlatWoodenBoatFrameBlock extends FlatBoatFrameBlock {
         // Try extract
         if (heldStack.isEmpty() && !level.isClientSide) {
             // Extract an item
-            if (processState <= 3) {
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(this.getUnderlyingPlank()));
+            if (processState <= FULLY_PLANKED) {
+                AlekiShipsHelper.giveItemToPlayer(player, new ItemStack(this.boatMaterial.getDeckItem()));
             } else {
-                ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(FirmacivItems.COPPER_BOLT.get()));
+                AlekiShipsHelper.giveItemToPlayer(player, new ItemStack(FirmacivItems.COPPER_BOLT.get()));
             }
 
             // Set ourselves back to our base
             if (processState == 0) {
-                level.setBlock(blockPos, FirmacivBlocks.BOAT_FRAME_FLAT.get().defaultBlockState(),
-                        UPDATE_CLIENTS | UPDATE_IMMEDIATE);
+                level.setBlockAndUpdate(blockPos, FirmacivBlocks.BOAT_FRAME_FLAT.get().defaultBlockState());
                 return InteractionResult.SUCCESS;
             }
 
-            level.setBlock(blockPos, blockState.setValue(FRAME_PROCESSED, processState - 1),
-                    UPDATE_CLIENTS | UPDATE_IMMEDIATE);
+            level.setBlockAndUpdate(blockPos, blockState.setValue(FRAME_PROCESSED, processState - 1));
 
             return InteractionResult.SUCCESS;
         }
 
         // Should we do plank stuff
-        if (heldStack.is(this.getUnderlyingPlank().asItem())) {
+        if (heldStack.is(this.boatMaterial.getDeckItem())) {
             // Must be [0,3)
-            if (processState < 3) {
-                if(!player.getAbilities().instabuild){
+            if (processState < FULLY_PLANKED) {
+                if (!player.getAbilities().instabuild) {
                     heldStack.shrink(1);
                 }
-                level.setBlock(blockPos, blockState.cycle(FRAME_PROCESSED), UPDATE_CLIENTS | UPDATE_IMMEDIATE);
+                level.setBlockAndUpdate(blockPos, blockState.cycle(FRAME_PROCESSED));
                 level.playSound(null, blockPos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.5F,
                         level.getRandom().nextFloat() * 0.1F + 0.9F);
                 return InteractionResult.SUCCESS;
@@ -98,11 +87,11 @@ public class FlatWoodenBoatFrameBlock extends FlatBoatFrameBlock {
         // Should we do bolt stuff
         if (heldStack.is(FirmacivItems.COPPER_BOLT.get()) && player.getOffhandItem().is(TFCTags.Items.HAMMERS)) {
             // Must be [3,7)
-            if (3 <= processState && processState < 7) {
-                if(!player.getAbilities().instabuild){
+            if (FULLY_PLANKED <= processState && processState < FULLY_PROCESSED) {
+                if (!player.getAbilities().instabuild) {
                     heldStack.shrink(1);
                 }
-                level.setBlock(blockPos, blockState.cycle(FRAME_PROCESSED), 10);
+                level.setBlockAndUpdate(blockPos, blockState.cycle(FRAME_PROCESSED));
                 level.playSound(null, blockPos, SoundEvents.METAL_PLACE, SoundSource.BLOCKS, 1.5F,
                         level.getRandom().nextFloat() * 0.1F + 0.9F);
                 return InteractionResult.sidedSuccess(level.isClientSide());
@@ -121,11 +110,18 @@ public class FlatWoodenBoatFrameBlock extends FlatBoatFrameBlock {
         return FirmacivBlocks.BOAT_FRAME_FLAT.get().getCloneItemStack(blockGetter, blockPos, blockState);
     }
 
-    public Block getUnderlyingPlank() {
-        return wood.getBlock(Wood.BlockType.PLANKS).get();
+    @Override
+    public IntegerProperty getProcessingProperty() {
+        return FRAME_PROCESSED;
     }
 
-    public ItemStack getPlankAsItemStack() {
-        return wood.getBlock(Wood.BlockType.PLANKS).get().asItem().getDefaultInstance();
+    @Override
+    public int getProcessingLimit() {
+        return FULLY_PROCESSED;
+    }
+
+    @Override
+    public BoatMaterial getBoatMaterial() {
+        return this.boatMaterial;
     }
 }

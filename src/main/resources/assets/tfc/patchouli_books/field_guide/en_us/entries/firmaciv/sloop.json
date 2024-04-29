@@ -97,17 +97,17 @@
           ]
         ],
         "mapping": {
-          "1": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_right,frame_processed=3]",
-          "2": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_left,frame_processed=3]",
-          "3": "firmaciv:wood/watercraft_frame_angled/oak[facing=north,shape=straight,frame_processed=3]",
-          "4": "firmaciv:wood/watercraft_frame_angled/oak[facing=south,shape=straight,frame_processed=3]",
-          "5": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_right,frame_processed=3]",
-          "6": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_left,frame_processed=3]",
-          "7": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_left,frame_processed=3]",
-          "8": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=straight,frame_processed=3]",
-          "9": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_right,frame_processed=3]",
-          "0": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=3]",
-          "a": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=3]"
+          "1": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_right,frame_processed=3]",
+          "2": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_left,frame_processed=3]",
+          "3": "firmaciv:wood/watercraft_frame/angled/oak[facing=north,shape=straight,frame_processed=3]",
+          "4": "firmaciv:wood/watercraft_frame/angled/oak[facing=south,shape=straight,frame_processed=3]",
+          "5": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_right,frame_processed=3]",
+          "6": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_left,frame_processed=3]",
+          "7": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_left,frame_processed=3]",
+          "8": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=straight,frame_processed=3]",
+          "9": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_right,frame_processed=3]",
+          "0": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=3]",
+          "a": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=3]"
         }
       },
       "name": "Sloop Scaffolding",
@@ -138,17 +138,17 @@
           ]
         ],
         "mapping": {
-          "1": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_right,frame_processed=7]",
-          "2": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_left,frame_processed=7]",
-          "3": "firmaciv:wood/watercraft_frame_angled/oak[facing=north,shape=straight,frame_processed=7]",
-          "4": "firmaciv:wood/watercraft_frame_angled/oak[facing=south,shape=straight,frame_processed=7]",
-          "5": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_right,frame_processed=7]",
-          "6": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_left,frame_processed=7]",
-          "7": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_left,frame_processed=7]",
-          "8": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=straight,frame_processed=7]",
-          "9": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_right,frame_processed=7]",
-          "0": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=7]",
-          "a": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=7]"
+          "1": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_right,frame_processed=7]",
+          "2": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_left,frame_processed=7]",
+          "3": "firmaciv:wood/watercraft_frame/angled/oak[facing=north,shape=straight,frame_processed=7]",
+          "4": "firmaciv:wood/watercraft_frame/angled/oak[facing=south,shape=straight,frame_processed=7]",
+          "5": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_right,frame_processed=7]",
+          "6": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_left,frame_processed=7]",
+          "7": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_left,frame_processed=7]",
+          "8": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=straight,frame_processed=7]",
+          "9": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_right,frame_processed=7]",
+          "0": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=7]",
+          "a": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=7]"
         }
       },
       "name": "Sloop Scaffolding",
@@ -179,19 +179,19 @@
           ]
         ],
         "mapping": {
-          "1": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_right,frame_processed=7]",
-          "2": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=inner_left,frame_processed=7]",
-          "3": "firmaciv:wood/watercraft_frame_angled/oak[facing=north,shape=straight,frame_processed=7]",
-          "4": "firmaciv:wood/watercraft_frame_angled/oak[facing=south,shape=straight,frame_processed=7]",
-          "5": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_right,frame_processed=7]",
-          "6": "firmaciv:wood/watercraft_frame_angled/oak[facing=west,shape=outer_left,frame_processed=7]",
-          "7": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_left,frame_processed=7]",
-          "8": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=straight,frame_processed=7]",
-          "9": "firmaciv:wood/watercraft_frame_angled/oak[facing=east,shape=inner_right,frame_processed=7]",
-          "0": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=7]",
-          "a": "firmaciv:wood/watercraft_frame_flat/oak[frame_processed=7]",
-          "L": "firmaciv:cleat[facing=north]",
-          "R": "firmaciv:cleat[facing=south]"
+          "1": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_right,frame_processed=7]",
+          "2": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=inner_left,frame_processed=7]",
+          "3": "firmaciv:wood/watercraft_frame/angled/oak[facing=north,shape=straight,frame_processed=7]",
+          "4": "firmaciv:wood/watercraft_frame/angled/oak[facing=south,shape=straight,frame_processed=7]",
+          "5": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_right,frame_processed=7]",
+          "6": "firmaciv:wood/watercraft_frame/angled/oak[facing=west,shape=outer_left,frame_processed=7]",
+          "7": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_left,frame_processed=7]",
+          "8": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=straight,frame_processed=7]",
+          "9": "firmaciv:wood/watercraft_frame/angled/oak[facing=east,shape=inner_right,frame_processed=7]",
+          "0": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=7]",
+          "a": "firmaciv:wood/watercraft_frame/flat/oak[frame_processed=7]",
+          "L": "alekiships:cleat[facing=north]",
+          "R": "alekiships:cleat[facing=south]"
         }
       },
       "name": "Sloop Scaffolding",

@@ -1,6 +1,7 @@
 {
+  "__comment__": "This file was automatically created by mcresources",
   "ingredient": {
-    "item": "firmaciv:oar"
+    "item": "alekiships:oar"
   },
   "size": "large",
   "weight": "medium"

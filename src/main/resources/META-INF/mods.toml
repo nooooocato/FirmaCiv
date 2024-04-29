@@ -4,7 +4,7 @@ loaderVersion="[40,)"
 license="MIT"
 [[mods]]
 modId="firmaciv"
-version="0.2.8-alpha-1.20.1"
+version="${file.jarVersion}"
 displayName="Firma: Civilization"
 logoFile="icon.png"
 authors="alekiponi"
@@ -40,3 +40,9 @@ Firma: Civilization is an addon/expansion for TerraFirmaCraft focusing on key, c
     ordering="AFTER"
     side="BOTH"
 
+[[dependencies.firmaciv]]
+    modId = "alekiships"
+    mandatory = true
+    versionRange = "0,)"
+    ordering = "AFTER"
+    side = "BOTH"

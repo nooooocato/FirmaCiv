@@ -1,0 +1,105 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "sources": [
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/acacia",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/ash",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/aspen",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/birch",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/blackwood",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/chestnut",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/douglas_fir",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/hickory",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/kapok",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/mangrove",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/maple",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/oak",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/palm",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/pine",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/rosewood",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/sequoia",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/spruce",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/sycamore",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/white_cedar",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    },
+    {
+      "type": "alekiships:boat_texture_generator",
+      "woodTexture": "firmaciv:entity/watercraft/rowboat/willow",
+      "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"
+    }
+  ]
+}

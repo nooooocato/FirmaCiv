@@ -1,11 +1,11 @@
 {
+  "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:anvil",
   "input": {
     "tag": "forge:ingots/copper"
   },
   "result": {
-    "item": "firmaciv:copper_bolt",
-    "count": 4
+    "item": "firmaciv:copper_bolt"
   },
   "tier": 2,
   "rules": [

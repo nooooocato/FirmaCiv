@@ -1,11 +1,11 @@
 {
+  "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:anvil",
   "input": {
     "tag": "forge:double_sheets/steel"
   },
   "result": {
-    "item": "firmaciv:anchor",
-    "count": 1
+    "item": "alekiships:anchor"
   },
   "tier": 4,
   "rules": [

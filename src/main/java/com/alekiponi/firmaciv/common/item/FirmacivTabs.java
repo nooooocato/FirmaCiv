@@ -8,14 +8,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-public class FirmacivTabs {
+public final class FirmacivTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(
             Registries.CREATIVE_MODE_TAB, Firmaciv.MOD_ID);
-
 
     public static final RegistryObject<CreativeModeTab> FIRMACIV_TAB = CREATIVE_MODE_TABS.register("firmaciv_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(FirmacivItems.SEXTANT.get()))
@@ -37,21 +35,12 @@ public class FirmacivTabs {
 
                         pOutput.accept(FirmacivItems.CANOE_PADDLE.get());
 
-                        pOutput.accept(FirmacivItems.OAR.get());
-                        pOutput.accept(FirmacivBlocks.OARLOCK.get());
                         pOutput.accept(FirmacivItems.COPPER_BOLT.get());
-                        pOutput.accept(FirmacivBlocks.CLEAT.get());
-                        pOutput.accept(FirmacivItems.ANCHOR.get());
 
-                        pOutput.accept(FirmacivItems.CANNON.get());
                         pOutput.accept(FirmacivItems.CANNON_BARREL.get());
-                        pOutput.accept(FirmacivItems.CANNONBALL.get());
 
                         pOutput.accept(TFCItems.UNREFINED_PAPER.get());
                         pOutput.accept(Items.GUNPOWDER);
-
-                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_ANGLED.get());
-                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_FLAT.get());
 
                         pOutput.accept(FirmacivItems.ROPE_COIL.get());
                         pOutput.accept(FirmacivItems.SMALL_TRIANGULAR_SAIL.get());
@@ -62,10 +51,4 @@ public class FirmacivTabs {
                         pOutput.accept(FirmacivBlocks.THATCH_ROOFING_SLAB.get());
 
                     }).build());
-
-
-    public static void register(IEventBus eventBus) {
-        CREATIVE_MODE_TABS.register((eventBus));
-    }
-
 }

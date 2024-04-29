@@ -2,7 +2,7 @@
   "__comment__": "This file was automatically created by mcresources",
   "type": "tfc:heating",
   "ingredient": {
-    "item": "firmaciv:oarlock"
+    "item": "alekiships:oarlock"
   },
   "result_fluid": {
     "fluid": "tfc:metal/cast_iron",

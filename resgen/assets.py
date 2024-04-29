@@ -6,101 +6,85 @@ import lootTables
 
 
 def generate(rm: ResourceManager):
-    for woodType, woodName in constants.TFC_WOODS.items():
+    # Generate atlases for rowboats and our sloops
+    rm.atlas("alekiships:rowboats", *[{"type": "alekiships:boat_texture_generator",
+                                       "woodTexture": f"firmaciv:entity/watercraft/rowboat/{wood}",
+                                       "paintPrefix": "alekiships:entity/watercraft/rowboat/paint"} for wood in
+                                      constants.TFC_WOODS])
+    rm.atlas("alekiships:sloops", *[{"type": "alekiships:boat_texture_generator",
+                                     "woodTexture": f"firmaciv:entity/watercraft/sloop/{wood}",
+                                     "paintPrefix": "alekiships:entity/watercraft/sloop/paint"} for wood in
+                                    constants.TFC_WOODS])
+
+    for wood in constants.TFC_WOODS:
         # Generate models from templates
         for progress in ["first", "second", "third", "fourth"]:
             # Slab frame models
-            rm.block_model(f"wood/watercraft_frame/flat/{woodType}/{progress}",
-                           {"plank": f"tfc:block/wood/planks/{woodType}"},
-                           f"firmaciv:block/watercraft_frame/flat/template/{progress}")
+            rm.block_model(f"wood/watercraft_frame/flat/{wood}/{progress}",
+                           {"plank": f"tfc:block/wood/planks/{wood}"},
+                           f"alekiships:block/watercraft_frame/flat/template/{progress}")
 
             for shape in ["straight", "inner", "outer"]:
-                rm.block_model(f"wood/watercraft_frame_angled/{woodType}/{shape}/{progress}",
-                               {"plank": f"tfc:block/wood/planks/{woodType}"},
-                               f"firmaciv:block/watercraft_frame_angled/template/{shape}/{progress}")
+                rm.block_model(f"wood/watercraft_frame/angled/{wood}/{shape}/{progress}",
+                               {"plank": f"tfc:block/wood/planks/{wood}"},
+                               f"alekiships:block/watercraft_frame/angled/template/{shape}/{progress}")
 
-        rm.blockstate_multipart(f"wood/watercraft_frame_flat/{woodType}",
-                                *blockStates.getWoodFrameFlatMultipart(woodType)).with_lang(
-            f"{woodName} Flat Shipwright's Scaffolding").with_block_loot(*lootTables.boat_frame_flat(woodType))
+        rm.blockstate_multipart(f"wood/watercraft_frame/flat/{wood}",
+                                *blockStates.getWoodFrameFlatMultipart(wood)).with_lang(
+            f"{constants.normalize(wood)} Flat Shipwright's Scaffolding").with_block_loot(
+            *lootTables.boat_frame_flat(wood))
 
-        rm.blockstate_multipart(f"wood/watercraft_frame_angled/{woodType}",
-                                *blockStates.getWoodFrameMultipart(woodType)).with_lang(
-            f"{woodName} Sloped Shipwright's Scaffolding").with_block_loot(*lootTables.boat_frame(woodType))
+        rm.blockstate_multipart(f"wood/watercraft_frame/angled/{wood}",
+                                *blockStates.getWoodFrameMultipart(wood)).with_lang(
+            f"{constants.normalize(wood)} Sloped Shipwright's Scaffolding").with_block_loot(
+            *lootTables.boat_frame(wood))
 
         # Canoe components now
-        canoe_component_textures = {"0": f"tfc:block/wood/stripped_log/{woodType}",
-                                    "1": f"tfc:block/wood/stripped_log_top/{woodType}",
-                                    "particle": f"tfc:block/wood/stripped_log/{woodType}"}
+        canoe_component_textures = {"0": f"tfc:block/wood/stripped_log/{wood}",
+                                    "1": f"tfc:block/wood/stripped_log_top/{wood}",
+                                    "particle": f"tfc:block/wood/stripped_log/{wood}"}
 
         # Models that are shared by the end and middle states
         for n in range(8):
-            rm.block_model(f"wood/canoe_component_block/{woodType}/all/{n}", canoe_component_textures,
+            rm.block_model(f"wood/canoe_component_block/{wood}/all/{n}", canoe_component_textures,
                            f"firmaciv:block/canoe_component_block/template/all/{n}")
 
         # End and Middle only models
         for n in range(8, 13):
-            rm.block_model(f"wood/canoe_component_block/{woodType}/end/{n}", canoe_component_textures,
+            rm.block_model(f"wood/canoe_component_block/{wood}/end/{n}", canoe_component_textures,
                            f"firmaciv:block/canoe_component_block/template/end/{n}")
-            rm.block_model(f"wood/canoe_component_block/{woodType}/middle/{n}", canoe_component_textures,
+            rm.block_model(f"wood/canoe_component_block/{wood}/middle/{n}", canoe_component_textures,
                            f"firmaciv:block/canoe_component_block/template/middle/{n}")
-            rm.blockstate(f"wood/canoe_component_block/{woodType}",
-                          variants=blockStates.canoe_component(woodType)).with_lang(
-                f"{woodName} Canoe Component").with_block_loot(f"tfc:wood/lumber/{woodType}")
+            rm.blockstate(f"wood/canoe_component_block/{wood}",
+                          variants=blockStates.canoe_component(wood)).with_lang(
+                f"{constants.normalize(wood)} Canoe Component").with_block_loot(f"tfc:wood/lumber/{wood}")
 
     # Basic frame
     rm.blockstate("watercraft_frame_angled", variants=blockStates.angledWaterCraftFrame).with_lang(
         "Shipwright's Scaffolding").with_block_loot("firmaciv:watercraft_frame_angled")
 
-    # Need to manually make the model
-    rm.item_model("watercraft_frame_angled", parent="firmaciv:block/watercraft_frame_angled/straight",
+    # Need to manually make the models
+    for shape in ["inner", "straight", "outer"]:
+        rm.block_model(f"watercraft_frame/angled/{shape}", parent=f"alekiships:block/watercraft_frame/angled/{shape}",
+                       textures={
+                           "particle": "tfc:block/wood/planks/maple",
+                           "frame": "tfc:block/wood/planks/maple"
+                       })
+    rm.item_model("watercraft_frame_angled", parent="firmaciv:block/watercraft_frame/angled/straight",
                   no_textures=True)
 
     # Basic flat frame
     rm.blockstate("watercraft_frame_flat", "firmaciv:block/watercraft_frame/flat/frame").with_lang(
         "Flat Shipwright's Scaffolding").with_block_loot("firmaciv:watercraft_frame_flat")
 
-    # Need to manually make the model
+    # Need to manually make the models
+    rm.block_model("watercraft_frame/flat/frame", parent="alekiships:block/watercraft_frame/flat/frame",
+                   textures={
+                       "particle": "tfc:block/wood/planks/maple",
+                       "frame": "tfc:block/wood/planks/maple"
+                   })
     rm.item_model("watercraft_frame_flat", parent="firmaciv:block/watercraft_frame/flat/frame",
                   no_textures=True)
-
-    rm.blockstate("oarlock", variants={
-        "facing=east": {
-            "model": "firmaciv:block/oarlock",
-            "y": 90
-        },
-        "facing=north": {
-            "model": "firmaciv:block/oarlock"
-        },
-        "facing=south": {
-            "model": "firmaciv:block/oarlock",
-            "y": 180
-        },
-        "facing=west": {
-            "model": "firmaciv:block/oarlock",
-            "y": 270
-        }
-    }).with_lang("Oarlock").with_block_loot("firmaciv:oarlock")
-    rm.item_model("oarlock")
-
-    rm.blockstate("cleat", variants={
-        "facing=east": {
-            "model": "firmaciv:block/cleat",
-            "y": 90
-        },
-        "facing=north": {
-            "model": "firmaciv:block/cleat"
-        },
-        "facing=south": {
-            "model": "firmaciv:block/cleat",
-            "y": 180
-        },
-        "facing=west": {
-            "model": "firmaciv:block/cleat",
-            "y": 270
-        }
-    }).with_lang("Cleat").with_block_loot("firmaciv:cleat")
-    rm.item_model("cleat")
-
 
     rm.block("thatch_roofing_slab").with_lang("Thatch Slab")
     rm.block("thatch_roofing_stairs").with_lang("Angled Thatch")
@@ -110,10 +94,7 @@ def generate(rm: ResourceManager):
     rm.item("unfinished_barometer").with_item_model().with_lang("Unfinished Barometer")
     rm.item("unfinished_nav_clock").with_item_model().with_lang("Unfinished Navigator's Timepiece")
     rm.item("unfinished_sextant").with_item_model().with_lang("Unfinished Sextant")
-    rm.item("cannon").with_item_model().with_lang("Cannon")
-    rm.item("cannonball").with_item_model().with_lang("Cannonball")
     rm.item("cannon_barrel").with_item_model().with_lang("Cannon Barrel")
-    rm.item("anchor").with_item_model().with_lang("Anchor")
     rm.item("small_triangular_sail").with_item_model().with_lang("Small Sail")
     rm.item("medium_triangular_sail").with_item_model().with_lang("Medium Sail")
     rm.item("large_triangular_sail").with_item_model().with_lang("Large Sail")
@@ -138,4 +119,3 @@ def generate(rm: ResourceManager):
 
     rm.item("kayak_paddle").with_lang("Kayak Paddle")
     rm.item("canoe_paddle").with_lang("Canoe Paddle")
-    rm.item("oar").with_lang("Oar")

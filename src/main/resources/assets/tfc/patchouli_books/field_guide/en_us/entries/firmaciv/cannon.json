@@ -2,7 +2,7 @@
 {
   "name": "Cannons",
   "category": "tfc:firmaciv",
-  "icon": "firmaciv:cannon",
+  "icon": "alekiships:cannon",
   "pages": [
     {
       "type": "patchouli:text",

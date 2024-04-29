@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Optional, Union
 
 from mcresources import ResourceManager, utils, RecipeContext
@@ -6,20 +7,56 @@ from mcresources.type_definitions import ResourceIdentifier, Json
 import constants
 
 
+class Rules(Enum):
+    hit_any = 'hit_any'
+    hit_not_last = 'hit_not_last'
+    hit_last = 'hit_last'
+    hit_second_last = 'hit_second_last'
+    hit_third_last = 'hit_third_last'
+    draw_any = 'draw_any'
+    draw_last = 'draw_last'
+    draw_not_last = 'draw_not_last'
+    draw_second_last = 'draw_second_last'
+    draw_third_last = 'draw_third_last'
+    punch_any = 'punch_any'
+    punch_last = 'punch_last'
+    punch_not_last = 'punch_not_last'
+    punch_second_last = 'punch_second_last'
+    punch_third_last = 'punch_third_last'
+    bend_any = 'bend_any'
+    bend_last = 'bend_last'
+    bend_not_last = 'bend_not_last'
+    bend_second_last = 'bend_second_last'
+    bend_third_last = 'bend_third_last'
+    upset_any = 'upset_any'
+    upset_last = 'upset_last'
+    upset_not_last = 'upset_not_last'
+    upset_second_last = 'upset_second_last'
+    upset_third_last = 'upset_third_last'
+    shrink_any = 'shrink_any'
+    shrink_last = 'shrink_last'
+    shrink_not_last = 'shrink_not_last'
+    shrink_second_last = 'shrink_second_last'
+    shrink_third_last = 'shrink_third_last'
+
+
 def generate(rm: ResourceManager):
     def disableRecipe(name_parts: ResourceIdentifier):
         rm.recipe(name_parts, None, {}, conditions="forge:false")
 
     # Disable TFC boat recipes
-    for woodType in constants.TFC_WOODS.keys():
-        disableRecipe(f"tfc:crafting/wood/{woodType}_boat")
+    for wood in constants.TFC_WOODS:
+        disableRecipe(f"tfc:crafting/wood/{wood}_boat")
 
     # Disable vanilla boat recipes
-    for woodType in ["acacia", "birch", "cherry", "dark_oak", "jungle", "mangrove", "oak", "spruce"]:
-        disableRecipe(f"minecraft:{woodType}_boat")
-        disableRecipe(f"minecraft:{woodType}_chest_boat")
+    for wood in ["acacia", "birch", "cherry", "dark_oak", "jungle", "mangrove", "oak", "spruce"]:
+        disableRecipe(f"minecraft:{wood}_boat")
+        disableRecipe(f"minecraft:{wood}_chest_boat")
     # Bamboo raft as well
     disableRecipe("minecraft:bamboo_raft")
+
+    disableRecipe("alekiships:crafting/watercraft_frame_angled")
+    disableRecipe("alekiships:crafting/watercraft_frame_flat")
 
     rm.crafting_shaped("minecraft:compass", ["X", "Y", "Z"], {
         "X": {
@@ -33,19 +70,14 @@ def generate(rm: ResourceManager):
         }}, "firmaciv:firmaciv_compass")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled", [" LL", "LLL", "LL "], {"L": "#tfc:lumber"},
-                       ("firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
-
-    rm.crafting_shaped("crafting/watercraft_frame_angled_3", ["LL ", "LLL", " LL"], {"L": "#tfc:lumber"},
-                       ("firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
+                       "firmaciv:watercraft_frame_angled").with_advancement("#tfc:lumber")
 
     rm.crafting_shaped("crafting/watercraft_frame_flat", ["AA"], {"A": "firmaciv:watercraft_frame_angled"},
-                       (2, "firmaciv:watercraft_frame_flat")).with_advancement("firmaciv:watercraft_frame_angled")
+                       "2 firmaciv:watercraft_frame_flat").with_advancement("firmaciv:watercraft_frame_angled")
 
-    rm.crafting_shaped("crafting/watercraft_frame_angled_1", ["F ", " F"], {"F": "firmaciv:watercraft_frame_flat"},
-                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("firmaciv:watercraft_frame_flat")
-
-    rm.crafting_shaped("crafting/watercraft_frame_angled_2", [" F", "F "], {"F": "tfc:lumber"},
-                       (2, "firmaciv:watercraft_frame_angled")).with_advancement("#tfc:lumber")
+    rm.crafting_shaped("crafting/watercraft_frame_angled_from_flat", ["F ", " F"],
+                       {"F": "firmaciv:watercraft_frame_flat"},
+                       "2 firmaciv:watercraft_frame_angled").with_advancement("firmaciv:watercraft_frame_flat")
 
     # Boating items
     rm.crafting_shapeless("crafting/barometer",
@@ -77,20 +109,19 @@ def generate(rm: ResourceManager):
 
     rm.crafting_shapeless("crafting/rope_coil",
                           [*["tfc:jute_fiber" for _ in range(9)]],
-                          "firmaciv:rope_coil").with_advancement(
-        "tfc:jute_fiber")
+                          "firmaciv:rope_coil").with_advancement("tfc:jute_fiber")
 
     # Oar/paddles
-    rm.crafting_shaped("crafting/oar", ["  S", " S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
-                       "firmaciv:oar").with_advancement("#tfc:lumber")
+    rm.crafting_shaped("alekiships:crafting/oar", ["  S", " S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
+                       "alekiships:oar").with_advancement("#tfc:lumber")
     rm.crafting_shaped("crafting/kayak_paddle", ["  L", " S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
                        "firmaciv:kayak_paddle").with_advancement("#tfc:lumber")
     rm.crafting_shaped("crafting/canoe_paddle", [" S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
                        "firmaciv:canoe_paddle").with_advancement("#tfc:lumber")
 
-    rm.crafting_shaped("crafting/cannon", ["BBB", "LL ", "R R"], {"B": "firmaciv:cannon_barrel", "L": "#tfc:lumber",
-                                                                  "R": "#forge:rods/wrought_iron"},
-                       "firmaciv:cannon").with_advancement("firmaciv:cannon_barrel")
+    rm.crafting_shaped("alekiships:crafting/cannon", ["BBB", "LL ", "R R"],
+                       {"B": "firmaciv:cannon_barrel", "L": "#tfc:lumber", "R": "#forge:rods/wrought_iron"},
+                       "alekiships:cannon_barrel")
 
     rm.crafting_shaped("crafting/small_triangular_sail", ["WSS", "WWS", "WWW"],
                        {"W": "tfc:wool_cloth", "S": "#forge:string"},
@@ -102,11 +133,7 @@ def generate(rm: ResourceManager):
 
     rm.crafting_shaped("crafting/thatch_roofing", ["T  ", " T "],
                        {"T": "tfc:thatch"},
-                       (4,"firmaciv:thatch_roofing")).with_advancement("tfc:thatch")
-
-    rm.crafting_shaped("crafting/thatch_roofing_1", [" T ", "T  "],
-                       {"T": "tfc:thatch"},
-                       (4,"firmaciv:thatch_roofing")).with_advancement("tfc:thatch")
+                       "4 firmaciv:thatch_roofing").with_advancement("tfc:thatch")
 
     rm.crafting_shaped("crafting/thatch_roofing_slab", ["TT "],
                        {"T": "tfc:thatch"},
@@ -120,20 +147,41 @@ def generate(rm: ResourceManager):
                           [*["firmaciv:thatch_roofing" for _ in range(1)]],
                           (2, "tfc:straw")).with_advancement("firmaciv:thatch_roofing")
 
-
     heat_recipe(rm, "barometer", "firmaciv:barometer", 930, None, "200 tfc:metal/brass")
     heat_recipe(rm, "copper_bolt", "firmaciv:copper_bolt", 1080, None, "25 tfc:metal/copper")
     heat_recipe(rm, "nav_clock", "firmaciv:nav_clock", 930, None, "400 tfc:metal/brass")
-    heat_recipe(rm, "oarlock", "firmaciv:oarlock", 1535, None, "200 tfc:metal/cast_iron")
+    heat_recipe(rm, "oarlock", "alekiships:oarlock", 1535, None, "200 tfc:metal/cast_iron")
     heat_recipe(rm, "sextant", "firmaciv:sextant", 930, None, "200 tfc:metal/brass")
-    heat_recipe(rm, "cannonball", "firmaciv:cannonball", 1535, None, "200 tfc:metal/cast_iron")
+    heat_recipe(rm, "cannonball", "alekiships:cannonball", 1535, None, "200 tfc:metal/cast_iron")
     heat_recipe(rm, "cannon_barrel", "firmaciv:cannon_barrel", 1535, None, "400 tfc:metal/cast_iron")
-    heat_recipe(rm, "cannon", "firmaciv:cannon", 1535, None, "1300 tfc:metal/cast_iron")
-    heat_recipe(rm, "anchor", "firmaciv:anchor", 1540, None, "400 tfc:metal/steel")
-    heat_recipe(rm, "cleat", "firmaciv:cleat", 1540, None, "200 tfc:metal/steel")
+    heat_recipe(rm, "cannon", "alekiships:cannon", 1535, None, "1300 tfc:metal/cast_iron")
+    heat_recipe(rm, "anchor", "alekiships:anchor", 1540, None, "400 tfc:metal/steel")
+    heat_recipe(rm, "cleat", "alekiships:cleat", 1540, None, "200 tfc:metal/steel")
     heat_recipe(rm, "unfinished_barometer", "firmaciv:unfinished_barometer", 930, None, "200 tfc:metal/brass")
     heat_recipe(rm, "unfinished_nav_clock", "firmaciv:unfinished_nav_clock", 930, None, "400 tfc:metal/brass")
     heat_recipe(rm, "unfinished_sextant", "firmaciv:unfinished_sextant", 930, None, "200 tfc:metal/brass")
+
+    # FirmaCiv anvil recipes
+    anvil_recipe(rm, "cannon_barrel", "#forge:double_sheets/wrought_iron", "firmaciv:cannon_barrel",
+                 2, Rules.bend_last, Rules.bend_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "copper_bolt", "#forge:ingots/copper", "firmaciv:copper_bolt", 2,
+                 Rules.hit_last, Rules.hit_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "unfinished_barometer", "#forge:sheets/brass", "firmaciv:unfinished_barometer", 2,
+                 Rules.hit_last, Rules.draw_second_last, Rules.upset_third_last)
+    anvil_recipe(rm, "unfinished_nav_clock", "#forge:double_sheets/brass", "firmaciv:unfinished_nav_clock", 2,
+                 Rules.upset_last, Rules.hit_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "unfinished_sextant", "#forge:double_ingots/brass", "firmaciv:unfinished_sextant", 2,
+                 Rules.hit_last, Rules.bend_second_last, Rules.bend_third_last)
+
+    # AlekiShips anvil recipes
+    anvil_recipe(rm, "cannonball", "#forge:double_ingots/wrought_iron", "alekiships:cannonball", 3,
+                 Rules.bend_last, Rules.bend_second_last, Rules.hit_third_last)
+    anvil_recipe(rm, "anchor", "#forge:double_sheets/steel", "alekiships:anchor", 4,
+                 Rules.hit_last, Rules.punch_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "cleat", "#forge:double_ingots/steel", "alekiships:cleat", 4,
+                 Rules.bend_last, Rules.bend_second_last, Rules.bend_third_last)
+    anvil_recipe(rm, "oarlock", "#forge:double_ingots/wrought_iron", "alekiships:oarlock", 3,
+                 Rules.bend_last, Rules.hit_second_last, Rules.hit_third_last)
 
     quern_recipe(rm, "amethyst", "tfc:gem/amethyst", "tfc:powder/amethyst", count=4)
     quern_recipe(rm, "diamond", "tfc:gem/diamond", "tfc:powder/diamond", count=4)
@@ -242,3 +290,18 @@ def item_stack_provider(
             'modifiers': modifiers
         }
     return stack
+
+
+def anvil_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingredient: Json, result: Json, tier: int,
+                 *rules: Rules, bonus: bool = None):
+    """
+    Anvil recipes.
+    Copied from TFC data gen
+    """
+    rm.recipe(('anvil', name_parts), 'tfc:anvil', {
+        'input': utils.ingredient(ingredient),
+        'result': item_stack_provider(result),
+        'tier': tier,
+        'rules': [r.name for r in rules],
+        'apply_forging_bonus': bonus
+    })

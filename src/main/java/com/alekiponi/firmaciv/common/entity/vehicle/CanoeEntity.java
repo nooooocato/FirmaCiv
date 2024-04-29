@@ -1,15 +1,11 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
-import com.alekiponi.firmaciv.Firmaciv;
+import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
-import com.alekiponi.firmaciv.util.BoatVariant;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,14 +14,12 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 
-public class CanoeEntity extends AbstractFirmacivBoatEntity {
+public class CanoeEntity extends AbstractAlekiBoatEntity {
     private static final EntityDataAccessor<Integer> DATA_ID_LENGTH = SynchedEntityData.defineId(CanoeEntity.class,
             EntityDataSerializers.INT);
     public final int PASSENGER_NUMBER = 5;
@@ -36,7 +30,7 @@ public class CanoeEntity extends AbstractFirmacivBoatEntity {
 
     public final int[] COLLIDERS = {3, 4};
 
-    public CanoeEntity(final EntityType<? extends AbstractFirmacivBoatEntity> entityType, final Level level) {
+    public CanoeEntity(final EntityType<? extends AbstractAlekiBoatEntity> entityType, final Level level) {
         super(entityType, level);
     }
 
@@ -52,11 +46,6 @@ public class CanoeEntity extends AbstractFirmacivBoatEntity {
             return InteractionResult.SUCCESS;
         }
         return super.interact(player, hand);
-    }
-
-    @Override
-    public BoatVariant getVariant() {
-        return getVariant("canoe");
     }
 
     @Override
@@ -216,7 +205,8 @@ public class CanoeEntity extends AbstractFirmacivBoatEntity {
 
     @Override
     public Item getDropItem() {
-        return getVariant().getLumber().get();
+        // TODO make this not stupid
+        return super.getDropItem();
     }
 
     public void setLength(int length){
@@ -264,11 +254,6 @@ public class CanoeEntity extends AbstractFirmacivBoatEntity {
     protected void addAdditionalSaveData(final CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putInt("length", this.getLength());
-    }
-
-    public ResourceLocation getTextureLocation() {
-        return new ResourceLocation(Firmaciv.MOD_ID,
-                "textures/entity/watercraft/dugout_canoe/" + this.getVariant().getName() + ".png");
     }
 
     @Override

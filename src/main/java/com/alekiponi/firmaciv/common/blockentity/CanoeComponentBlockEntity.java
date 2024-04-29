@@ -30,7 +30,7 @@ public class CanoeComponentBlockEntity extends TFCBlockEntity {
 
                 BlockState newState = state.setValue(CANOE_CARVED, 13);
                 level.setBlock(pos, newState, 4);
-                CanoeComponentBlock.trySpawnCanoe(level, pos, state.getBlock());
+                CanoeComponentBlock.trySpawnCanoe(level, pos, (CanoeComponentBlock) state.getBlock());
                 canoeBlock.isLit = false;
             }
         }

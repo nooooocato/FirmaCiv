@@ -1,13 +1,9 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
+import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
-import com.alekiponi.firmaciv.util.BoatVariant;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,18 +16,17 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 
-public class KayakEntity extends AbstractFirmacivBoatEntity {
+public class KayakEntity extends AbstractAlekiBoatEntity {
     public final int PASSENGER_NUMBER = 1;
     protected final float DAMAGE_THRESHOLD = 10.0f;
     protected final float DAMAGE_RECOVERY = 1.0f;
 
     protected final float PASSENGER_SIZE_LIMIT = 0.6F;
 
-    public KayakEntity(final EntityType<? extends AbstractFirmacivBoatEntity> entityType, final Level level) {
+    public KayakEntity(final EntityType<? extends AbstractAlekiBoatEntity> entityType, final Level level) {
         super(entityType, level);
     }
 
@@ -100,11 +95,6 @@ public class KayakEntity extends AbstractFirmacivBoatEntity {
     @Override
     public InteractionResult interact(final Player player, final InteractionHand hand) {
         return InteractionResult.PASS;
-    }
-
-    @Override
-    public BoatVariant getVariant() {
-        return null;
     }
 
     @Override
