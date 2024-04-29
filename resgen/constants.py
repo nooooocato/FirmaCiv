@@ -181,7 +181,8 @@ DEFAULT_LANG = {
 
     "entity.firmaciv.kayak": "Kayak",
 
-    "entity.firmaciv.compartment_tfcchest": "Chest Compartment",
+    "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
+    "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",
 
     "itemGroup.firmaciv": "Firma: Civilization",
     "creativetab.firmaciv_tab": "Firma: Civilization",
