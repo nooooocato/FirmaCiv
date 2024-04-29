@@ -6,10 +6,12 @@ import com.alekiponi.alekiships.common.entity.vehicle.SloopUnderConstructionEnti
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
 import com.alekiponi.alekiships.util.CommonHelper;
+import com.alekiponi.firmaciv.common.entity.compartment.TFCBarrelCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.util.FirmacivTags;
 import com.alekiponi.firmaciv.util.TFCWood;
+import net.dries007.tfc.common.items.BarrelBlockItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -58,6 +60,11 @@ public final class FirmacivEntities {
             registerCompartment("compartment_tfc_chest",
                     CompartmentType.Builder.of(TFCChestCompartmentEntity::new, TFCChestCompartmentEntity::new,
                             MobCategory.MISC)), itemStack -> itemStack.is(FirmacivTags.Items.CHESTS));
+
+    public static final RegistryObject<CompartmentType<TFCBarrelCompartmentEntity>> TFC_BARREL_COMPARTMENT_ENTITY = CompartmentType.register(
+            registerCompartment("compartment_tfc_barrel",
+                    CompartmentType.Builder.of(TFCBarrelCompartmentEntity::new, TFCBarrelCompartmentEntity::new)),
+            itemStack -> itemStack.getItem() instanceof BarrelBlockItem);
 
     private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood tfcWood,
                                                                                            final EntityType.Builder<E> builder) {

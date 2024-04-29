@@ -6,6 +6,7 @@ import com.alekiponi.alekiships.client.render.entity.vehicle.SloopRenderer;
 import com.alekiponi.alekiships.util.CommonHelper;
 import com.alekiponi.firmaciv.client.model.entity.CanoeEntityModel;
 import com.alekiponi.firmaciv.client.model.entity.KayakEntityModel;
+import com.alekiponi.firmaciv.client.render.entity.compartment.BarrelCompartmentRenderer;
 import com.alekiponi.firmaciv.client.render.entity.compartment.TFCChestCompartmentRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.CanoeRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.KayakRenderer;
@@ -58,5 +59,8 @@ public final class RenderEventHandler {
 
         event.registerEntityRenderer(FirmacivEntities.TFC_CHEST_COMPARTMENT_ENTITY.get(),
                 TFCChestCompartmentRenderer::new);
+
+        event.registerEntityRenderer(FirmacivEntities.TFC_BARREL_COMPARTMENT_ENTITY.get(),
+                BarrelCompartmentRenderer::new);
     }
 }
