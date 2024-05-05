@@ -4,6 +4,7 @@ import assets
 import constants
 import tags
 import recipes
+import data
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     assets.generate(resourceManager)
     tags.generate(resourceManager)
     recipes.generate(resourceManager)
+    data.generate(resourceManager)
     resourceManager.flush()
 
     print(f"Finished generating files!")
