@@ -4,7 +4,7 @@ loaderVersion="[40,)"
 license="MIT"
 [[mods]]
 modId="firmaciv"
-version="0.2.9-alpha-1.20.1"
+version="0.2.10-alpha-1.20.1"
 displayName="Firma: Civilization"
 logoFile="icon.png"
 authors="alekiponi"
