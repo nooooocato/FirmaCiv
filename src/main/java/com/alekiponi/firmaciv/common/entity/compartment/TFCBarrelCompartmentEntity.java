@@ -3,6 +3,7 @@ package com.alekiponi.firmaciv.common.entity.compartment;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.*;
 import com.alekiponi.alekiships.util.CommonHelper;
+import com.alekiponi.firmaciv.common.menu.BarrelCompartmentMenu;
 import com.alekiponi.firmaciv.network.ClientBoundBarrelCompartmentUpdatePacket;
 import com.alekiponi.firmaciv.network.PacketHandler;
 import net.dries007.tfc.client.TFCSounds;
@@ -694,8 +695,7 @@ public class TFCBarrelCompartmentEntity extends AbstractCompartmentEntity implem
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(final int id, final Inventory playerInventory, final Player player) {
-        // TODO need custom menu impl
-        return null;
+        return new BarrelCompartmentMenu(id, playerInventory, this);
     }
 
     /**
