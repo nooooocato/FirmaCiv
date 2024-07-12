@@ -2,7 +2,7 @@ package com.alekiponi.firmaciv.common.block;
 
 import com.alekiponi.alekiships.common.block.AngledBoatFrameBlock;
 import com.alekiponi.alekiships.common.block.FlatBoatFrameBlock;
-import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.alekiships.util.CommonHelper;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.util.TFCWood;
@@ -25,7 +25,7 @@ public final class FirmacivBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             Firmaciv.MOD_ID);
 
-    public static final EnumMap<TFCWood, RegistryObject<CanoeComponentBlock>> CANOE_COMPONENT_BLOCKS = AlekiShipsHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<CanoeComponentBlock>> CANOE_COMPONENT_BLOCKS = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/canoe_component_block/" + tfcWood.getSerializedName(),
                     () -> new CanoeComponentBlock(
                             BlockBehaviour.Properties.copy(tfcWood.wood.getBlock(Wood.BlockType.STRIPPED_LOG).get())
@@ -50,7 +50,7 @@ public final class FirmacivBlocks {
             "watercraft_frame_angled",
             () -> new FirmacivAngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 
-    public static final EnumMap<TFCWood, RegistryObject<AngledWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_ANGLED = AlekiShipsHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<AngledWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_ANGLED = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/angled/" + tfcWood.getSerializedName(),
                     () -> new AngledWoodenBoatFrameBlock(tfcWood,
                             BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get()))));
@@ -59,7 +59,7 @@ public final class FirmacivBlocks {
             "watercraft_frame_flat",
             () -> new FirmacivFlatBoatFrameBlock(BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get())));
 
-    public static final EnumMap<TFCWood, RegistryObject<FlatWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_FLAT = AlekiShipsHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<FlatWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_FLAT = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/flat/" + tfcWood.getSerializedName(),
                     () -> new FlatWoodenBoatFrameBlock(tfcWood,
                             BlockBehaviour.Properties.copy(BOAT_FRAME_FLAT.get()))));

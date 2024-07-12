@@ -3,7 +3,7 @@ package com.alekiponi.firmaciv.client;
 import com.alekiponi.alekiships.client.render.entity.vehicle.RowboatRenderer;
 import com.alekiponi.alekiships.client.render.entity.vehicle.SloopConstructionRenderer;
 import com.alekiponi.alekiships.client.render.entity.vehicle.SloopRenderer;
-import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.alekiships.util.CommonHelper;
 import com.alekiponi.firmaciv.client.model.entity.CanoeEntityModel;
 import com.alekiponi.firmaciv.client.model.entity.KayakEntityModel;
 import com.alekiponi.firmaciv.client.render.entity.compartment.TFCChestCompartmentRenderer;
@@ -36,13 +36,13 @@ public final class RenderEventHandler {
             event.registerEntityRenderer(FirmacivEntities.TFC_ROWBOATS.get(tfcWood).get(),
                     context -> new RowboatRenderer(context, new ResourceLocation(MOD_ID,
                             "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName()),
-                            AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
+                            CommonHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
                                     "textures/entity/watercraft/rowboat/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName()))));
             // Sloops
             event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS.get(tfcWood).get(),
                     context -> new SloopRenderer(context, new ResourceLocation(MOD_ID,
                             "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName()),
-                            AlekiShipsHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
+                            CommonHelper.mapOfKeys(DyeColor.class, dyeColor -> new ResourceLocation(MOD_ID,
                                     "textures/entity/watercraft/sloop/" + tfcWood.getSerializedName() + "/" + dyeColor.getSerializedName()))));
             // Construction sloops
             event.registerEntityRenderer(FirmacivEntities.TFC_SLOOPS_UNDER_CONSTRUCTION.get(tfcWood).get(),

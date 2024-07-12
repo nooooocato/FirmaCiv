@@ -3,6 +3,7 @@ package com.alekiponi.firmaciv.common.entity.vehicle;
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
+import com.alekiponi.firmaciv.util.KayakMaterial;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,12 +28,7 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
     protected final float PASSENGER_SIZE_LIMIT = 0.6F;
 
     public KayakEntity(final EntityType<? extends AbstractAlekiBoatEntity> entityType, final Level level) {
-        super(entityType, level);
-    }
-
-    @Override
-    public int[] getWindlassIndices() {
-        return new int[0];
+        super(entityType, level, KayakMaterial.KAYAK);
     }
 
     @Override
@@ -41,13 +37,13 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
     }
 
     @Override
-    public int[][] getCompartmentRotationsArray() {
-        return new int[0][];
+    public int[] getCompartmentIndices() {
+        return new int[0];
     }
 
     @Override
-    public int[] getCanAddOnlyBlocksIndices() {
-        return new int[0];
+    public int[][] getCompartmentRotationsArray() {
+        return new int[0][];
     }
 
     @Nullable
@@ -67,6 +63,11 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
             this.setDamage(this.getDamage() - getDamageRecovery());
         }
         super.tick();
+    }
+
+    @Override
+    protected double windDriftMultiplier() {
+        return 0.1;
     }
 
     @Override
@@ -100,26 +101,6 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
     @Override
     public int getMaxPassengers() {
         return this.PASSENGER_NUMBER;
-    }
-
-    @Override
-    public int[] getCleatIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getSailSwitchIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getMastIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getCanAddCannonsIndices() {
-        return new int[0];
     }
 
     @Override

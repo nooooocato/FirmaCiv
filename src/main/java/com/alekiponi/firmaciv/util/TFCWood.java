@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
-public enum TFCWood implements CanoeBoatMaterial {
+public enum TFCWood implements TFCWoodMaterial {
     ACACIA(Wood.ACACIA),
     ASH(Wood.ASH),
     ASPEN(Wood.ASPEN),
@@ -69,6 +69,11 @@ public enum TFCWood implements CanoeBoatMaterial {
     @Override
     public Item getStrippedLog() {
         return this.wood.getBlock(Wood.BlockType.STRIPPED_LOG).get().asItem();
+    }
+
+    @Override
+    public boolean withstandsLava() {
+        return false;
     }
 
     @Override

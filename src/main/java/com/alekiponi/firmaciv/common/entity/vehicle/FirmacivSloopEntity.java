@@ -13,9 +13,4 @@ public class FirmacivSloopEntity extends SloopEntity {
             final BoatMaterial boatMaterial) {
         super(entityType, level, boatMaterial);
     }
-
-    @Override
-    protected Vec2 getWindVectorAt(final Level level, final BlockPos blockPos) {
-        return Climate.getWindVector(level, blockPos);
-    }
 }

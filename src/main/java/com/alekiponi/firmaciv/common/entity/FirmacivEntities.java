@@ -5,7 +5,7 @@ import com.alekiponi.alekiships.common.entity.vehicle.SloopEntity;
 import com.alekiponi.alekiships.common.entity.vehicle.SloopUnderConstructionEntity;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
-import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.alekiships.util.CommonHelper;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.util.FirmacivTags;
@@ -29,24 +29,27 @@ public final class FirmacivEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(
             ForgeRegistries.ENTITY_TYPES, MOD_ID);
 
-    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivRowboatEntity>>> TFC_ROWBOATS = AlekiShipsHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivRowboatEntity>>> TFC_ROWBOATS = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerRowboat(tfcWood,
                     EntityType.Builder.of((entityType, level) -> new FirmacivRowboatEntity(entityType, level, tfcWood),
                             MobCategory.MISC)));
 
-    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivSloopEntity>>> TFC_SLOOPS = AlekiShipsHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivSloopEntity>>> TFC_SLOOPS = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerSloop(tfcWood,
                     EntityType.Builder.of((entityType, level) -> new FirmacivSloopEntity(entityType, level, tfcWood),
                             MobCategory.MISC)));
 
-    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivSloopUnderConstructionEntity>>> TFC_SLOOPS_UNDER_CONSTRUCTION = AlekiShipsHelper.mapOfKeys(
-            TFCWood.class, tfcWood -> registerSloopConstruction(tfcWood, EntityType.Builder.of(
-                    (entityType, level) -> new FirmacivSloopUnderConstructionEntity(entityType, level, tfcWood),
-                    MobCategory.MISC)));
+    public static final EnumMap<TFCWood, RegistryObject<EntityType<FirmacivSloopUnderConstructionEntity>>> TFC_SLOOPS_UNDER_CONSTRUCTION = CommonHelper.mapOfKeys(
+            TFCWood.class, tfcWood -> registerSloopConstruction(tfcWood,
+                    EntityType.Builder.of(
+                            (entityType, level) -> new FirmacivSloopUnderConstructionEntity(entityType, level, tfcWood),
+                            MobCategory.MISC)));
 
-    public static final EnumMap<TFCWood, RegistryObject<EntityType<CanoeEntity>>> TFC_CANOES = AlekiShipsHelper.mapOfKeys(
-            TFCWood.class, tfcWood -> register("dugout_canoe/" + tfcWood.getSerializedName(),
-                    EntityType.Builder.of(CanoeEntity::new, MobCategory.MISC).sized(1.125F, 0.625F)));
+    public static final EnumMap<TFCWood, RegistryObject<EntityType<CanoeEntity>>> TFC_CANOES = CommonHelper.mapOfKeys(
+            TFCWood.class, tfcWood -> registerCanoe(tfcWood,
+                    EntityType.Builder.of(
+                            (entityType, level) -> new CanoeEntity(entityType, level, tfcWood),
+                            MobCategory.MISC)));
 
     public static final RegistryObject<EntityType<KayakEntity>> KAYAK_ENTITY = register("kayak",
             EntityType.Builder.of(KayakEntity::new, MobCategory.MISC).sized(0.79F, 0.625F));
@@ -56,14 +59,19 @@ public final class FirmacivEntities {
                     CompartmentType.Builder.of(TFCChestCompartmentEntity::new, TFCChestCompartmentEntity::new,
                             MobCategory.MISC)), itemStack -> itemStack.is(FirmacivTags.Items.CHESTS));
 
-    private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood vanillaWood,
-            final EntityType.Builder<E> builder) {
-        return register("rowboat/" + vanillaWood.getSerializedName(), builder.sized(1.875F, 0.625F));
+    private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood tfcWood,
+                                                                                           final EntityType.Builder<E> builder) {
+        return register("rowboat/" + tfcWood.getSerializedName(), builder.sized(1.875F, 0.625F));
     }
 
-    private static <E extends SloopEntity> RegistryObject<EntityType<E>> registerSloop(final TFCWood vanillaWood,
-            final EntityType.Builder<E> builder) {
-        return register("sloop/" + vanillaWood.getSerializedName(),
+    private static <E extends CanoeEntity> RegistryObject<EntityType<E>> registerCanoe(final TFCWood tfcWood,
+                                                                                       final EntityType.Builder<E> builder) {
+        return register("dugout_canoe/" + tfcWood.getSerializedName(), builder.sized(1.125F, 0.625F));
+    }
+
+    private static <E extends SloopEntity> RegistryObject<EntityType<E>> registerSloop(final TFCWood tfcWood,
+                                                                                       final EntityType.Builder<E> builder) {
+        return register("sloop/" + tfcWood.getSerializedName(),
                 builder.sized(3F, 0.75F).setTrackingRange(LARGE_VEHICLE_TRACKING).fireImmune());
     }
 
@@ -87,7 +95,7 @@ public final class FirmacivEntities {
      */
     @SuppressWarnings("SameParameterValue")
     private static <E extends AbstractCompartmentEntity> RegistryObject<CompartmentType<E>> register(final String name,
-            final CompartmentType.Builder<E> builder, final boolean serialize) {
+                                                                                                     final CompartmentType.Builder<E> builder, final boolean serialize) {
         final String id = name.toLowerCase(Locale.ROOT);
         return ENTITY_TYPES.register(id, () -> {
             if (!serialize) builder.noSave();
@@ -96,13 +104,13 @@ public final class FirmacivEntities {
     }
 
     private static <E extends Entity> RegistryObject<EntityType<E>> register(final String name,
-            final EntityType.Builder<E> builder) {
+                                                                             final EntityType.Builder<E> builder) {
         return register(name, builder, true);
     }
 
     @SuppressWarnings("SameParameterValue")
     private static <E extends Entity> RegistryObject<EntityType<E>> register(final String name,
-            final EntityType.Builder<E> builder, final boolean serialize) {
+                                                                             final EntityType.Builder<E> builder, final boolean serialize) {
         final String id = name.toLowerCase(Locale.ROOT);
         return ENTITY_TYPES.register(id, () -> {
             if (!serialize) builder.noSave();

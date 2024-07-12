@@ -2,7 +2,7 @@ package com.alekiponi.firmaciv.common.block;
 
 import com.alekiponi.alekiships.common.block.AngledBoatFrameBlock;
 import com.alekiponi.alekiships.common.block.ProcessedBoatFrame;
-import com.alekiponi.alekiships.util.AlekiShipsHelper;
+import com.alekiponi.alekiships.util.CommonHelper;
 import com.alekiponi.alekiships.util.BoatMaterial;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import net.dries007.tfc.common.TFCTags;
@@ -56,9 +56,9 @@ public class AngledWoodenBoatFrameBlock extends AngledBoatFrameBlock implements 
         if (heldStack.isEmpty() && !level.isClientSide) {
             // Extract an item
             if (processState <= FULLY_PLANKED) {
-                AlekiShipsHelper.giveItemToPlayer(player, new ItemStack(this.boatMaterial.getDeckItem()));
+                CommonHelper.giveItemToPlayer(player, new ItemStack(this.boatMaterial.getDeckItem()));
             } else {
-                AlekiShipsHelper.giveItemToPlayer(player, new ItemStack(FirmacivItems.COPPER_BOLT.get()));
+                CommonHelper.giveItemToPlayer(player, new ItemStack(FirmacivItems.COPPER_BOLT.get()));
             }
 
             // Set ourselves back to our base

@@ -1,5 +1,7 @@
 package com.alekiponi.firmaciv;
 
+import com.alekiponi.alekiships.wind.OverworldWindModel;
+import com.alekiponi.alekiships.wind.WindModels;
 import com.alekiponi.firmaciv.client.FirmacivClientEvents;
 import com.alekiponi.firmaciv.common.block.FirmacivBlocks;
 import com.alekiponi.firmaciv.common.blockentity.FirmacivBlockEntities;
@@ -11,6 +13,7 @@ import com.alekiponi.firmaciv.network.PacketHandler;
 import com.alekiponi.firmaciv.util.FirmacivInteractionManager;
 import com.alekiponi.firmaciv.util.TFCWood;
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,6 +53,8 @@ public final class Firmaciv {
         event.enqueueWork(() -> {
             FirmacivInteractionManager.init();
             TFCWood.registerFrames();
+
+            WindModels.register(Level.OVERWORLD, OverworldWindModel::new);
         });
     }
 }

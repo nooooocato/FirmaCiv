@@ -1,6 +1,8 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
+import com.alekiponi.alekiships.common.entity.vehiclecapability.IHaveCleats;
+import com.alekiponi.alekiships.util.BoatMaterial;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -19,19 +21,21 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
-public class CanoeEntity extends AbstractAlekiBoatEntity {
+public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats {
     private static final EntityDataAccessor<Integer> DATA_ID_LENGTH = SynchedEntityData.defineId(CanoeEntity.class,
             EntityDataSerializers.INT);
     public final int PASSENGER_NUMBER = 5;
     public final int[] CLEATS = {2};
+    public final int[] COMPARTMENTS = {0,1};
     protected final float DAMAGE_THRESHOLD = 80.0f;
     protected final float DAMAGE_RECOVERY = 2.0f;
     protected final float PASSENGER_SIZE_LIMIT = 0.9F;
 
     public final int[] COLLIDERS = {3, 4};
 
-    public CanoeEntity(final EntityType<? extends AbstractAlekiBoatEntity> entityType, final Level level) {
-        super(entityType, level);
+    public CanoeEntity(final EntityType<? extends CanoeEntity> entityType, final Level level,
+                       final BoatMaterial boatMaterial) {
+        super(entityType, level, boatMaterial);
     }
 
     @Override
@@ -49,11 +53,6 @@ public class CanoeEntity extends AbstractAlekiBoatEntity {
     }
 
     @Override
-    public int[] getWindlassIndices() {
-        return new int[0];
-    }
-
-    @Override
     public float getPassengerSizeLimit() {
         return PASSENGER_SIZE_LIMIT;
     }
@@ -64,28 +63,8 @@ public class CanoeEntity extends AbstractAlekiBoatEntity {
     }
 
     @Override
-    public int[] getCanAddOnlyBlocksIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getCleatIndices() {
-        return CLEATS;
-    }
-
-    @Override
-    public int[] getSailSwitchIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getMastIndices() {
-        return new int[0];
-    }
-
-    @Override
-    public int[] getCanAddCannonsIndices() {
-        return new int[0];
+    public int[] getCompartmentIndices() {
+        return COMPARTMENTS;
     }
 
     @Override
@@ -108,7 +87,7 @@ public class CanoeEntity extends AbstractAlekiBoatEntity {
         }
 
         int i = 0;
-        for (Entity entity : this.getTruePassengers()) {
+        for (Entity entity : this.getIndirectPassengers()) {
             if (entity instanceof Player player2) {
                 if (player2.isHolding(FirmacivItems.CANOE_PADDLE.get())) {
                     i++;
@@ -245,6 +224,11 @@ public class CanoeEntity extends AbstractAlekiBoatEntity {
     }
 
     @Override
+    protected double windDriftMultiplier() {
+        return 0.5;
+    }
+
+    @Override
     protected void readAdditionalSaveData(final CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         this.setLength(compoundTag.getInt("length"));
@@ -259,6 +243,16 @@ public class CanoeEntity extends AbstractAlekiBoatEntity {
     @Override
     public float getStepHeight(){
         return 0.0f;
+    }
+
+    @Override
+    public int[] getCleatIndices() {
+        return CLEATS;
+    }
+
+    @Override
+    public float getCleatMovementMultiplier() {
+        return 0;
     }
 }
 

@@ -3,7 +3,7 @@ package com.alekiponi.firmaciv.common.block;
 import com.alekiponi.firmaciv.common.blockentity.CanoeComponentBlockEntity;
 import com.alekiponi.firmaciv.common.blockentity.FirmacivBlockEntities;
 import com.alekiponi.firmaciv.common.entity.vehicle.CanoeEntity;
-import com.alekiponi.firmaciv.util.CanoeBoatMaterial;
+import com.alekiponi.firmaciv.util.TFCWoodMaterial;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -48,13 +48,13 @@ public class CanoeComponentBlock extends BaseEntityBlock {
     private static final VoxelShape SHAPE_1 = Stream.of(
                     Block.box(0, 0, 0, 16, 16, 16))
             .reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    private final CanoeBoatMaterial canoeBoatMaterial;
+    private final TFCWoodMaterial TFCWoodMaterial;
 
-    public CanoeComponentBlock(final Properties properties, final CanoeBoatMaterial canoeBoatMaterial) {
+    public CanoeComponentBlock(final Properties properties, final TFCWoodMaterial TFCWoodMaterial) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
                 .setValue(AXIS, Direction.Axis.Z).setValue(CANOE_CARVED, 1).setValue(END, false));
-        this.canoeBoatMaterial = canoeBoatMaterial;
+        this.TFCWoodMaterial = TFCWoodMaterial;
     }
 
     /**
@@ -251,7 +251,7 @@ public class CanoeComponentBlock extends BaseEntityBlock {
             pLevel.levelEvent(2001, blockinworld.getPos(), Block.getId(blockinworld.getState()));
         }
 
-        canoeComponentBlock.canoeBoatMaterial.getCanoeType().ifPresent(entityType -> {
+        canoeComponentBlock.TFCWoodMaterial.getCanoeType().ifPresent(entityType -> {
             final CanoeEntity canoeEntity = entityType.create(pLevel);
 
             if (canoeEntity == null) return;
