@@ -24,7 +24,7 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
     public final int PASSENGER_NUMBER = 1;
     protected final float DAMAGE_THRESHOLD = 10.0f;
     protected final float DAMAGE_RECOVERY = 1.0f;
-
+    public final int[] COMPARTMENTS = {0};
     protected final float PASSENGER_SIZE_LIMIT = 0.6F;
 
     public KayakEntity(final EntityType<? extends AbstractAlekiBoatEntity> entityType, final Level level) {
@@ -38,7 +38,7 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
 
     @Override
     public int[] getCompartmentIndices() {
-        return new int[0];
+        return COMPARTMENTS;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
 
     @Override
     protected double windDriftMultiplier() {
-        return 0.1;
+        return 0.3;
     }
 
     @Override

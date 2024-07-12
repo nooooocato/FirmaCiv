@@ -2,6 +2,7 @@ package com.alekiponi.firmaciv.common.entity.vehicle;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
 import com.alekiponi.alekiships.common.entity.vehiclecapability.IHaveCleats;
+import com.alekiponi.alekiships.common.entity.vehiclecapability.IHaveColliders;
 import com.alekiponi.alekiships.util.BoatMaterial;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +22,7 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
-public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats {
+public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats, IHaveColliders {
     private static final EntityDataAccessor<Integer> DATA_ID_LENGTH = SynchedEntityData.defineId(CanoeEntity.class,
             EntityDataSerializers.INT);
     public final int PASSENGER_NUMBER = 5;
@@ -214,6 +215,11 @@ public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats 
     @Override
     public ItemStack getPickResult() {
         return new ItemStack(this.getDropItem());
+    }
+
+    @Override
+    public float[] getDefaultColliderDimensions() {
+        return new float[]{1.125f, 0.625f};
     }
 
     @Override

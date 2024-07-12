@@ -140,19 +140,19 @@ public final class ForgeEventHandler {
              * This section is all the helper entities AlekiShips provides for us
              */
             if (entityName.equals("vehicle_part_boat"))
-                entityTypeMapping.remap(AlekiShipsEntities.BOAT_VEHICLE_PART.get());
+                entityTypeMapping.remap(AlekiShipsEntities.VEHICLE_PART.get());
 
             if (entityName.equals("vehicle_construction"))
                 entityTypeMapping.remap(AlekiShipsEntities.CONSTRUCTION_ENTITY.get());
 
             if (entityName.equals("vehicle_part_construction"))
-                entityTypeMapping.remap(AlekiShipsEntities.CONSTRUCTION_VEHICLE_PART.get());
+                entityTypeMapping.remap(AlekiShipsEntities.VEHICLE_PART.get());
 
             if (entityName.equals("vehicle_cleat"))
                 entityTypeMapping.remap(AlekiShipsEntities.VEHICLE_CLEAT_ENTITY.get());
 
             if (entityName.equals("vehicle_collider"))
-                entityTypeMapping.remap(AlekiShipsEntities.VEHICLE_COLLISION_ENTITY.get());
+                entityTypeMapping.remap(AlekiShipsEntities.VEHICLE_COLLIDER_ENTITY.get());
 
             if (entityName.equals("vehicle_switch_sail"))
                 entityTypeMapping.remap(AlekiShipsEntities.SAIL_SWITCH_ENTITY.get());
