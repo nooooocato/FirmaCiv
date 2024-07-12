@@ -156,10 +156,6 @@ public class KayakEntity extends AbstractAlekiBoatEntity {
         return new ItemStack(FirmacivItems.KAYAK.get());
     }
 
-    public ResourceLocation getTextureLocation() {
-        return new ResourceLocation(Firmaciv.MOD_ID, "textures/entity/watercraft/kayak.png");
-    }
-
     @Override
     public float getStepHeight(){
         return 0.6f;
