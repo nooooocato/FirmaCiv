@@ -232,5 +232,10 @@ DEFAULT_LANG = {
     "firmaciv.advancements.barometer.title": "Surf and/or Turf",
     "firmaciv.advancements.barometer.description": "Craft a Barometer",
     "firmaciv.advancements.oarlock.title": "The Montlake Cut",
-    "firmaciv.advancements.oarlock.description": "Smith an Oarlock"
+    "firmaciv.advancements.oarlock.description": "Smith an Oarlock",
+
+    # JEI
+    # This should be under the TFC namespace, but they haven't released this
+    # functionality yet, so we should supply it ourselves
+    "firmaciv.jei.transfer.error.barrel_sealed": "Barrel is currently sealed"
 }

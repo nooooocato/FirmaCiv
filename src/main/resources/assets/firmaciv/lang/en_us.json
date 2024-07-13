@@ -128,6 +128,7 @@
   "firmaciv.advancements.barometer.description": "Craft a Barometer",
   "firmaciv.advancements.oarlock.title": "The Montlake Cut",
   "firmaciv.advancements.oarlock.description": "Smith an Oarlock",
+  "firmaciv.jei.transfer.error.barrel_sealed": "Barrel is currently sealed",
   "block.firmaciv.wood.watercraft_frame.flat.acacia": "Acacia Flat Shipwright's Scaffolding",
   "block.firmaciv.wood.watercraft_frame.angled.acacia": "Acacia Sloped Shipwright's Scaffolding",
   "block.firmaciv.wood.canoe_component_block.acacia": "Acacia Canoe Component",
