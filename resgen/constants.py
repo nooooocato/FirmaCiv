@@ -184,6 +184,9 @@ DEFAULT_LANG = {
     "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
     "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",
 
+    # Jade
+    "config.jade.plugin_firmaciv.barrel": "Barrel Compartment",
+
     "itemGroup.firmaciv": "Firma: Civilization",
     "creativetab.firmaciv_tab": "Firma: Civilization",
     "creativetab.watercraft_tab": "Watercraft",

@@ -88,6 +88,10 @@ import java.util.Optional;
  */
 public class TFCBarrelCompartmentEntity extends AbstractCompartmentEntity implements BlockCompartment, CompartmentCloneable, SimpleBlockMenuCompartment, MenuConstructor, Container, IEntityAdditionalSpawnData {
 
+    /**
+     * Kinda stupid but simple way to set {@link #recipeTick} to 0 so jade works correctly.
+     */
+    private static final byte RESET_RECIPE_EVENT = (byte) 42;
     private static final EntityDataAccessor<BlockState> DATA_ID_DISPLAY_BLOCK = SynchedEntityData.defineId(
             TFCBarrelCompartmentEntity.class, EntityDataSerializers.BLOCK_STATE);
     private final BarrelCompartmentInventory inventory = new BarrelCompartmentInventory(this);
@@ -501,16 +505,24 @@ public class TFCBarrelCompartmentEntity extends AbstractCompartmentEntity implem
      */
     public void onUnseal() {
         this.sealedTick = this.recipeTick = 0;
+        this.level().broadcastEntityEvent(this, RESET_RECIPE_EVENT);
         if (this.recipe != null) {
             this.recipe.onUnsealed(this.inventory);
         }
         this.updateRecipe();
 
-
         this.setDisplayBlockState(this.getDisplayBlockState().setValue(BarrelBlock.SEALED, false));
 
         this.playSound(TFCSounds.OPEN_BARREL.get(), SoundSource.BLOCKS, 1 + this.random.nextFloat(),
                 this.random.nextFloat() + 0.7F + 0.3F);
+    }
+
+    @Override
+    public void handleEntityEvent(final byte id) {
+        if (id == RESET_RECIPE_EVENT) {
+            this.recipeTick = 0;
+        }
+        super.handleEntityEvent(id);
     }
 
     /**
