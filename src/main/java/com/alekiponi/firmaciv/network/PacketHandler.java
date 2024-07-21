@@ -19,5 +19,12 @@ public final class PacketHandler {
     }
 
     public static void init() {
+        int id = 0;
+        CHANNEL.messageBuilder(ClientBoundBarrelCompartmentUpdatePacket.class, id++)
+                .encoder(ClientBoundBarrelCompartmentUpdatePacket::encoder).decoder(
+                        ClientBoundBarrelCompartmentUpdatePacket::new)
+                .consumerMainThread(
+                        (clientBoundBarrelCompartmentPacket, contextSupplier) -> clientBoundBarrelCompartmentPacket.handle())
+                .add();
     }
 }

@@ -23,12 +23,13 @@ def generate(manager: ResourceManager):
                      "tfc:wood/planks/rosewood", "tfc:wood/planks/sycamore")
 
     # Compartment Entities
-    manager.entity_tag("alekiships:compartments", "compartment_tfc_chest")
+    manager.entity_tag("alekiships:compartments", "compartment_tfc_chest", "compartment_tfc_barrel")
 
     # Compartment placing tags
-    manager.item_tag("alekiships:can_place_in_compartments", "#tfc:anvils")
+    manager.item_tag("alekiships:can_place_in_compartments", "#firmaciv:chests", "#tfc:anvils", "#tfc:barrels")
     manager.item_tag("alekiships:crafting_tables",
                      *[f"tfc:wood/planks/{wood}_workbench" for wood in constants.TFC_WOODS])
+    manager.item_tag("chests", *[f"tfc:wood/chest/{wood}" for wood in constants.TFC_WOODS])
 
     # Vanilla mining tags
     manager.block_tag("minecraft:mineable/axe", "#firmaciv:canoe_component_blocks")
