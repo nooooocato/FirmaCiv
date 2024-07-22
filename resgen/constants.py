@@ -160,10 +160,9 @@ FLORAE_WOODS: dict[str, str] = {"african_padauk": "African Padauk",
                                 "bamboo": ""}
 
 
-def normalize(s: str) -> str:
+def langify(s: str) -> str:
     """
     Takes a string like dark_oak and converts it to Dark Oak.
-    Yes this method is horribly named I'm having trouble coming up with a good one :|
     """
     return ' '.join([word.capitalize() for word in s.split('_')])
 

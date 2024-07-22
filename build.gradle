@@ -192,7 +192,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:alekis-easy-held-models-953157:4977248")
 
     // AlekiShips
-    implementation(jarJar(fg.deobf("com.alekiponi:AlekiShips-$minecraftVersion:$alekiShipsVersion"))) {
+    implementation(jarJar(fg.deobf("com.alekiponi:alekiNiftyShips-FORGE-$minecraftVersion:$alekiShipsVersion"))) {
         jarJar.ranged(it as Dependency, "[$alekiShipsVersion,)")
     }
 }
