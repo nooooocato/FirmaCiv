@@ -11,7 +11,6 @@ import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntit
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
 import com.alekiponi.firmaciv.util.FirmacivTags;
 import com.alekiponi.firmaciv.util.TFCWood;
-import net.dries007.tfc.common.items.BarrelBlockItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -64,7 +63,7 @@ public final class FirmacivEntities {
     public static final RegistryObject<CompartmentType<TFCBarrelCompartmentEntity>> TFC_BARREL_COMPARTMENT_ENTITY = CompartmentType.register(
             registerCompartment("compartment_tfc_barrel",
                     CompartmentType.Builder.of(TFCBarrelCompartmentEntity::new, TFCBarrelCompartmentEntity::new)),
-            itemStack -> itemStack.getItem() instanceof BarrelBlockItem);
+            itemStack -> itemStack.is(FirmacivTags.Items.BARRELS));
 
     private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood tfcWood,
                                                                                            final EntityType.Builder<E> builder) {
