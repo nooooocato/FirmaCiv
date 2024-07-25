@@ -6,7 +6,6 @@ import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeat;
 import net.dries007.tfc.common.container.ButtonHandlerContainer;
-import net.dries007.tfc.common.container.CallbackSlot;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +15,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class BarrelCompartmentMenu extends AbstractContainerMenu implements ButtonHandlerContainer {
@@ -28,11 +28,9 @@ public class BarrelCompartmentMenu extends AbstractContainerMenu implements Butt
         this.barrelCompartment = barrelCompartment;
 
         barrelCompartment.getCapability(Capabilities.ITEM).ifPresent(handler -> {
-            this.addSlot(
-                    new CallbackSlot(barrelCompartment, handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_IN, 35, 20));
-            this.addSlot(
-                    new CallbackSlot(barrelCompartment, handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_OUT, 35, 54));
-            this.addSlot(new CallbackSlot(barrelCompartment, handler, BarrelBlockEntity.SLOT_ITEM, 89, 37));
+            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_IN, 35, 20));
+            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_OUT, 35, 54));
+            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_ITEM, 89, 37));
         });
 
         this.addPlayerInventorySlots(inventory);
@@ -88,12 +86,6 @@ public class BarrelCompartmentMenu extends AbstractContainerMenu implements Butt
             return original;
         }
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public void setCarried(final ItemStack itemStack) {
-        this.barrelCompartment.onCarried(itemStack);
-        super.setCarried(itemStack);
     }
 
     @Override
