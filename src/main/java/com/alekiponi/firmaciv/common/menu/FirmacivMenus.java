@@ -15,4 +15,7 @@ public final class FirmacivMenus {
 
     public static final RegistryObject<MenuType<BarrelCompartmentMenu>> BARREL_COMPARTMENT_MENU = MENU_TYPES.register(
             "barrel_compartment_menu", () -> IForgeMenuType.create(BarrelCompartmentMenu::fromNetwork));
+
+    public static final RegistryObject<MenuType<LargeVesselCompartmentMenu>> LARGE_VESSEL_COMPARTMENT_MENU = MENU_TYPES.register(
+            "vessel_compartment_menu", () -> IForgeMenuType.create(LargeVesselCompartmentMenu::fromNetwork));
 }

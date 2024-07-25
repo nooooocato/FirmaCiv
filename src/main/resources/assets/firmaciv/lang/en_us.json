@@ -86,6 +86,7 @@
   "entity.firmaciv.kayak": "Kayak",
   "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
   "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",
+  "entity.firmaciv.compartment_large_vessel": "Large Vessel",
   "config.jade.plugin_firmaciv.barrel": "Barrel Compartment",
   "config.jade.plugin_firmaciv.tfc_chest": "TFC Chest Compartment",
   "itemGroup.firmaciv": "Firma: Civilization",

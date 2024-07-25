@@ -26,7 +26,8 @@ def generate(manager: ResourceManager):
     manager.entity_tag("alekiships:compartments", "compartment_tfc_chest", "compartment_tfc_barrel")
 
     # Compartment placing tags
-    manager.item_tag("alekiships:can_place_in_compartments", "#firmaciv:chests", "#tfc:anvils", "#tfc:barrels")
+    manager.item_tag("alekiships:can_place_in_compartments", "#firmaciv:chests", "#tfc:anvils", "#tfc:barrels",
+                     "#tfc:fired_large_vessels")
     manager.item_tag("alekiships:crafting_tables",
                      *[f"tfc:wood/planks/{wood}_workbench" for wood in constants.TFC_WOODS])
     manager.item_tag("chests", *[f"tfc:wood/chest/{wood}" for wood in constants.TFC_WOODS])

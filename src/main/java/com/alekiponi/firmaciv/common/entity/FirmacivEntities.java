@@ -6,6 +6,7 @@ import com.alekiponi.alekiships.common.entity.vehicle.SloopUnderConstructionEnti
 import com.alekiponi.alekiships.common.entity.vehiclehelper.CompartmentType;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.AbstractCompartmentEntity;
 import com.alekiponi.alekiships.util.CommonHelper;
+import com.alekiponi.firmaciv.common.entity.compartment.LargeVesselCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCBarrelCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.vehicle.*;
@@ -64,6 +65,11 @@ public final class FirmacivEntities {
             registerCompartment("compartment_tfc_barrel",
                     CompartmentType.Builder.of(TFCBarrelCompartmentEntity::new, TFCBarrelCompartmentEntity::new)),
             itemStack -> itemStack.is(FirmacivTags.Items.BARRELS));
+
+    public static final RegistryObject<CompartmentType<LargeVesselCompartmentEntity>> LARGE_VESSEL_COMPARTMENT_ENTITY = CompartmentType.register(
+            registerCompartment("compartment_large_vessel",
+                    CompartmentType.Builder.of(LargeVesselCompartmentEntity::new, LargeVesselCompartmentEntity::new)),
+            itemStack -> itemStack.is(FirmacivTags.Items.FIRED_LARGE_VESSELS));
 
     private static <E extends RowboatEntity> RegistryObject<EntityType<E>> registerRowboat(final TFCWood tfcWood,
                                                                                            final EntityType.Builder<E> builder) {
