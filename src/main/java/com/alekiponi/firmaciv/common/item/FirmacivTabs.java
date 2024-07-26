@@ -1,5 +1,7 @@
 package com.alekiponi.firmaciv.common.item;
 
+import com.alekiponi.alekiships.common.block.AlekiShipsBlocks;
+import com.alekiponi.alekiships.common.item.AlekiShipsItems;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.block.FirmacivBlocks;
 import net.dries007.tfc.common.items.TFCItems;
@@ -18,6 +20,17 @@ public final class FirmacivTabs {
     public static final RegistryObject<CreativeModeTab> FIRMACIV_TAB = CREATIVE_MODE_TABS.register("firmaciv_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(FirmacivItems.SEXTANT.get()))
                     .title(Component.translatable("creativetab.firmaciv_tab")).displayItems((pParameters, pOutput) -> {
+
+                        pOutput.accept(AlekiShipsBlocks.OARLOCK.get());
+                        pOutput.accept(AlekiShipsBlocks.CLEAT.get());
+                        pOutput.accept(AlekiShipsItems.ANCHOR.get());
+
+                        pOutput.accept(AlekiShipsItems.CANNON.get());
+                        pOutput.accept(AlekiShipsItems.CANNONBALL.get());
+
+                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_ANGLED.get());
+                        pOutput.accept(FirmacivBlocks.BOAT_FRAME_FLAT.get());
+
                         pOutput.accept(FirmacivItems.SEXTANT.get());
                         pOutput.accept(FirmacivItems.UNFINISHED_SEXTANT.get());
 
@@ -35,6 +48,7 @@ public final class FirmacivTabs {
 
                         pOutput.accept(FirmacivItems.CANOE_PADDLE.get());
 
+                        pOutput.accept(AlekiShipsItems.OAR.get());
                         pOutput.accept(FirmacivItems.COPPER_BOLT.get());
 
                         pOutput.accept(FirmacivItems.CANNON_BARREL.get());

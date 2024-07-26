@@ -6,10 +6,10 @@ import net.minecraft.world.entity.EntityType;
 
 import java.util.Optional;
 
-public interface TFCWoodMaterial extends BoatMaterial {
+public interface CanoeMaterial {
 
     /**
-     * A simple getter for the canoe entity type associated with this {@link BoatMaterial}
+     * A simple getter for canoe entities associated with a material
      *
      * @return An optional canoe entity type
      */

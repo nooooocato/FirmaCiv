@@ -31,12 +31,12 @@ def generate(rm: ResourceManager):
 
         rm.blockstate_multipart(f"wood/watercraft_frame/flat/{wood}",
                                 *blockStates.getWoodFrameFlatMultipart(wood)).with_lang(
-            f"{constants.normalize(wood)} Flat Shipwright's Scaffolding").with_block_loot(
+            f"{constants.langify(wood)} Flat Shipwright's Scaffolding").with_block_loot(
             *lootTables.boat_frame_flat(wood))
 
         rm.blockstate_multipart(f"wood/watercraft_frame/angled/{wood}",
                                 *blockStates.getWoodFrameMultipart(wood)).with_lang(
-            f"{constants.normalize(wood)} Sloped Shipwright's Scaffolding").with_block_loot(
+            f"{constants.langify(wood)} Sloped Shipwright's Scaffolding").with_block_loot(
             *lootTables.boat_frame(wood))
 
         # Canoe components now
@@ -57,11 +57,11 @@ def generate(rm: ResourceManager):
                            f"firmaciv:block/canoe_component_block/template/middle/{n}")
             rm.blockstate(f"wood/canoe_component_block/{wood}",
                           variants=blockStates.canoe_component(wood)).with_lang(
-                f"{constants.normalize(wood)} Canoe Component").with_block_loot(f"tfc:wood/lumber/{wood}")
+                f"{constants.langify(wood)} Canoe Component").with_block_loot(f"tfc:wood/lumber/{wood}")
 
     # Basic frame
     rm.blockstate("watercraft_frame_angled", variants=blockStates.angledWaterCraftFrame).with_lang(
-        "Shipwright's Scaffolding").with_block_loot("firmaciv:watercraft_frame_angled")
+        "Sloped Shipwright's Scaffolding").with_block_loot("firmaciv:watercraft_frame_angled")
 
     # Need to manually make the models
     for shape in ["inner", "straight", "outer"]:

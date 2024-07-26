@@ -169,10 +169,10 @@ def langify(s: str) -> str:
 
 DEFAULT_LANG = {
     # Entities
-    **{f"entity.firmaciv.rowboat.{wood}": f"{normalize(wood)} Rowboat" for wood in TFC_WOODS},
-    **{f"entity.firmaciv.sloop.{wood}": f"{normalize(wood)} Sloop" for wood in TFC_WOODS},
-    **{f"entity.firmaciv.sloop_construction.{wood}": f"{normalize(wood)} Sloop" for wood in TFC_WOODS},
-    **{f"entity.fimaciv.dugout_canoe.{wood}": f"{normalize(wood)} Dugout Canoe" for wood in TFC_WOODS},
+    **{f"entity.firmaciv.rowboat.{wood}": f"{langify(wood)} Rowboat" for wood in TFC_WOODS},
+    **{f"entity.firmaciv.sloop.{wood}": f"{langify(wood)} Sloop" for wood in TFC_WOODS},
+    **{f"entity.firmaciv.sloop_construction.{wood}": f"{langify(wood)} Sloop" for wood in TFC_WOODS},
+    **{f"entity.firmaciv.dugout_canoe.{wood}": f"{langify(wood)} Dugout Canoe" for wood in TFC_WOODS},
 
     "block.firmaciv.thatch_roofing_stairs": "Angled Thatch",
     "block.firmaciv.thatch_roofing_slab": "Thatch Slab",
