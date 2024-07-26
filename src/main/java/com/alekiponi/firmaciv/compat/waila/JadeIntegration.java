@@ -1,6 +1,7 @@
 package com.alekiponi.firmaciv.compat.waila;
 
 import com.alekiponi.alekiships.compat.waila.compartment.BlockCompartmentProvider;
+import com.alekiponi.firmaciv.common.entity.compartment.LargeVesselCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCBarrelCompartmentEntity;
 import com.alekiponi.firmaciv.common.entity.compartment.TFCChestCompartmentEntity;
 import com.alekiponi.firmaciv.compat.waila.compartment.BarrelCompartmentProvider;
@@ -20,5 +21,6 @@ public final class JadeIntegration implements IWailaPlugin {
 
         // Block compartments
         registry.registerEntityComponent(BlockCompartmentProvider.INSTANCE, TFCBarrelCompartmentEntity.class);
+        registry.registerEntityComponent(BlockCompartmentProvider.INSTANCE, LargeVesselCompartmentEntity.class);
     }
 }

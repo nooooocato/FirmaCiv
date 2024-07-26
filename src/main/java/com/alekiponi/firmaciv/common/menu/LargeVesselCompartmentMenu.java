@@ -1,7 +1,8 @@
 package com.alekiponi.firmaciv.common.menu;
 
-import com.alekiponi.firmaciv.common.entity.compartment.TFCBarrelCompartmentEntity;
+import com.alekiponi.firmaciv.common.entity.compartment.LargeVesselCompartmentEntity;
 import net.dries007.tfc.common.blockentities.BarrelBlockEntity;
+import net.dries007.tfc.common.blockentities.LargeVesselBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeat;
@@ -15,39 +16,46 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class BarrelCompartmentMenu extends AbstractContainerMenu implements ButtonHandlerContainer {
+public class LargeVesselCompartmentMenu extends AbstractContainerMenu implements ButtonHandlerContainer {
 
-    private final TFCBarrelCompartmentEntity barrelCompartment;
+    private final LargeVesselCompartmentEntity vesselCompartment;
 
-    public BarrelCompartmentMenu(final int windowId, final Inventory inventory,
-            final TFCBarrelCompartmentEntity barrelCompartment) {
-        super(FirmacivMenus.BARREL_COMPARTMENT_MENU.get(), windowId);
-        this.barrelCompartment = barrelCompartment;
+    public LargeVesselCompartmentMenu(final int windowId, final Inventory inventory,
+            final LargeVesselCompartmentEntity vesselCompartment) {
+        super(FirmacivMenus.LARGE_VESSEL_COMPARTMENT_MENU.get(), windowId);
+        this.vesselCompartment = vesselCompartment;
 
-        barrelCompartment.getCapability(Capabilities.ITEM).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_IN, 35, 20));
-            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_FLUID_CONTAINER_OUT, 35, 54));
-            this.addSlot(new SlotItemHandler(handler, BarrelBlockEntity.SLOT_ITEM, 89, 37));
+        this.vesselCompartment.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent((handler) -> {
+            this.addSlot(new SlotItemHandler(handler, 0, 62, 19));
+            this.addSlot(new SlotItemHandler(handler, 1, 80, 19));
+            this.addSlot(new SlotItemHandler(handler, 2, 98, 19));
+            this.addSlot(new SlotItemHandler(handler, 3, 62, 37));
+            this.addSlot(new SlotItemHandler(handler, 4, 80, 37));
+            this.addSlot(new SlotItemHandler(handler, 5, 98, 37));
+            this.addSlot(new SlotItemHandler(handler, 6, 62, 55));
+            this.addSlot(new SlotItemHandler(handler, 7, 80, 55));
+            this.addSlot(new SlotItemHandler(handler, 8, 98, 55));
         });
 
         this.addPlayerInventorySlots(inventory);
     }
 
-    static BarrelCompartmentMenu fromNetwork(final int windowId, final Inventory inventory,
+    static LargeVesselCompartmentMenu fromNetwork(final int windowId, final Inventory inventory,
             final FriendlyByteBuf friendlyByteBuf) {
         final Entity entity = inventory.player.level().getEntity(friendlyByteBuf.readVarInt());
-        if (entity instanceof final TFCBarrelCompartmentEntity barrelCompartment) {
-            return new BarrelCompartmentMenu(windowId, inventory, barrelCompartment);
+        if (entity instanceof final LargeVesselCompartmentEntity vesselCompartment) {
+            return new LargeVesselCompartmentMenu(windowId, inventory, vesselCompartment);
         }
-        throw new IllegalStateException(String.format("%s is not a Barrel compartment", entity));
+        throw new IllegalStateException(String.format("%s is not a Vessel compartment", entity));
     }
 
     @Override
     public void clicked(final int slotIndex, final int pButton, final ClickType pClickType, final Player pPlayer) {
-        if (slotIndex >= 0 && slotIndex < BarrelBlockEntity.SLOTS && this.barrelCompartment.isSealed()) return;
+        if (slotIndex >= 0 && slotIndex < LargeVesselBlockEntity.SLOTS && this.vesselCompartment.isSealed()) return;
         super.clicked(slotIndex, pButton, pClickType, pPlayer);
     }
 
@@ -60,7 +68,7 @@ public class BarrelCompartmentMenu extends AbstractContainerMenu implements Butt
             final ItemStack original = slotStack.copy();
 
 
-            if (this.barrelCompartment.isSealed()) {
+            if (this.vesselCompartment.isSealed()) {
                 return ItemStack.EMPTY;
             }
 
@@ -90,11 +98,16 @@ public class BarrelCompartmentMenu extends AbstractContainerMenu implements Butt
 
     @Override
     public boolean stillValid(final Player player) {
-        return this.barrelCompartment.stillValid(player);
+        return this.vesselCompartment.stillValid(player);
     }
 
-    public TFCBarrelCompartmentEntity getBarrelCompartment() {
-        return this.barrelCompartment;
+    public LargeVesselCompartmentEntity getVesselCompartment() {
+        return this.vesselCompartment;
+    }
+
+    @Override
+    public void onButtonPress(final int buttonId, @Nullable final CompoundTag compoundTag) {
+        LargeVesselCompartmentEntity.toggleSeal(this.vesselCompartment);
     }
 
     /**
@@ -104,18 +117,13 @@ public class BarrelCompartmentMenu extends AbstractContainerMenu implements Butt
         // Main Inventory. Indexes [9, 36)
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 96 + i * 18));
+                this.addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
         // Hot bar. Indexes [0, 9)
         for (int k = 0; k < 9; k++) {
-            this.addSlot(new Slot(inventory, k, 8 + k * 18, 154));
+            this.addSlot(new Slot(inventory, k, 8 + k * 18, 142));
         }
-    }
-
-    @Override
-    public void onButtonPress(final int buttonId, @Nullable final CompoundTag compoundTag) {
-        TFCBarrelCompartmentEntity.toggleSeal(this.barrelCompartment);
     }
 }

@@ -4,6 +4,7 @@
   "values": [
     "#firmaciv:chests",
     "#tfc:anvils",
-    "#tfc:barrels"
+    "#tfc:barrels",
+    "#tfc:fired_large_vessels"
   ]
 }

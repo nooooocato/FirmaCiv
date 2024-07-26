@@ -379,6 +379,7 @@ public class TFCBarrelCompartmentEntity extends AbstractCompartmentEntity implem
 
         CommonHelper.dropContents(this.level(), this.getX(), CommonHelper.maxHeightOfCollidableEntities(this),
                 this.getZ(), this);
+        super.destroy(damageSource);
     }
 
     private void updateFluidIOSlots() {

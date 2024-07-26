@@ -183,6 +183,7 @@ DEFAULT_LANG = {
 
     "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
     "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",
+    "entity.firmaciv.compartment_large_vessel": "Large Vessel",
 
     # Jade
     "config.jade.plugin_firmaciv.barrel": "Barrel Compartment",
