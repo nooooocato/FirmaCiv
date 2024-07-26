@@ -50,18 +50,18 @@ public final class FirmacivBlocks {
             "watercraft_frame_angled",
             () -> new FirmacivAngledBoatFrameBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 
-    public static final EnumMap<TFCWood, RegistryObject<AngledWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_ANGLED = CommonHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<FirmacivAngledWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_ANGLED = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/angled/" + tfcWood.getSerializedName(),
-                    () -> new AngledWoodenBoatFrameBlock(tfcWood,
+                    () -> new FirmacivAngledWoodenBoatFrameBlock(tfcWood,
                             BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get()))));
 
     public static final RegistryObject<FlatBoatFrameBlock> BOAT_FRAME_FLAT = registerBlockWithItem(
             "watercraft_frame_flat",
             () -> new FirmacivFlatBoatFrameBlock(BlockBehaviour.Properties.copy(BOAT_FRAME_ANGLED.get())));
 
-    public static final EnumMap<TFCWood, RegistryObject<FlatWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_FLAT = CommonHelper.mapOfKeys(
+    public static final EnumMap<TFCWood, RegistryObject<FirmacivFlatWoodenBoatFrameBlock>> WOODEN_BOAT_FRAME_FLAT = CommonHelper.mapOfKeys(
             TFCWood.class, tfcWood -> registerBlock("wood/watercraft_frame/flat/" + tfcWood.getSerializedName(),
-                    () -> new FlatWoodenBoatFrameBlock(tfcWood,
+                    () -> new FirmacivFlatWoodenBoatFrameBlock(tfcWood,
                             BlockBehaviour.Properties.copy(BOAT_FRAME_FLAT.get()))));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

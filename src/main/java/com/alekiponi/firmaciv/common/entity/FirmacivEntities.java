@@ -88,8 +88,8 @@ public final class FirmacivEntities {
     }
 
     private static <E extends SloopUnderConstructionEntity> RegistryObject<EntityType<E>> registerSloopConstruction(
-            final TFCWood vanillaWood, final EntityType.Builder<E> builder) {
-        return register("sloop_construction/" + vanillaWood.getSerializedName(),
+            final TFCWood bopWood, final EntityType.Builder<E> builder) {
+        return register("sloop_construction/" + bopWood.getSerializedName(),
                 builder.sized(4F, 0.75F).setTrackingRange(LARGE_VEHICLE_TRACKING).fireImmune().noSummon());
     }
 

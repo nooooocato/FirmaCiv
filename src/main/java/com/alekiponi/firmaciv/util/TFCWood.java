@@ -1,6 +1,7 @@
 package com.alekiponi.firmaciv.util;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractVehicle;
+import com.alekiponi.alekiships.util.BoatMaterial;
 import com.alekiponi.firmaciv.common.block.CanoeComponentBlock;
 import com.alekiponi.firmaciv.common.block.FirmacivBlocks;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
-public enum TFCWood implements TFCWoodMaterial {
+public enum TFCWood implements CanoeMaterial, BoatMaterial {
     ACACIA(Wood.ACACIA),
     ASH(Wood.ASH),
     ASPEN(Wood.ASPEN),

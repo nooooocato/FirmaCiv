@@ -6,6 +6,7 @@ import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import oshi.util.tuples.Pair;
 
 public class FirmacivSloopUnderConstructionEntity extends SloopUnderConstructionEntity {
     public FirmacivSloopUnderConstructionEntity(
@@ -14,13 +15,17 @@ public class FirmacivSloopUnderConstructionEntity extends SloopUnderConstruction
         super(entityType, level, boatMaterial);
     }
 
-    @Override
-    public Item getMainsailItem() {
-        return FirmacivItems.MEDIUM_TRIANGULAR_SAIL.get();
+    public Pair<Item, Integer> getMainsailItem() {
+        return new Pair(FirmacivItems.MEDIUM_TRIANGULAR_SAIL.get(),1);
     }
 
     @Override
-    public Item getJibsailItem() {
-        return FirmacivItems.SMALL_TRIANGULAR_SAIL.get();
+    public Pair<Item, Integer> getJibsailItem() {
+        return new Pair<>(FirmacivItems.SMALL_TRIANGULAR_SAIL.get(),1);
+    }
+
+    @Override
+    public Pair<Item, Integer> getRiggingItem() {
+        return new Pair<>(FirmacivItems.ROPE_COIL.get(), 8);
     }
 }
