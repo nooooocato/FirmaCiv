@@ -36,7 +36,7 @@ def generate(manager: ResourceManager):
     manager.block_tag("minecraft:mineable/axe", "#firmaciv:canoe_component_blocks")
 
     # Plant breaking
-    manager.entity_tag("alekiships:plants_that_get_mowed", "#tfc:plants")
+    manager.block_tag("alekiships:plants_that_get_mowed", "#tfc:plants")
 
     # TFC tags
     manager.block_tag("tfc:mineable_with_blunt_tool", "#firmaciv:canoe_component_blocks")
