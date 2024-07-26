@@ -180,7 +180,13 @@ DEFAULT_LANG = {
 
     "entity.firmaciv.kayak": "Kayak",
 
-    "entity.firmaciv.compartment_tfcchest": "Chest Compartment",
+    "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
+    "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",
+    "entity.firmaciv.compartment_large_vessel": "Large Vessel",
+
+    # Jade
+    "config.jade.plugin_firmaciv.barrel": "Barrel Compartment",
+    "config.jade.plugin_firmaciv.tfc_chest": "TFC Chest Compartment",
 
     "itemGroup.firmaciv": "Firma: Civilization",
     "creativetab.firmaciv_tab": "Firma: Civilization",
@@ -227,5 +233,10 @@ DEFAULT_LANG = {
     "firmaciv.advancements.barometer.title": "Surf and/or Turf",
     "firmaciv.advancements.barometer.description": "Craft a Barometer",
     "firmaciv.advancements.oarlock.title": "The Montlake Cut",
-    "firmaciv.advancements.oarlock.description": "Smith an Oarlock"
+    "firmaciv.advancements.oarlock.description": "Smith an Oarlock",
+
+    # JEI
+    # This should be under the TFC namespace, but they haven't released this
+    # functionality yet, so we should supply it ourselves
+    "firmaciv.jei.transfer.error.barrel_sealed": "Barrel is currently sealed"
 }

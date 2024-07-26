@@ -8,6 +8,7 @@ import com.alekiponi.firmaciv.common.blockentity.FirmacivBlockEntities;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.common.item.FirmacivTabs;
+import com.alekiponi.firmaciv.common.menu.FirmacivMenus;
 import com.alekiponi.firmaciv.events.config.FirmacivConfig;
 import com.alekiponi.firmaciv.network.PacketHandler;
 import com.alekiponi.firmaciv.util.FirmacivInteractionManager;
@@ -38,6 +39,7 @@ public final class Firmaciv {
         FirmacivBlocks.BLOCKS.register(eventBus);
         FirmacivBlockEntities.BLOCK_ENTITIES.register(eventBus);
         FirmacivEntities.ENTITY_TYPES.register(eventBus);
+        FirmacivMenus.MENU_TYPES.register(eventBus);
 
         eventBus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);

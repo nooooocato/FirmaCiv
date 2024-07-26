@@ -95,6 +95,10 @@ public class TFCChestCompartmentEntity extends ChestCompartmentEntity {
                 "entity/chest/normal/" + ((TFCChestBlock) this.getBlockState().getBlock()).getTextureLocation());
     }
 
+    public String descriptionId() {
+        return this.getBlockState().getBlock().getDescriptionId();
+    }
+
     /**
      * Silly helper to prevent code duplication
      */

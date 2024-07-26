@@ -31,6 +31,14 @@ public final class FirmacivTags {
          * All the items considered hard woods that {@link ServerConfig#shipWoodRestriction} cares about
          */
         public static final TagKey<Item> HARD_WOOD = create("hard_wood");
+        /**
+         * TFC's large vessels tag
+         */
+        public static final TagKey<Item> FIRED_LARGE_VESSELS = getFromTFC("fired_large_vessels");
+        /**
+         * TFC's barrels tag
+         */
+        public static final TagKey<Item> BARRELS = getFromTFC("barrels");
 
         public static TagKey<Item> getFromTFC(String id) {
             return TagKey.create(Registries.ITEM, new ResourceLocation("tfc", id));

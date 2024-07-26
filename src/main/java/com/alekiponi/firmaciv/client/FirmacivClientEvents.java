@@ -2,9 +2,13 @@ package com.alekiponi.firmaciv.client;
 
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
 import com.alekiponi.firmaciv.Firmaciv;
+import com.alekiponi.firmaciv.client.screen.BarrelCompartmentScreen;
+import com.alekiponi.firmaciv.client.screen.LargeVesselCompartmentScreen;
 import com.alekiponi.firmaciv.common.item.AbstractNavItem;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
+import com.alekiponi.firmaciv.common.menu.FirmacivMenus;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -30,6 +34,10 @@ public final class FirmacivClientEvents {
     }
 
     private static void clientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            MenuScreens.register(FirmacivMenus.BARREL_COMPARTMENT_MENU.get(), BarrelCompartmentScreen::new);
+            MenuScreens.register(FirmacivMenus.LARGE_VESSEL_COMPARTMENT_MENU.get(), LargeVesselCompartmentScreen::new);
+        });
 
         ItemProperties.register(FirmacivItems.BAROMETER.get(), new ResourceLocation(Firmaciv.MOD_ID, "altitude"),
                 new ClampedItemPropertyFunction() {
@@ -64,8 +72,7 @@ public final class FirmacivClientEvents {
 
 
         ItemProperties.register(FirmacivItems.FIRMACIV_COMPASS.get(),
-                new ResourceLocation(Firmaciv.MOD_ID, "firmaciv_compass_direction"),
-                new ClampedItemPropertyFunction() {
+                new ResourceLocation(Firmaciv.MOD_ID, "firmaciv_compass_direction"), new ClampedItemPropertyFunction() {
 
                     public float unclampedCall(ItemStack pStack, @Nullable ClientLevel pLevel,
                             @Nullable LivingEntity livingEntity, int p_174668_) {
@@ -87,7 +94,7 @@ public final class FirmacivClientEvents {
                                 double direction;
                                 if (pLevel.dimensionType().natural()) {
                                     assert livingEntity != null;
-                                    if(livingEntity instanceof Player && pLevel.isClientSide() && livingEntity.getVehicle() instanceof EmptyCompartmentEntity){
+                                    if (livingEntity instanceof Player && pLevel.isClientSide() && livingEntity.getVehicle() instanceof EmptyCompartmentEntity) {
                                         rotation = Minecraft.getInstance().getCameraEntity().getYRot();
                                     } else {
                                         rotation = entity.getYRot();

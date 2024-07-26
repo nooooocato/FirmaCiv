@@ -2,8 +2,9 @@
   "__comment__": "This file was automatically created by mcresources",
   "replace": false,
   "values": [
-    "#tfc:anvils",
     "#firmaciv:chests",
-    "#forge:barrels"
+    "#tfc:anvils",
+    "#tfc:barrels",
+    "#tfc:fired_large_vessels"
   ]
 }

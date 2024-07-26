@@ -54,7 +54,7 @@ public final class ForgeEventHandler {
         for (final var entityTypeMapping : event.getMappings(Registries.ENTITY_TYPE, Firmaciv.MOD_ID)) {
             final String entityName = entityTypeMapping.getKey().getPath();
 
-            if (entityName.equals("compartment_tfc_chest"))
+            if (entityName.equals("compartment_tfcchest"))
                 entityTypeMapping.remap(FirmacivEntities.TFC_CHEST_COMPARTMENT_ENTITY.get());
         }
 
