@@ -66,7 +66,7 @@ def generate(rm: ResourceManager):
             "tag": "tfc:magnetic_rocks"
         },
         "Z": {
-            "item": "minecraft:bowl"
+            "item": "#tfc:bowls"
         }}, "firmaciv:firmaciv_compass")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled", [" LL", "LLL", "LL "], {"L": "#tfc:lumber"},
