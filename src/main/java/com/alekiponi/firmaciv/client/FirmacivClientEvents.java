@@ -180,10 +180,10 @@ public final class FirmacivClientEvents {
                     "entity/watercraft/sloop/paint");
 
             for (final TFCWood wood : TFCWood.values()) {
-                event.registerReloadListener(new PaintedTextureGenerator(new ResourceLocation(AlekiShips.MOD_ID,
+                event.registerReloadListener(new PaintedTextureGenerator(new ResourceLocation(Firmaciv.MOD_ID,
                         "entity/watercraft/rowboat/" + wood.getSerializedName()), rowboatPaint));
                 event.registerReloadListener(new PaintedTextureGenerator(
-                        new ResourceLocation(AlekiShips.MOD_ID, "entity/watercraft/sloop/" + wood.getSerializedName()),
+                        new ResourceLocation(Firmaciv.MOD_ID, "entity/watercraft/sloop/" + wood.getSerializedName()),
                         sloopPaint));
             }
         }
