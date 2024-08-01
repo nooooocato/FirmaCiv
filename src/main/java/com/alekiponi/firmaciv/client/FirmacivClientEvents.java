@@ -1,12 +1,16 @@
 package com.alekiponi.firmaciv.client;
 
+import com.alekiponi.alekiships.AlekiShips;
+import com.alekiponi.alekiships.client.AlekiShipsClientEvents;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
+import com.alekiponi.alekiships.util.VanillaWood;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.client.screen.BarrelCompartmentScreen;
 import com.alekiponi.firmaciv.client.screen.LargeVesselCompartmentScreen;
 import com.alekiponi.firmaciv.common.item.AbstractNavItem;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.common.menu.FirmacivMenus;
+import com.alekiponi.firmaciv.util.TFCWood;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -19,9 +23,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import com.alekiponi.alekiships.client.resources.PaintedTextureGenerator;
 
 import javax.annotation.Nullable;
 
@@ -31,6 +37,7 @@ public final class FirmacivClientEvents {
         final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         bus.addListener(FirmacivClientEvents::clientSetup);
+        bus.addListener(FirmacivClientEvents::onRegisterReloadListeners);
     }
 
     private static void clientSetup(final FMLClientSetupEvent event) {
@@ -163,5 +170,22 @@ public final class FirmacivClientEvents {
                     }
                 });
 
+    }
+
+    private static void onRegisterReloadListeners(final RegisterClientReloadListenersEvent event) {
+        {
+            final ResourceLocation rowboatPaint = new ResourceLocation(AlekiShips.MOD_ID,
+                    "entity/watercraft/rowboat/paint");
+            final ResourceLocation sloopPaint = new ResourceLocation(AlekiShips.MOD_ID,
+                    "entity/watercraft/sloop/paint");
+
+            for (final TFCWood wood : TFCWood.values()) {
+                event.registerReloadListener(new PaintedTextureGenerator(new ResourceLocation(AlekiShips.MOD_ID,
+                        "entity/watercraft/rowboat/" + wood.getSerializedName()), rowboatPaint));
+                event.registerReloadListener(new PaintedTextureGenerator(
+                        new ResourceLocation(AlekiShips.MOD_ID, "entity/watercraft/sloop/" + wood.getSerializedName()),
+                        sloopPaint));
+            }
+        }
     }
 }
