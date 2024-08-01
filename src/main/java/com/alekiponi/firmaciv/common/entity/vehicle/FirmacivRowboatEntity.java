@@ -15,4 +15,9 @@ public class FirmacivRowboatEntity extends RowboatEntity implements IAllowFallDa
             final BoatMaterial boatMaterial) {
         super(entityType, level, boatMaterial);
     }
+
+    @Override
+    public boolean windShouldAffect(){
+        return true;
+    }
 }
