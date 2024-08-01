@@ -1,6 +1,7 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
+import com.alekiponi.alekiships.common.entity.vehiclecapability.IAllowFallDamage;
 import com.alekiponi.alekiships.common.entity.vehiclecapability.IHaveCleats;
 import com.alekiponi.alekiships.common.entity.vehiclecapability.IHaveColliders;
 import com.alekiponi.alekiships.util.BoatMaterial;
@@ -22,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
-public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats, IHaveColliders {
+public class CanoeEntity extends AbstractAlekiBoatEntity implements IHaveCleats, IHaveColliders, IAllowFallDamage {
     private static final EntityDataAccessor<Integer> DATA_ID_LENGTH = SynchedEntityData.defineId(CanoeEntity.class,
             EntityDataSerializers.INT);
     public final int PASSENGER_NUMBER = 5;

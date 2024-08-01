@@ -4,12 +4,15 @@ import com.alekiponi.alekiships.common.block.AlekiShipsBlocks;
 import com.alekiponi.alekiships.common.item.AlekiShipsItems;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.block.FirmacivBlocks;
+import com.alekiponi.firmaciv.util.TFCWood;
+import net.dries007.tfc.common.blocks.wood.Wood;
 import net.dries007.tfc.common.items.TFCItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -25,7 +28,7 @@ public final class FirmacivTabs {
                         pOutput.accept(AlekiShipsBlocks.CLEAT.get());
                         pOutput.accept(AlekiShipsItems.ANCHOR.get());
 
-                        pOutput.accept(AlekiShipsItems.CANNON.get());
+                        pOutput.accept(FirmacivItems.FIRMACIV_CANNON.get());
                         pOutput.accept(AlekiShipsItems.CANNONBALL.get());
 
                         pOutput.accept(FirmacivBlocks.BOAT_FRAME_ANGLED.get());
@@ -63,6 +66,10 @@ public final class FirmacivTabs {
 
                         pOutput.accept(FirmacivBlocks.THATCH_ROOFING.get());
                         pOutput.accept(FirmacivBlocks.THATCH_ROOFING_SLAB.get());
+
+                        for (Wood tfcWood : Wood.values()){
+                            pOutput.accept(FirmacivBlocks.WOOD_ROOFING.get(tfcWood).get().asItem());
+                        }
 
                     }).build());
 }

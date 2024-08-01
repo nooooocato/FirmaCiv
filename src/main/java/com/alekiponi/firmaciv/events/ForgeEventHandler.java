@@ -28,9 +28,8 @@ public final class ForgeEventHandler {
     @SubscribeEvent
     public static void onWorldLoad(final LevelEvent.Load event) {
         if (!(event.getLevel() instanceof final ServerLevel level)) return;
-        if (!FirmacivConfig.SERVER.forceReducedDebugInfo.get()) return;
 
-        level.getGameRules().getRule(GameRules.RULE_REDUCEDDEBUGINFO).set(true, level.getServer());
+        level.getGameRules().getRule(GameRules.RULE_REDUCEDDEBUGINFO).set(!FirmacivConfig.SERVER.forceReducedDebugInfo.get(), level.getServer());
     }
 
     /**

@@ -10,6 +10,9 @@ public class FirmacivItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Firmaciv.MOD_ID);
 
+    public static final RegistryObject<Item> FIRMACIV_CANNON = ITEMS.register("cannon",
+            () -> new FirmacivCannonItem(new Item.Properties().stacksTo(1)));
+
     public static final RegistryObject<Item> SEXTANT = ITEMS.register("sextant",
             () -> new SextantItem(new Item.Properties().stacksTo(1)));
 

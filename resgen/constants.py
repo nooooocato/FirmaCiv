@@ -21,6 +21,27 @@ TFC_WOODS = ["acacia",
              "white_cedar",
              "willow"]
 
+ROOF_MATERIALS = ["acacia",
+             "ash",
+             "aspen",
+             "birch",
+             "blackwood",
+             "chestnut",
+             "douglas_fir",
+             "hickory",
+             "kapok",
+             "mangrove",
+             "maple",
+             "oak",
+             "palm",
+             "pine",
+             "rosewood",
+             "sequoia",
+             "spruce",
+             "sycamore",
+             "white_cedar",
+             "willow"]
+
 
 class Metal(NamedTuple):
     """
@@ -179,6 +200,7 @@ DEFAULT_LANG = {
     "block.firmaciv.thatch_roofing": "Angled Thatch",
 
     "entity.firmaciv.kayak": "Kayak",
+    "entity.firmaciv.cannon": "Cannon",
 
     "entity.firmaciv.compartment_tfc_chest": "Chest Compartment",
     "entity.firmaciv.compartment_tfc_barrel": "Barrel Compartment",

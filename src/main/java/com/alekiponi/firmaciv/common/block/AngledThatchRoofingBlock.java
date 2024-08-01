@@ -1,5 +1,6 @@
 package com.alekiponi.firmaciv.common.block;
 
+import com.alekiponi.alekiroofs.SquaredAngleBlock;
 import net.dries007.tfc.common.blocks.*;
 import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.common.fluids.FluidProperty;

@@ -43,6 +43,14 @@ Firma: Civilization is an addon/expansion for TerraFirmaCraft focusing on key, c
 [[dependencies.firmaciv]]
     modId = "alekiships"
     mandatory = true
-    versionRange = "0,)"
+    versionRange = "[1.0.9,)"
     ordering = "AFTER"
     side = "BOTH"
+
+[[dependencies.firmaciv]]
+    modId = "alekiroofs"
+    mandatory = true
+    versionRange = "[1.0.1,)"
+    ordering = "AFTER"
+    side = "BOTH"
+

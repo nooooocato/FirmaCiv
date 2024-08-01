@@ -1,0 +1,9 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "parent": "alekiroofs:block/roofing_outer",
+  "textures": {
+    "bottom": "tfc:block/wood/planks/hickory",
+    "top": "tfc:block/wood/planks/hickory",
+    "side": "tfc:block/wood/planks/hickory"
+  }
+}

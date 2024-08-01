@@ -1,0 +1,95 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "variants": {
+    "facing=east,shape=inner_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,shape=inner_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner"
+    },
+    "facing=east,shape=outer_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,shape=outer_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer"
+    },
+    "facing=east,shape=straight": {
+      "model": "firmaciv:block/wood/chestnut_roofing"
+    },
+    "facing=north,shape=inner_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=north,shape=inner_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,shape=outer_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=north,shape=outer_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,shape=straight": {
+      "model": "firmaciv:block/wood/chestnut_roofing",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,shape=inner_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner"
+    },
+    "facing=south,shape=inner_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,shape=outer_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer"
+    },
+    "facing=south,shape=outer_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,shape=straight": {
+      "model": "firmaciv:block/wood/chestnut_roofing",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,shape=inner_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,shape=inner_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,shape=outer_left": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,shape=outer_right": {
+      "model": "firmaciv:block/wood/chestnut_roofing_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,shape=straight": {
+      "model": "firmaciv:block/wood/chestnut_roofing",
+      "y": 180,
+      "uvlock": true
+    }
+  }
+}

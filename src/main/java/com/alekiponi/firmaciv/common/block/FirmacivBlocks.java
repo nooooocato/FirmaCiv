@@ -1,5 +1,6 @@
 package com.alekiponi.firmaciv.common.block;
 
+import com.alekiponi.alekiroofs.SquaredAngleBlock;
 import com.alekiponi.alekiships.common.block.AngledBoatFrameBlock;
 import com.alekiponi.alekiships.common.block.FlatBoatFrameBlock;
 import com.alekiponi.alekiships.util.CommonHelper;
@@ -30,6 +31,12 @@ public final class FirmacivBlocks {
                     () -> new CanoeComponentBlock(
                             BlockBehaviour.Properties.copy(tfcWood.wood.getBlock(Wood.BlockType.STRIPPED_LOG).get())
                                     .mapColor(tfcWood.wood.woodColor()).noOcclusion(), tfcWood)));
+
+    public static final EnumMap<Wood, RegistryObject<SquaredAngleBlock>> WOOD_ROOFING = CommonHelper.mapOfKeys(
+            Wood.class, tfcWood -> registerBlockWithItem("wood/" + tfcWood.getSerializedName() + "_roofing",
+                    () -> new SquaredAngleBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),
+                            BlockBehaviour.Properties.copy(tfcWood.getBlock(Wood.BlockType.STAIRS).get())
+                                    .mapColor(tfcWood.woodColor()).noOcclusion())));
 
     public static final RegistryObject<Block> THATCH_ROOFING = registerBlockWithItem("thatch_roofing",
             () -> new AngledThatchRoofingBlock(Blocks.ACACIA_STAIRS.defaultBlockState(),

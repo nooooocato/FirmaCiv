@@ -5,7 +5,8 @@
     "tag": "forge:ingots/copper"
   },
   "result": {
-    "item": "firmaciv:copper_bolt"
+    "item": "firmaciv:copper_bolt",
+    "count": 4
   },
   "tier": 2,
   "rules": [

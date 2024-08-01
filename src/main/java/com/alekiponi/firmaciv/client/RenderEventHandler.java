@@ -1,5 +1,6 @@
 package com.alekiponi.firmaciv.client;
 
+import com.alekiponi.alekiships.client.render.entity.CannonRenderer;
 import com.alekiponi.alekiships.client.render.entity.vehicle.RowboatRenderer;
 import com.alekiponi.alekiships.client.render.entity.vehicle.SloopConstructionRenderer;
 import com.alekiponi.alekiships.client.render.entity.vehicle.SloopRenderer;
@@ -11,6 +12,7 @@ import com.alekiponi.firmaciv.client.render.entity.compartment.BarrelCompartment
 import com.alekiponi.firmaciv.client.render.entity.compartment.TFCChestCompartmentRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.CanoeRenderer;
 import com.alekiponi.firmaciv.client.render.entity.vehicle.KayakRenderer;
+import com.alekiponi.firmaciv.common.entity.FirmacivCannonEntity;
 import com.alekiponi.firmaciv.common.entity.FirmacivEntities;
 import com.alekiponi.firmaciv.util.TFCWood;
 import net.minecraft.resources.ResourceLocation;
@@ -57,6 +59,8 @@ public final class RenderEventHandler {
         }
 
         event.registerEntityRenderer(FirmacivEntities.KAYAK_ENTITY.get(), KayakRenderer::new);
+
+        event.registerEntityRenderer(FirmacivEntities.FIRMACIV_CANNON_ENTITY.get(), CannonRenderer::new);
 
         event.registerEntityRenderer(FirmacivEntities.TFC_CHEST_COMPARTMENT_ENTITY.get(),
                 TFCChestCompartmentRenderer::new);

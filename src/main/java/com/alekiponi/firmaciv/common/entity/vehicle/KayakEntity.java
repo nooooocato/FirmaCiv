@@ -1,6 +1,7 @@
 package com.alekiponi.firmaciv.common.entity.vehicle;
 
 import com.alekiponi.alekiships.common.entity.vehicle.AbstractAlekiBoatEntity;
+import com.alekiponi.alekiships.common.entity.vehiclecapability.IAllowFallDamage;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.common.item.FirmacivItems;
 import com.alekiponi.firmaciv.util.KayakMaterial;
@@ -20,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
-public class KayakEntity extends AbstractAlekiBoatEntity {
+public class KayakEntity extends AbstractAlekiBoatEntity implements IAllowFallDamage {
     public final int PASSENGER_NUMBER = 1;
     protected final float DAMAGE_THRESHOLD = 10.0f;
     protected final float DAMAGE_RECOVERY = 1.0f;

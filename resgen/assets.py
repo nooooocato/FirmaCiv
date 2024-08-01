@@ -100,6 +100,8 @@ def generate(rm: ResourceManager):
     rm.item("large_triangular_sail").with_item_model().with_lang("Large Sail")
     rm.item("rope_coil").with_item_model().with_lang("Jute Rope")
 
+    rm.item_model("cannon", parent="alekiships:item/cannon", no_textures=True).with_lang("Cannon")
+
     rm.item("sloop_icon_only").with_item_model().with_lang("ICON ONLY")
     rm.item("canoe_icon_only").with_item_model().with_lang("ICON ONLY")
     rm.item("canoe_with_paddle_icon_only").with_item_model().with_lang("ICON ONLY")
@@ -119,3 +121,113 @@ def generate(rm: ResourceManager):
 
     rm.item("kayak_paddle").with_lang("Kayak Paddle")
     rm.item("canoe_paddle").with_lang("Canoe Paddle")
+
+    for material in constants.ROOF_MATERIALS:
+        true = True
+        roofing = {
+            "facing=east,shape=inner_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 270,
+                "uvlock": true
+            },
+            "facing=east,shape=inner_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner"
+            },
+            "facing=east,shape=outer_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 270,
+                "uvlock": true
+            },
+            "facing=east,shape=outer_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer"
+            },
+            "facing=east,shape=straight": {
+                "model": f"firmaciv:block/wood/{material}_roofing"
+            },
+            "facing=north,shape=inner_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 180,
+                "uvlock": true
+            },
+            "facing=north,shape=inner_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 270,
+                "uvlock": true
+            },
+            "facing=north,shape=outer_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 180,
+                "uvlock": true
+            },
+            "facing=north,shape=outer_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 270,
+                "uvlock": true
+            },
+            "facing=north,shape=straight": {
+                "model": f"firmaciv:block/wood/{material}_roofing",
+                "y": 270,
+                "uvlock": true
+            },
+            "facing=south,shape=inner_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner"
+            },
+            "facing=south,shape=inner_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 90,
+                "uvlock": true
+            },
+            "facing=south,shape=outer_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer"
+            },
+            "facing=south,shape=outer_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 90,
+                "uvlock": true
+            },
+            "facing=south,shape=straight": {
+                "model": f"firmaciv:block/wood/{material}_roofing",
+                "y": 90,
+                "uvlock": true
+            },
+            "facing=west,shape=inner_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 90,
+                "uvlock": true
+            },
+            "facing=west,shape=inner_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_inner",
+                "y": 180,
+                "uvlock": true
+            },
+            "facing=west,shape=outer_left": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 90,
+                "uvlock": true
+            },
+            "facing=west,shape=outer_right": {
+                "model": f"firmaciv:block/wood/{material}_roofing_outer",
+                "y": 180,
+                "uvlock": true
+            },
+            "facing=west,shape=straight": {
+                "model": f"firmaciv:block/wood/{material}_roofing",
+                "y": 180,
+                "uvlock": true
+            }
+        }
+
+        rm.blockstate(f"wood/{material}_roofing", variants=roofing).with_lang(f"{constants.langify(material)} Roofing").with_block_loot(f"firmaciv:wood/{material}_roofing")
+
+        texture = material+""
+
+        generateRoofModels(material, texture, rm)
+
+
+def generateRoofModels(material, texture, rm: ResourceManager):
+    for state in ["_inner", "_outer", ""]:
+        rm.block_model(f"wood/{material}_roofing{state}",
+                       textures={"bottom": f"tfc:block/wood/planks/{texture}","top": f"tfc:block/wood/planks/{texture}","side": f"tfc:block/wood/planks/{texture}"},
+                       parent=f"alekiroofs:block/roofing{state}")
+
+    rm.item_model(f"wood/{material}_roofing", parent=f"firmaciv:block/wood/{material}_roofing", no_textures=True)

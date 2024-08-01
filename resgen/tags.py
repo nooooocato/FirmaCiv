@@ -48,3 +48,12 @@ def generate(manager: ResourceManager):
     manager.block_tag("carryon:block_blacklist", "#firmaciv:canoe_component_blocks")
     manager.entity_tag("carryon:entity_blacklist", "firmaciv:kayak", "#firmaciv:dugout_canoes",
                        *[f"firmaciv:sloop_construction/{wood}" for wood in constants.TFC_WOODS])
+
+    for material in constants.ROOF_MATERIALS:
+        manager.block_tag("alekiroofs:roofing", f"wood/{material}_roofing")
+        if material in constants.TFC_WOODS:
+            manager.block_tag("minecraft:mineable/axe", f"wood/{material}_roofing")
+        else:
+            manager.block_tag("minecraft:mineable/pickaxe", f"wood/{material}_roofing")
+
+

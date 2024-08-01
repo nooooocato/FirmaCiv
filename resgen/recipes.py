@@ -6,6 +6,7 @@ from mcresources.type_definitions import ResourceIdentifier, Json
 
 import constants
 
+roof_recipe = ["  #", " # ", "#  "]
 
 class Rules(Enum):
     hit_any = 'hit_any'
@@ -66,7 +67,7 @@ def generate(rm: ResourceManager):
             "tag": "tfc:magnetic_rocks"
         },
         "Z": {
-            "item": "#tfc:bowls"
+            "tag": "tfc:bowls"
         }}, "firmaciv:firmaciv_compass")
 
     rm.crafting_shaped("crafting/watercraft_frame_angled", [" LL", "LLL", "LL "], {"L": "#tfc:lumber"},
@@ -119,9 +120,9 @@ def generate(rm: ResourceManager):
     rm.crafting_shaped("crafting/canoe_paddle", [" S ", "L  "], {"S": "#forge:rods/wooden", "L": "#tfc:lumber"},
                        "firmaciv:canoe_paddle").with_advancement("#tfc:lumber")
 
-    rm.crafting_shaped("alekiships:crafting/cannon", ["BBB", "LL ", "R R"],
+    rm.crafting_shaped("firmaciv:crafting/cannon", ["BBB", "LL ", "R R"],
                        {"B": "firmaciv:cannon_barrel", "L": "#tfc:lumber", "R": "#forge:rods/wrought_iron"},
-                       "alekiships:cannon_barrel")
+                       "firmaciv:cannon").with_advancement("firmaciv:cannon_barrel")
 
     rm.crafting_shaped("crafting/small_triangular_sail", ["WSS", "WWS", "WWW"],
                        {"W": "tfc:wool_cloth", "S": "#forge:string"},
@@ -154,7 +155,7 @@ def generate(rm: ResourceManager):
     heat_recipe(rm, "sextant", "firmaciv:sextant", 930, None, "200 tfc:metal/brass")
     heat_recipe(rm, "cannonball", "alekiships:cannonball", 1535, None, "200 tfc:metal/cast_iron")
     heat_recipe(rm, "cannon_barrel", "firmaciv:cannon_barrel", 1535, None, "400 tfc:metal/cast_iron")
-    heat_recipe(rm, "cannon", "alekiships:cannon", 1535, None, "1300 tfc:metal/cast_iron")
+    heat_recipe(rm, "cannon", "firmaciv:cannon", 1535, None, "1300 tfc:metal/cast_iron")
     heat_recipe(rm, "anchor", "alekiships:anchor", 1540, None, "400 tfc:metal/steel")
     heat_recipe(rm, "cleat", "alekiships:cleat", 1540, None, "200 tfc:metal/steel")
     heat_recipe(rm, "unfinished_barometer", "firmaciv:unfinished_barometer", 930, None, "200 tfc:metal/brass")
@@ -164,7 +165,7 @@ def generate(rm: ResourceManager):
     # FirmaCiv anvil recipes
     anvil_recipe(rm, "cannon_barrel", "#forge:double_sheets/wrought_iron", "firmaciv:cannon_barrel",
                  2, Rules.bend_last, Rules.bend_second_last, Rules.bend_third_last)
-    anvil_recipe(rm, "copper_bolt", "#forge:ingots/copper", "firmaciv:copper_bolt", 2,
+    anvil_recipe(rm, "copper_bolt", "#forge:ingots/copper", (4,"firmaciv:copper_bolt"), 2,
                  Rules.hit_last, Rules.hit_second_last, Rules.hit_third_last)
     anvil_recipe(rm, "unfinished_barometer", "#forge:sheets/brass", "firmaciv:unfinished_barometer", 2,
                  Rules.hit_last, Rules.draw_second_last, Rules.upset_third_last)
@@ -192,6 +193,13 @@ def generate(rm: ResourceManager):
     quern_recipe(rm, "ruby", "tfc:gem/ruby", "tfc:powder/ruby", count=4)
     quern_recipe(rm, "sapphire", "tfc:gem/sapphire", "tfc:powder/sapphire", count=4)
     quern_recipe(rm, "topaz", "tfc:gem/topaz", "tfc:powder/topaz", count=4)
+
+    for wood in constants.TFC_WOODS:
+        rm.crafting_shaped(f"crafting/{wood}_roofing", roof_recipe, {"#": f"tfc:wood/planks/{wood}"},
+                           (6, f"firmaciv:wood/{wood}_roofing")).with_advancement(f"tfc:wood/planks/{wood}")
+
+        rm.crafting_shapeless(f"crafting/uncraft_{wood}_roofing", f"firmaciv:wood/{wood}_roofing",
+                              (2,f"tfc:wood/lumber/{wood}")).with_advancement(f"firmaciv:wood/{wood}_roofing")
 
 
 def heat_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, ingredient: Json, temperature: float,

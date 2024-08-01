@@ -1,5 +1,6 @@
 package com.alekiponi.firmaciv.common.entity;
 
+import com.alekiponi.alekiships.common.entity.CannonEntity;
 import com.alekiponi.alekiships.common.entity.vehicle.RowboatEntity;
 import com.alekiponi.alekiships.common.entity.vehicle.SloopEntity;
 import com.alekiponi.alekiships.common.entity.vehicle.SloopUnderConstructionEntity;
@@ -55,6 +56,9 @@ public final class FirmacivEntities {
 
     public static final RegistryObject<EntityType<KayakEntity>> KAYAK_ENTITY = register("kayak",
             EntityType.Builder.of(KayakEntity::new, MobCategory.MISC).sized(0.79F, 0.625F));
+
+    public static final RegistryObject<EntityType<FirmacivCannonEntity>> FIRMACIV_CANNON_ENTITY = register("cannon",
+            EntityType.Builder.of(FirmacivCannonEntity::new, MobCategory.MISC).sized(0.8F, 0.8F).fireImmune());
 
     public static final RegistryObject<CompartmentType<TFCChestCompartmentEntity>> TFC_CHEST_COMPARTMENT_ENTITY = CompartmentType.register(
             registerCompartment("compartment_tfc_chest",
