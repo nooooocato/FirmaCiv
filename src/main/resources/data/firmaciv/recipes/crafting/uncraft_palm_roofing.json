@@ -1,13 +1,19 @@
 {
   "__comment__": "This file was automatically created by mcresources",
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "firmaciv:wood/palm_roofing"
+  "type": "tfc:damage_inputs_shapeless_crafting",
+  "recipe": {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "firmaciv:wood/palm_roofing"
+      },
+      {
+        "tag": "tfc:saws"
+      }
+    ],
+    "result": {
+      "item": "tfc:wood/lumber/palm",
+      "count": 2
     }
-  ],
-  "result": {
-    "item": "tfc:wood/lumber/palm",
-    "count": 2
   }
 }

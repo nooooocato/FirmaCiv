@@ -198,7 +198,7 @@ def generate(rm: ResourceManager):
         rm.crafting_shaped(f"crafting/{wood}_roofing", roof_recipe, {"#": f"tfc:wood/planks/{wood}"},
                            (6, f"firmaciv:wood/{wood}_roofing")).with_advancement(f"tfc:wood/planks/{wood}")
 
-        rm.crafting_shapeless(f"crafting/uncraft_{wood}_roofing", f"firmaciv:wood/{wood}_roofing",
+        damage_shapeless(rm, f"crafting/uncraft_{wood}_roofing", [f"firmaciv:wood/{wood}_roofing","#tfc:saws"],
                               (2,f"tfc:wood/lumber/{wood}")).with_advancement(f"firmaciv:wood/{wood}_roofing")
 
 
@@ -313,3 +313,24 @@ def anvil_recipe(rm: ResourceManager, name_parts: utils.ResourceIdentifier, ingr
         'rules': [r.name for r in rules],
         'apply_forging_bonus': bonus
     })
+
+def damage_shapeless(rm: ResourceManager, name_parts: ResourceIdentifier, ingredients: Json, result: Json, group: str = None, conditions: utils.Json = None) -> RecipeContext:
+    return delegate_recipe(rm, name_parts, 'tfc:damage_inputs_shapeless_crafting', {
+        'type': 'minecraft:crafting_shapeless',
+        'group': group,
+        'ingredients': utils.item_stack_list(ingredients),
+        'result': utils.item_stack(result),
+        'conditions': utils.recipe_condition(conditions)
+    })
+
+def delegate_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, recipe_type: str, delegate: Json, data: Json = {}) -> RecipeContext:
+    return write_crafting_recipe(rm, name_parts, {
+        'type': recipe_type,
+        **data,
+        'recipe': delegate,
+    })
+
+def write_crafting_recipe(rm: ResourceManager, name_parts: ResourceIdentifier, data: Json) -> RecipeContext:
+    res = utils.resource_location(rm.domain, name_parts)
+    rm.write((*rm.resource_dir, 'data', res.domain, 'recipes', res.path), data)
+    return RecipeContext(rm, res)
