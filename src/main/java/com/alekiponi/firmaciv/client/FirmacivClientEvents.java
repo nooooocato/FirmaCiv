@@ -1,9 +1,8 @@
 package com.alekiponi.firmaciv.client;
 
 import com.alekiponi.alekiships.AlekiShips;
-import com.alekiponi.alekiships.client.AlekiShipsClientEvents;
+import com.alekiponi.alekiships.client.resources.PaintedTextureGenerator;
 import com.alekiponi.alekiships.common.entity.vehiclehelper.compartment.EmptyCompartmentEntity;
-import com.alekiponi.alekiships.util.VanillaWood;
 import com.alekiponi.firmaciv.Firmaciv;
 import com.alekiponi.firmaciv.client.screen.BarrelCompartmentScreen;
 import com.alekiponi.firmaciv.client.screen.LargeVesselCompartmentScreen;
@@ -27,7 +26,6 @@ import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import com.alekiponi.alekiships.client.resources.PaintedTextureGenerator;
 
 import javax.annotation.Nullable;
 
@@ -44,132 +42,132 @@ public final class FirmacivClientEvents {
         event.enqueueWork(() -> {
             MenuScreens.register(FirmacivMenus.BARREL_COMPARTMENT_MENU.get(), BarrelCompartmentScreen::new);
             MenuScreens.register(FirmacivMenus.LARGE_VESSEL_COMPARTMENT_MENU.get(), LargeVesselCompartmentScreen::new);
-        });
 
-        ItemProperties.register(FirmacivItems.BAROMETER.get(), new ResourceLocation(Firmaciv.MOD_ID, "altitude"),
-                new ClampedItemPropertyFunction() {
+            ItemProperties.register(FirmacivItems.BAROMETER.get(), new ResourceLocation(Firmaciv.MOD_ID, "altitude"),
+                    new ClampedItemPropertyFunction() {
 
-                    public float unclampedCall(ItemStack pStack, @Nullable ClientLevel pLevel,
-                            @Nullable LivingEntity livingEntity, int p_174668_) {
+                        public float unclampedCall(ItemStack pStack, @Nullable ClientLevel pLevel,
+                                @Nullable LivingEntity livingEntity, int p_174668_) {
 
-                        Entity entity = livingEntity != null ? livingEntity : pStack.getEntityRepresentation();
-                        if (entity == null) {
-                            return 0.0F;
-                        } else {
-                            if (pLevel == null && entity.level() instanceof ClientLevel) {
-                                pLevel = (ClientLevel) entity.level();
-                            }
-
-                            if (pLevel == null) {
+                            Entity entity = livingEntity != null ? livingEntity : pStack.getEntityRepresentation();
+                            if (entity == null) {
                                 return 0.0F;
                             } else {
-                                double height;
-                                if (pLevel.dimensionType().natural()) {
-                                    assert livingEntity != null;
-                                    height = (entity.getY() + 64) / (pLevel.getHeight());
-                                } else {
-                                    height = Math.random();
+                                if (pLevel == null && entity.level() instanceof ClientLevel) {
+                                    pLevel = (ClientLevel) entity.level();
                                 }
 
-                                return (float) height;
-                            }
-                        }
-                    }
-                });
-
-
-        ItemProperties.register(FirmacivItems.FIRMACIV_COMPASS.get(),
-                new ResourceLocation(Firmaciv.MOD_ID, "firmaciv_compass_direction"), new ClampedItemPropertyFunction() {
-
-                    public float unclampedCall(ItemStack pStack, @Nullable ClientLevel pLevel,
-                            @Nullable LivingEntity livingEntity, int p_174668_) {
-
-
-                        float rotation = 0;
-
-                        Entity entity = livingEntity != null ? livingEntity : pStack.getEntityRepresentation();
-                        if (entity == null) {
-                            return 0.0F;
-                        } else {
-                            if (pLevel == null && entity.level() instanceof ClientLevel) {
-                                pLevel = (ClientLevel) entity.level();
-                            }
-
-                            if (pLevel == null) {
-                                return 0.0F;
-                            } else {
-                                double direction;
-                                if (pLevel.dimensionType().natural()) {
-                                    assert livingEntity != null;
-                                    if (livingEntity instanceof Player && pLevel.isClientSide() && livingEntity.getVehicle() instanceof EmptyCompartmentEntity) {
-                                        rotation = Minecraft.getInstance().getCameraEntity().getYRot();
+                                if (pLevel == null) {
+                                    return 0.0F;
+                                } else {
+                                    double height;
+                                    if (pLevel.dimensionType().natural()) {
+                                        assert livingEntity != null;
+                                        height = (entity.getY() + 64) / (pLevel.getHeight());
                                     } else {
-                                        rotation = entity.getYRot();
+                                        height = Math.random();
                                     }
-                                    direction = ((Mth.wrapDegrees(-rotation) + 180) % 360) / 360;
-                                } else {
-                                    direction = Math.random();
-                                }
 
-                                return (float) direction; //(2*3.1415926535f)
+                                    return (float) height;
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
 
-        ItemProperties.register(FirmacivItems.NAV_CLOCK.get(), new ResourceLocation(Firmaciv.MOD_ID, "pm_time"),
-                new ClampedItemPropertyFunction() {
-                    private double rotation;
-                    private double rota;
-                    private long lastUpdateTick;
+            ItemProperties.register(FirmacivItems.FIRMACIV_COMPASS.get(),
+                    new ResourceLocation(Firmaciv.MOD_ID, "firmaciv_compass_direction"),
+                    new ClampedItemPropertyFunction() {
 
-                    public float unclampedCall(ItemStack p_174665_, @Nullable ClientLevel p_174666_,
-                            @Nullable LivingEntity livingEntity, int p_174668_) {
-                        net.minecraft.world.entity.Entity entity = livingEntity != null ? livingEntity : p_174665_.getEntityRepresentation();
-                        if (entity == null) {
-                            return 0.0F;
-                        } else {
-                            if (p_174666_ == null && entity.level() instanceof ClientLevel) {
-                                p_174666_ = (ClientLevel) entity.level();
-                            }
+                        public float unclampedCall(ItemStack pStack, @Nullable ClientLevel pLevel,
+                                @Nullable LivingEntity livingEntity, int p_174668_) {
 
-                            double longitude = Math.abs((AbstractNavItem.getNavLocation(
-                                    entity.getEyePosition())[AbstractNavItem.NavSelection.LONGITUDE.ordinal()] % 180) / 180);
 
-                            if (p_174666_ == null) {
+                            float rotation = 0;
+
+                            Entity entity = livingEntity != null ? livingEntity : pStack.getEntityRepresentation();
+                            if (entity == null) {
                                 return 0.0F;
                             } else {
-                                double time;
-                                if (p_174666_.dimensionType().natural()) {
-                                    time = p_174666_.getTimeOfDay(1.0F);
-                                    time += longitude;
-                                    time %= 1.0F;
-                                } else {
-                                    time = Math.random();
+                                if (pLevel == null && entity.level() instanceof ClientLevel) {
+                                    pLevel = (ClientLevel) entity.level();
                                 }
 
-                                time = this.wobble(p_174666_, time);
-                                return (float) time;
+                                if (pLevel == null) {
+                                    return 0.0F;
+                                } else {
+                                    double direction;
+                                    if (pLevel.dimensionType().natural()) {
+                                        assert livingEntity != null;
+                                        if (livingEntity instanceof Player && pLevel.isClientSide() && livingEntity.getVehicle() instanceof EmptyCompartmentEntity) {
+                                            rotation = Minecraft.getInstance().getCameraEntity().getYRot();
+                                        } else {
+                                            rotation = entity.getYRot();
+                                        }
+                                        direction = ((Mth.wrapDegrees(-rotation) + 180) % 360) / 360;
+                                    } else {
+                                        direction = Math.random();
+                                    }
+
+                                    return (float) direction; //(2*3.1415926535f)
+                                }
                             }
                         }
-                    }
+                    });
 
 
-                    private double wobble(Level p_117904_, double p_117905_) {
-                        if (p_117904_.getGameTime() != this.lastUpdateTick) {
-                            this.lastUpdateTick = p_117904_.getGameTime();
-                            double d0 = p_117905_ - this.rotation;
-                            d0 = Mth.positiveModulo(d0 + 0.5D, 1.0D) - 0.5D;
-                            this.rota += d0 * 0.1D;
-                            this.rota *= 0.9D;
-                            this.rotation = Mth.positiveModulo(this.rotation + this.rota, 1.0D);
+            ItemProperties.register(FirmacivItems.NAV_CLOCK.get(), new ResourceLocation(Firmaciv.MOD_ID, "pm_time"),
+                    new ClampedItemPropertyFunction() {
+                        private double rotation;
+                        private double rota;
+                        private long lastUpdateTick;
+
+                        public float unclampedCall(ItemStack p_174665_, @Nullable ClientLevel p_174666_,
+                                @Nullable LivingEntity livingEntity, int p_174668_) {
+                            net.minecraft.world.entity.Entity entity = livingEntity != null ? livingEntity : p_174665_.getEntityRepresentation();
+                            if (entity == null) {
+                                return 0.0F;
+                            } else {
+                                if (p_174666_ == null && entity.level() instanceof ClientLevel) {
+                                    p_174666_ = (ClientLevel) entity.level();
+                                }
+
+                                double longitude = Math.abs((AbstractNavItem.getNavLocation(
+                                        entity.getEyePosition())[AbstractNavItem.NavSelection.LONGITUDE.ordinal()] % 180) / 180);
+
+                                if (p_174666_ == null) {
+                                    return 0.0F;
+                                } else {
+                                    double time;
+                                    if (p_174666_.dimensionType().natural()) {
+                                        time = p_174666_.getTimeOfDay(1.0F);
+                                        time += longitude;
+                                        time %= 1.0F;
+                                    } else {
+                                        time = Math.random();
+                                    }
+
+                                    time = this.wobble(p_174666_, time);
+                                    return (float) time;
+                                }
+                            }
                         }
 
-                        return this.rotation;
-                    }
-                });
 
+                        private double wobble(Level p_117904_, double p_117905_) {
+                            if (p_117904_.getGameTime() != this.lastUpdateTick) {
+                                this.lastUpdateTick = p_117904_.getGameTime();
+                                double d0 = p_117905_ - this.rotation;
+                                d0 = Mth.positiveModulo(d0 + 0.5D, 1.0D) - 0.5D;
+                                this.rota += d0 * 0.1D;
+                                this.rota *= 0.9D;
+                                this.rotation = Mth.positiveModulo(this.rotation + this.rota, 1.0D);
+                            }
+
+                            return this.rotation;
+                        }
+                    });
+        });
     }
 
     private static void onRegisterReloadListeners(final RegisterClientReloadListenersEvent event) {
@@ -180,8 +178,9 @@ public final class FirmacivClientEvents {
                     "entity/watercraft/sloop/paint");
 
             for (final TFCWood wood : TFCWood.values()) {
-                event.registerReloadListener(new PaintedTextureGenerator(new ResourceLocation(Firmaciv.MOD_ID,
-                        "entity/watercraft/rowboat/" + wood.getSerializedName()), rowboatPaint));
+                event.registerReloadListener(new PaintedTextureGenerator(
+                        new ResourceLocation(Firmaciv.MOD_ID, "entity/watercraft/rowboat/" + wood.getSerializedName()),
+                        rowboatPaint));
                 event.registerReloadListener(new PaintedTextureGenerator(
                         new ResourceLocation(Firmaciv.MOD_ID, "entity/watercraft/sloop/" + wood.getSerializedName()),
                         sloopPaint));
